@@ -205,7 +205,8 @@ Write-Host ""
 Write-Host "📊 History Analysis:"
 Write-Host "   Total issues: $($export.Count)"
 Write-Host "   Issues with history: $($issuesWithHistory.Count)"
-Write-Host "   Issues with target mapping: $($issuesWithHistory | Where-Object { $sourceToTargetKeyMap.ContainsKey($_.key) }).Count"
+$issuesWithTargetMapping = $issuesWithHistory | Where-Object { $sourceToTargetKeyMap.ContainsKey($_.key) }
+Write-Host "   Issues with target mapping: $($issuesWithTargetMapping.Count)"
 
 if ($issuesWithHistory.Count -eq 0) {
     Write-Host ""
@@ -393,6 +394,7 @@ if ($script:HistoryEntriesMigrated -gt 0) {
 $stepEndTime = Get-Date
 
 # Create main summary CSV for Step 14
+$outDir = Join-Path (Split-Path -Parent $here) "..\projects\$srcKey\out"
 $step14SummaryReport = @()
 
 # Add step timing information
@@ -416,7 +418,7 @@ $step14SummaryReport += [PSCustomObject]@{
 $step14SummaryReport += [PSCustomObject]@{
     Type = "Summary"
     Name = "Issues Processed"
-    Value = $totalIssuesProcessed
+    Value = $script:IssuesProcessed
     Details = "Total issues processed for history migration"
     Timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
 }
@@ -424,7 +426,7 @@ $step14SummaryReport += [PSCustomObject]@{
 $step14SummaryReport += [PSCustomObject]@{
     Type = "Summary"
     Name = "History Entries Processed"
-    Value = $totalHistoryEntries
+    Value = $script:HistoryEntriesProcessed
     Details = "Total history entries processed from source"
     Timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
 }
@@ -432,7 +434,7 @@ $step14SummaryReport += [PSCustomObject]@{
 $step14SummaryReport += [PSCustomObject]@{
     Type = "Summary"
     Name = "History Entries Migrated"
-    Value = $totalHistoryMigrated
+    Value = $script:HistoryEntriesMigrated
     Details = "History entries successfully migrated to target"
     Timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
 }
@@ -440,7 +442,7 @@ $step14SummaryReport += [PSCustomObject]@{
 $step14SummaryReport += [PSCustomObject]@{
     Type = "Summary"
     Name = "History Entries Failed"
-    Value = $totalHistoryFailed
+    Value = $script:HistoryEntriesFailed
     Details = "History entries that failed to migrate"
     Timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
 }
@@ -448,7 +450,7 @@ $step14SummaryReport += [PSCustomObject]@{
 $step14SummaryReport += [PSCustomObject]@{
     Type = "Summary"
     Name = "Success Rate (%)"
-    Value = if ($totalHistoryEntries -gt 0) { [math]::Round(($totalHistoryMigrated / $totalHistoryEntries) * 100, 1) } else { 0 }
+    Value = if ($script:HistoryEntriesProcessed -gt 0) { [math]::Round(($script:HistoryEntriesMigrated / $script:HistoryEntriesProcessed) * 100, 1) } else { 0 }
     Details = "Percentage of history entries successfully migrated"
     Timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
 }

@@ -1,0 +1,6 @@
+"Step","Action","URL","Description"
+"1","Register OAuth2 Application","https://developer.atlassian.com/console/myapps/","Create new OAuth2 app"
+"2","Configure Scopes","read:jira-work manage:jira-webhook","Set required API permissions"
+"3","Get Authorization Code","https://auth.atlassian.com/authorize","User authorization flow"
+"4","Exchange for Access Token","https://auth.atlassian.com/oauth/token","Get OAuth2 access token"
+"5","Update Script Configuration","This file","Set ClientId, ClientSecret, AccessToken"

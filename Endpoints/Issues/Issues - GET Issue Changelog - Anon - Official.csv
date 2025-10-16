@@ -1,0 +1,227 @@
+"Id","Author","Created","Items","HistoryMetadata","GeneratedAt"
+"4025803","Doug Ball","2024-05-03T09:36:03.493-0500","description: '' -> 'We are looking to transition auto-payment enrollment to PayNearMe in October.  As part of this change, we will need to update any reference to Direct Pay to ?AutoPay?
+
+This story is to identify all the screens with reference to ?Direct Pay?.'","","2025-09-24 15:43:10"
+"4025808","Doug Ball","2024-05-03T09:36:55.467-0500","Sprint: '' -> '2024.ORL.CLOSING.10'","","2025-09-24 15:43:10"
+"4025809","Doug Ball","2024-05-03T09:36:55.702-0500","Rank: '' -> 'Ranked higher'","","2025-09-24 15:43:10"
+"4038683","Doug Ball","2024-05-07T15:28:16.961-0500","Sprint: '2024.ORL.CLOSING.10' -> ''","","2025-09-24 15:43:10"
+"4038684","Doug Ball","2024-05-07T15:28:17.177-0500","Rank: '' -> 'Ranked higher'","","2025-09-24 15:43:10"
+"4061938","Doug Ball","2024-05-14T13:01:49.357-0500","Sprint: '' -> '2024.ORL.CLOSING.11'","","2025-09-24 15:43:10"
+"4061939","Doug Ball","2024-05-14T13:01:49.557-0500","Rank: '' -> 'Ranked lower'","","2025-09-24 15:43:10"
+"4074791","Doug Ball","2024-05-16T09:50:42.775-0500","Rank: '' -> 'Ranked lower'","","2025-09-24 15:43:10"
+"4092590","Doug Ball","2024-05-21T09:23:07.432-0500","Rank: '' -> 'Ranked lower'","","2025-09-24 15:43:10"
+"4094158","Doug Ball","2024-05-21T11:58:12.062-0500","Sprint: '2024.ORL.CLOSING.11' -> '2024.ORL.CLOSING.12'","","2025-09-24 15:43:10"
+"4094159","Doug Ball","2024-05-21T11:58:12.286-0500","Rank: '' -> 'Ranked higher'","","2025-09-24 15:43:10"
+"4098420","Doug Ball","2024-05-22T09:12:06.479-0500","Rank: '' -> 'Ranked lower'","","2025-09-24 15:43:10"
+"4129116","Doug Ball","2024-05-30T10:28:17.403-0500","issuetype: 'Task' -> 'Spike'","","2025-09-24 15:43:10"
+"4153375","Soumodeep Das","2024-06-05T07:41:46.717-0500","Sprint: '2024.ORL.CLOSING.12' -> '2024.ORL.CLOSING.13'","","2025-09-24 15:43:10"
+"4153376","Soumodeep Das","2024-06-05T07:41:46.964-0500","Rank: '' -> 'Ranked higher'","","2025-09-24 15:43:10"
+"4183512","Doug Ball","2024-06-12T08:51:19.006-0500","Sprint: '2024.ORL.CLOSING.13' -> '2024.ORL.CLOSING.14'","","2025-09-24 15:43:10"
+"4183513","Doug Ball","2024-06-12T08:51:19.248-0500","Rank: '' -> 'Ranked lower'","","2025-09-24 15:43:10"
+"4250919","Doug Ball","2024-07-02T11:24:08.977-0500","issuetype: 'Spike' -> 'Task'","","2025-09-24 15:43:10"
+"4260724","Soumodeep Das","2024-07-03T11:05:54.807-0500","Sprint: '2024.ORL.CLOSING.14' -> '2024.ORL.CLOSING.15'","","2025-09-24 15:43:10"
+"4260725","Soumodeep Das","2024-07-03T11:05:55.056-0500","Rank: '' -> 'Ranked higher'","","2025-09-24 15:43:10"
+"4261570","Soumodeep Das","2024-07-03T13:39:48.467-0500","Sprint: '2024.ORL.CLOSING.15' -> '2024.ORL.CLOSING.14'","","2025-09-24 15:43:10"
+"4261571","Soumodeep Das","2024-07-03T13:39:48.707-0500","Rank: '' -> 'Ranked lower'","","2025-09-24 15:43:10"
+"4261585","Soumodeep Das","2024-07-03T13:41:27.632-0500","summary: 'Identify Screens that Reference Direct Pay' -> 'Direct Pay and Click Stream Analysis'","","2025-09-24 15:43:10"
+"4261590","Soumodeep Das","2024-07-03T13:42:29.429-0500","summary: 'Direct Pay and Click Stream Analysis' -> 'Direct Pay and Clickstream Analysis'","","2025-09-24 15:43:10"
+"4261615","Soumodeep Das","2024-07-03T13:43:57.756-0500","labels: 'ORL_Closing' -> 'ORL_Closing RUBY'","","2025-09-24 15:43:10"
+"4261648","Soumodeep Das","2024-07-03T13:47:08.324-0500","status: 'Backlog' -> 'Ready for Work'","","2025-09-24 15:43:10"
+"4262782","Soumodeep Das","2024-07-03T15:24:41.078-0500","Sprint: '2024.ORL.CLOSING.14' -> ''","","2025-09-24 15:43:10"
+"4262783","Soumodeep Das","2024-07-03T15:24:41.308-0500","Rank: '' -> 'Ranked higher'","","2025-09-24 15:43:10"
+"4262786","Soumodeep Das","2024-07-03T15:25:09.412-0500","Sprint: '' -> '2024.ORL.CLOSING.15'","","2025-09-24 15:43:10"
+"4262787","Soumodeep Das","2024-07-03T15:25:09.663-0500","Rank: '' -> 'Ranked higher'","","2025-09-24 15:43:10"
+"4268192","Soumodeep Das","2024-07-08T11:52:59.835-0500","Sprint: '2024.ORL.CLOSING.15' -> '2024.ORL.CLOSING.16'","","2025-09-24 15:43:10"
+"4268214","Soumodeep Das","2024-07-08T11:57:19.565-0500","Sprint: '2024.ORL.CLOSING.16' -> '2024.ORL.CLOSING.17'","","2025-09-24 15:43:10"
+"4273595","Doug Ball","2024-07-09T11:44:30.327-0500","issuetype: 'Task' -> 'Story'","","2025-09-24 15:43:10"
+"4273598","vcjira spira","2024-07-09T11:45:11.690-0500","RemoteIssueLink: '' -> 'This issue links to ""SpiraPlan RQ:21603 (Web Link)""'","","2025-09-24 15:43:10"
+"4273599","Doug Ball","2024-07-09T11:45:52.551-0500","summary: 'Direct Pay and Clickstream Analysis' -> 'Update All Reference to Direct Pay to Auto-Pay'","","2025-09-24 15:43:10"
+"4275040","Doug Ball","2024-07-09T15:41:27.949-0500","Acceptance Criteria: '' -> '*Given* a user on xyz page
+*When* viewing the payment language
+*Then* auto-pay is present.'","","2025-09-24 15:43:10"
+"4275041","Doug Ball","2024-07-09T15:41:34.161-0500","status: 'Ready for Work' -> 'Refinement'","","2025-09-24 15:43:10"
+"4304497","Craig Wilson","2024-07-18T08:46:20.484-0500","labels: 'ORL_Closing RUBY' -> 'ORL_Closing QA_UAT RUBY'","","2025-09-24 15:43:10"
+"4304649","Doug Ball","2024-07-18T09:05:12.012-0500","Sprint: '2024.ORL.CLOSING.17' -> '2024.ORL.CLOSING.16'","","2025-09-24 15:43:10"
+"4304650","Doug Ball","2024-07-18T09:05:12.286-0500","Rank: '' -> 'Ranked lower'","","2025-09-24 15:43:10"
+"4310521","Doug Ball","2024-07-19T14:12:52.450-0500","Sprint: '2024.ORL.CLOSING.16' -> '2024.ORL.CLOSING.18'","","2025-09-24 15:43:10"
+"4310522","Doug Ball","2024-07-19T14:12:52.714-0500","Rank: '' -> 'Ranked lower'","","2025-09-24 15:43:10"
+"4330930","Soumodeep Das","2024-07-26T13:26:11.096-0500","assignee: '' -> 'Sandeep Vemulapalli'","","2025-09-24 15:43:10"
+"4330958","Doug Ball","2024-07-26T13:31:33.141-0500","description: 'We are looking to transition auto-payment enrollment to PayNearMe in October.  As part of this change, we will need to update any reference to Direct Pay to ?AutoPay?
+
+This story is to identify all the screens with reference to ?Direct Pay?.' -> 'We are looking to transition auto-payment enrollment to PayNearMe in October.  As part of this change, we will need to update any reference to Direct Pay to ?AutoPay?
+
+This story is to identify all the screens with reference to ?Direct Pay?.
+
+*Example:* 
+
+
+!image-20240726-183125.png|width=1787,height=845,alt=""image-20240726-183125.png""!'","","2025-09-24 15:43:10"
+"4331023","Doug Ball","2024-07-26T13:42:32.930-0500","description: 'We are looking to transition auto-payment enrollment to PayNearMe in October.  As part of this change, we will need to update any reference to Direct Pay to ?AutoPay?
+
+This story is to identify all the screens with reference to ?Direct Pay?.
+
+*Example:* 
+
+
+!image-20240726-183125.png|width=1787,height=845,alt=""image-20240726-183125.png""!' -> 'We are looking to transition auto-payment enrollment to PayNearMe in October.  As part of this change, we will need to update any reference to Direct Pay to ?AutoPay?
+
+This story is to identify all the screens with reference to ?Direct Pay?.
+
+*Example:* 
+
+
+!image-20240726-183125.png|width=1787,height=845,alt=""image-20240726-183125.png""!
+
+
+
+!image-20240726-184228.png|width=288,height=644,alt=""image-20240726-184228.png""!'","","2025-09-24 15:43:10"
+"4340484","Sandeep Vemulapalli","2024-07-30T11:47:05.819-0500","Test Plan: '' -> 'Test a FDC App on Web19 capture all the Auto Pay screens '","","2025-09-24 15:43:10"
+"4340635","Sandeep Vemulapalli","2024-07-30T11:58:05.210-0500","Story Points: '0' -> '3'","","2025-09-24 15:43:10"
+"4340637","Sandeep Vemulapalli","2024-07-30T11:58:43.161-0500","status: 'Refinement' -> 'Ready for Work'","","2025-09-24 15:43:10"
+"4353153","Doug Ball","2024-08-01T16:43:08.420-0500","Assumptions: '' -> 'Originations sales are addressing FTR & FDC autopay screens.'","","2025-09-24 15:43:10"
+"4353155","Doug Ball","2024-08-01T16:43:20.034-0500","Test Plan: 'Test a FDC App on Web19 capture all the Auto Pay screens ' -> ''","","2025-09-24 15:43:10"
+"4353156","Doug Ball","2024-08-01T16:43:23.171-0500","Acceptance Criteria: '*Given* a user on xyz page
+*When* viewing the payment language
+*Then* auto-pay is present.' -> '*Given* a user on the loan dashboard, where verifications have been completed and the direct pay information in CLASS is empty,
+*When* viewing the payment language
+*Then* auto-pay is present.'","","2025-09-24 15:43:10"
+"4353157","Doug Ball","2024-08-01T16:44:35.540-0500","Test Plan: '' -> '* Create an web application and complete verifications in CLASS where Direct Pay information is blank.
+* Log into online account
+* Run through direct pay registration'","","2025-09-24 15:43:10"
+"4353160","Doug Ball","2024-08-01T16:47:47.737-0500","description: 'We are looking to transition auto-payment enrollment to PayNearMe in October.  As part of this change, we will need to update any reference to Direct Pay to ?AutoPay?
+
+This story is to identify all the screens with reference to ?Direct Pay?.
+
+*Example:* 
+
+
+!image-20240726-183125.png|width=1787,height=845,alt=""image-20240726-183125.png""!
+
+
+
+!image-20240726-184228.png|width=288,height=644,alt=""image-20240726-184228.png""!' -> 'We are looking to transition auto-payment enrollment to PayNearMe in October.  As part of this change, we will need to update any reference to Direct Pay to ?AutoPay?
+
+This story is to identify all the screens with reference to ?Direct Pay?.
+
+*Example:* 
+
+
+!image-20240801-205247.png|width=91.66666666666666%,alt=""image-20240801-205247.png""!'","","2025-09-24 15:43:10"
+"4353200","Doug Ball","2024-08-01T16:57:13.462-0500","description: 'We are looking to transition auto-payment enrollment to PayNearMe in October.  As part of this change, we will need to update any reference to Direct Pay to ?AutoPay?
+
+This story is to identify all the screens with reference to ?Direct Pay?.
+
+*Example:* 
+
+
+!image-20240801-205247.png|width=91.66666666666666%,alt=""image-20240801-205247.png""!' -> 'We are looking to transition auto-payment enrollment to PayNearMe in October.  As part of this change, we will need to update any reference to Direct Pay to ?AutoPay?
+
+This story is to identify all the screens with reference to ?Direct Pay?.
+
+*Example:* 
+
+
+!image-20240801-205247.png|width=91.66666666666666%,alt=""image-20240801-205247.png""!
+
+
+
+
+!image-20240801-215633.png|width=75%,alt=""image-20240801-215633.png""!'","","2025-09-24 15:43:10"
+"4353201","Doug Ball","2024-08-01T16:57:35.169-0500","Acceptance Criteria: '*Given* a user on the loan dashboard, where verifications have been completed and the direct pay information in CLASS is empty,
+*When* viewing the payment language
+*Then* auto-pay is present.' -> '*OneMain.Financial/Accounts*
+
+*Given* a user on the loan dashboard, where verifications have been completed and the direct pay information in CLASS is empty,
+*When* viewing the account options verbiage,
+*Then* ?Direct Pay? is has been replaced with ?AutoPay?'","","2025-09-24 15:43:10"
+"4353207","Doug Ball","2024-08-01T17:00:05.623-0500","Acceptance Criteria: '*OneMain.Financial/Accounts*
+
+*Given* a user on the loan dashboard, where verifications have been completed and the direct pay information in CLASS is empty,
+*When* viewing the account options verbiage,
+*Then* ?Direct Pay? is has been replaced with ?AutoPay?' -> '*OneMain.Financial/Accounts*
+
+*Given* a user on the loan dashboard, where verifications have been completed and the direct pay information in CLASS is empty,
+*When* viewing the account options verbiage,
+*Then* ?Direct Pay? is has been replaced with ?AutoPay?
+
+*OneMain.Financial/Accounts/account-options*
+
+*Given* a user on the account-options page,
+*When* viewing the account options verbiage,
+*Then* ?Direct Pay? is has been replaced with ?AutoPay?'","","2025-09-24 15:43:10"
+"4353217","Doug Ball","2024-08-01T17:05:39.175-0500","IssueParentAssociation: '' -> 'PAY-113'","","2025-09-24 15:43:10"
+"4353219","Doug Ball","2024-08-01T17:05:39.242-0500","Epic Link: '' -> 'PAY-113'","","2025-09-24 15:43:10"
+"4354238","Doug Ball","2024-08-02T09:45:05.984-0500","Rank: '' -> 'Ranked higher'","","2025-09-24 15:43:10"
+"4354409","Doug Ball","2024-08-02T10:02:46.479-0500","summary: 'Update All Reference to Direct Pay to Auto-Pay' -> 'https://onemain.atlassian.net/browse/ORL-3347'","","2025-09-24 15:43:10"
+"4354420","Doug Ball","2024-08-02T10:03:31.561-0500","summary: 'https://onemain.atlassian.net/browse/ORL-3347' -> 'Update References of Direct'","","2025-09-24 15:43:10"
+"4354429","Doug Ball","2024-08-02T10:04:19.370-0500","summary: 'Update References of Direct' -> 'Update Direct Pay to AutoPay for Accounts & Account-Options'","","2025-09-24 15:43:10"
+"4428623","Prazeena Shrestha","2024-08-28T10:49:21.655-0500","labels: 'ORL_Closing QA_UAT RUBY' -> 'ORL_Team_B QA_UAT RUBY'","","2025-09-24 15:43:10"
+"4428629","Prazeena Shrestha","2024-08-28T10:50:26.186-0500","Sprint: '2024.ORL.CLOSING.18' -> '2024.ORL.B.18'","","2025-09-24 15:43:10"
+"4428630","Prazeena Shrestha","2024-08-28T10:50:40.668-0500","Rank: '' -> 'Ranked higher'","","2025-09-24 15:43:10"
+"4428655","Prazeena Shrestha","2024-08-28T10:51:54.075-0500","Rank: '' -> 'Ranked higher'","","2025-09-24 15:43:10"
+"4430427","Prazeena Shrestha","2024-08-28T14:36:35.230-0500","description: 'We are looking to transition auto-payment enrollment to PayNearMe in October.  As part of this change, we will need to update any reference to Direct Pay to ?AutoPay?
+
+This story is to identify all the screens with reference to ?Direct Pay?.
+
+*Example:* 
+
+
+!image-20240801-205247.png|width=91.66666666666666%,alt=""image-20240801-205247.png""!
+
+
+
+
+!image-20240801-215633.png|width=75%,alt=""image-20240801-215633.png""!' -> 'We are looking to transition auto-payment enrollment to PayNearMe in October.  As part of this change, we will need to update any reference to Direct Pay to ?AutoPay?
+
+This story is to make changes to the below screens with reference to ?Direct Pay?.
+
+*Example:* 
+
+
+!image-20240801-205247.png|width=91.66666666666666%,alt=""image-20240801-205247.png""!
+
+
+
+
+!image-20240801-215633.png|width=75%,alt=""image-20240801-215633.png""!'","","2025-09-24 15:43:10"
+"4430441","Prazeena Shrestha","2024-08-28T14:37:38.788-0500","Assumptions: 'Originations sales are addressing FTR & FDC autopay screens.' -> '* Originations sales are addressing FTR & FDC autopay screens.
+* The changes needs to be behind the flag - '","","2025-09-24 15:43:10"
+"4430501","Prazeena Shrestha","2024-08-28T14:40:40.244-0500","Assumptions: '* Originations sales are addressing FTR & FDC autopay screens.
+* The changes needs to be behind the flag - ' -> '* Originations sales are addressing FTR & FDC autopay screens.
+* The changes needs to be behind the flag - originations_paynearme_copy_changes'","","2025-09-24 15:43:10"
+"4430671","Amit Asghar","2024-08-28T15:11:15.397-0500","Sprint: '2024.ORL.B.18' -> '2024.ORL.B.19'","","2025-09-24 15:43:10"
+"4430672","Amit Asghar","2024-08-28T15:11:15.716-0500","Rank: '' -> 'Ranked higher'","","2025-09-24 15:43:10"
+"4432188","Prazeena Shrestha","2024-08-29T09:26:51.910-0500","Assumptions: '* Originations sales are addressing FTR & FDC autopay screens.
+* The changes needs to be behind the flag - originations_paynearme_copy_changes' -> '* Originations sales are addressing FTR & FDC autopay screens.
+* The changes needs to be behind the flag - originations_paynearme_copy_changes
+* The dealer track page is out of scope.'","","2025-09-24 15:43:10"
+"4432194","Prazeena Shrestha","2024-08-29T09:28:33.940-0500","status: 'Ready for Work' -> 'Refinement'","","2025-09-24 15:43:10"
+"4432278","Prazeena Shrestha","2024-08-29T09:41:07.921-0500","Sprint: '2024.ORL.B.19' -> '2024.ORL.B.18'","","2025-09-24 15:43:10"
+"4432279","Prazeena Shrestha","2024-08-29T09:41:08.272-0500","Rank: '' -> 'Ranked lower'","","2025-09-24 15:43:10"
+"4432295","Prazeena Shrestha","2024-08-29T09:41:27.042-0500","assignee: 'Sandeep Vemulapalli' -> 'Raghuvaran Reddy Julakanti'","","2025-09-24 15:43:10"
+"4432313","Prazeena Shrestha","2024-08-29T09:41:51.405-0500","Sprint: '2024.ORL.B.18' -> '2024.ORL.B.19'","","2025-09-24 15:43:10"
+"4432315","Prazeena Shrestha","2024-08-29T09:41:51.925-0500","Rank: '' -> 'Ranked higher'","","2025-09-24 15:43:10"
+"4432335","Prazeena Shrestha","2024-08-29T09:42:19.087-0500","Sprint: '2024.ORL.B.19' -> '2024.ORL.B.18'","","2025-09-24 15:43:10"
+"4432336","Prazeena Shrestha","2024-08-29T09:42:19.433-0500","Rank: '' -> 'Ranked lower'","","2025-09-24 15:43:10"
+"4432743","Prazeena Shrestha","2024-08-29T10:49:25.100-0500","Rank: '' -> 'Ranked lower'","","2025-09-24 15:43:10"
+"4432753","Prazeena Shrestha","2024-08-29T10:49:37.084-0500","Rank: '' -> 'Ranked lower'","","2025-09-24 15:43:10"
+"4432826","Prazeena Shrestha","2024-08-29T11:04:33.676-0500","Sprint: '2024.ORL.B.18' -> ''","","2025-09-24 15:43:10"
+"4432838","Prazeena Shrestha","2024-08-29T11:04:36.589-0500","Sprint: '' -> '2024.ORL.AJ.19'","","2025-09-24 15:43:10"
+"4432847","Prazeena Shrestha","2024-08-29T11:04:38.849-0500","Rank: '' -> 'Ranked higher'","","2025-09-24 15:43:10"
+"4433081","Vijay Thodla","2024-08-29T11:37:18.372-0500","Test Plan: '* Create an web application and complete verifications in CLASS where Direct Pay information is blank.
+* Log into online account
+* Run through direct pay registration' -> '* [https://omf.spiraservice.net/92/TestCase/8494.aspx|https://omf.spiraservice.net/92/TestCase/8494.aspx]
+* Create an web application and complete verifications in CLASS where Direct Pay information is blank.
+* Log into online account
+* Run through direct pay registration'","","2025-09-24 15:43:10"
+"4433511","Kristy Wyrick","2024-08-29T13:58:00.293-0500","Link: '' -> 'This issue is tested by QUAL-15399'","","2025-09-24 15:43:10"
+"4433545","Amit Asghar","2024-08-29T14:05:10.066-0500","status: 'Refinement' -> 'Ready for Work'","","2025-09-24 15:43:10"
+"4433745","Prazeena Shrestha","2024-08-29T14:28:40.371-0500","Fix Version: '' -> 'E-2024.07'","","2025-09-24 15:43:10"
+"4435080","Raghuvaran Reddy Julakanti","2024-08-30T08:53:40.884-0500","status: 'Ready for Work' -> 'In Progress'","","2025-09-24 15:43:10"
+"4439778","Raghuvaran Reddy Julakanti","2024-09-03T14:46:03.431-0500","status: 'In Progress' -> 'Testing'","","2025-09-24 15:43:10"
+"4446056","Vijay Thodla","2024-09-05T12:10:39.515-0500","resolution: '' -> 'Done'; status: 'Testing' -> 'Done'","","2025-09-24 15:43:10"
+"4450471","Aditya Chakrabarti","2024-09-07T11:43:06.192-0500","Link: '' -> 'This issue is part of CFOPS-374'","","2025-09-24 15:43:10"
+"4450476","Automation for Jira","2024-09-07T11:43:10.114-0500","Date added to Deployment: '' -> '7/Sep/24'; Deployment Key: '' -> 'CFOPS-374'; Deployment Summary: '' -> '2024-09-09 - Frontend - Delivery'",": ","2025-09-24 15:43:10"
+"4469112","Automation for Jira","2024-09-13T10:17:33.313-0500","Deployment Summary: '2024-09-09 - Frontend - Delivery' -> '2024-09-11 - Frontend - Delivery'",": ","2025-09-24 15:43:10"
+"4529041","Amit Asghar","2024-10-07T17:36:21.538-0500","labels: 'ORL_Team_B QA_UAT RUBY' -> 'ORL_Team_B Polaris QA_UAT RUBY'","","2025-09-24 15:43:10"
+"4759834","ScriptRunner for Jira","2025-01-16T13:23:36.486-0600","Link: '' -> 'This issue is related to KR TOKR-4'","","2025-09-24 15:43:10"

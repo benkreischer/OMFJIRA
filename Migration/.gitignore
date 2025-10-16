@@ -1,0 +1,66 @@
+# PowerShell
+*.ps1.log
+*.ps1.txt
+*.ps1.bak
+
+# Log files
+*.log
+*.log.md
+logs/
+log/
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Project-specific
+projects/*/out/*.csv
+projects/*/out/*.log*
+projects/*/out/*.md
+projects/*/out/*.html
+projects/*/out/*.json
+projects/*/out/*.zip
+
+# Keep directory structure but ignore output files
+projects/*/out/
+!projects/*/out/.gitkeep
+
+# Configuration files with sensitive data
+config/*.json
+projects/*/parameters.json
+*.env
+.env
+**/secrets/**
+**/credentials/**
+**/api-keys/**
+**/*secret*
+**/*token*
+**/*credential*
+
+# Backup files
+*.bak
+*.backup
+
+# Test files
+test-*
+*test*
+*Test*
+
+# Archive files
+*.zip
+*.7z
+*.rar
+
+# PowerShell modules
+*.psm1

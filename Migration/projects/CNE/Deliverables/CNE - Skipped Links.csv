@@ -1,0 +1,2 @@
+"Source Issue","Source URL","Target Issue","Target URL","Link Type","Direction","Linked To (Not Migrated)","Linked To URL","Reason","Action Required"
+"CNE-1764","https://onemain.atlassian.net/browse/CNE-1764","CNE1-142","https://onemainfinancial-migrationsandbox.atlassian.net/browse/CNE1-142","Cloners","outward","CNE-1759","https://onemain.atlassian.net/browse/CNE-1759","Already exists (idempotency)","Manually create link when linked issue is migrated, or link to source instance"

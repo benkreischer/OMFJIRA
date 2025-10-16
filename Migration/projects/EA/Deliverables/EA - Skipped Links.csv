@@ -1,0 +1,2 @@
+"Source Issue","Source URL","Target Issue","Target URL","Link Type","Direction","Linked To (Not Migrated)","Linked To URL","Reason","Action Required"
+"EA-430","https://onemain.atlassian.net/browse/EA-430","EA1-12","https://onemainfinancial-migrationsandbox.atlassian.net/browse/EA1-12","Cloners","outward","EA-421","https://onemain.atlassian.net/browse/EA-421","Already exists (idempotency)","Manually create link when linked issue is migrated, or link to source instance"

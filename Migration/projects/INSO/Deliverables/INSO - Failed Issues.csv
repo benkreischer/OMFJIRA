@@ -1,0 +1,2 @@
+"SourceKey","IssueType","Summary","Error","ErrorDetails","Priority","Status","Assignee","Reporter","Created","Updated","Description","SourceURL"
+"INSO-2428","Story","INSO-2159 - VB - Add call to calculate XyAdmin refunds terms along with recompiling associated programs","Response status code does not indicate success: 400 (Bad Request).","Bad Request - Invalid data or missing required fields","Medium","Acceptance","Vickey Bailey","Bill Dart","10/14/2025 8:59:05 AM","10/15/2025 8:05:31 AM","ADF content - parsing failed","https://onemain.atlassian.net/browse/INSO-2428"

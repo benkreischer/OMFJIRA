@@ -1,0 +1,166 @@
+# =============================================================================
+# CreateAllStandardProjects.ps1
+# =============================================================================
+# Generated script to create all standard projects in OneMain Financial Migration Sandbox
+# Generated on: 2025-10-16 07:32:23
+# Total Projects: 134
+#
+# Usage: .\CreateAllStandardProjects.ps1
+# Note: This script will create projects in the target environment
+# =============================================================================
+
+Write-Host 'Starting creation of all standard projects...' -ForegroundColor Green
+Write-Host 'Total projects to create: 134' -ForegroundColor Blue
+
+# =============================================================================
+# Uncategorized Projects (11 projects)
+# =============================================================================
+.\CreateNewStandardProject.ps1 -ProjectKey "ACO"
+.\CreateNewStandardProject.ps1 -ProjectKey "CAT"
+.\CreateNewStandardProject.ps1 -ProjectKey "CMP1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CAP"
+.\CreateNewStandardProject.ps1 -ProjectKey "CDM"
+.\CreateNewStandardProject.ps1 -ProjectKey "DAVG"
+.\CreateNewStandardProject.ps1 -ProjectKey "DGP"
+.\CreateNewStandardProject.ps1 -ProjectKey "QE"
+.\CreateNewStandardProject.ps1 -ProjectKey "MDS"
+.\CreateNewStandardProject.ps1 -ProjectKey "MOPS"
+.\CreateNewStandardProject.ps1 -ProjectKey "SHO"
+
+# =============================================================================
+# Productivity Engineering Projects (1 projects)
+# =============================================================================
+.\CreateNewStandardProject.ps1 -ProjectKey "DEVEX"
+
+# =============================================================================
+# Template Projects (122 projects)
+# =============================================================================
+.\CreateNewStandardProject.ps1 -ProjectKey "PAY1"
+.\CreateNewStandardProject.ps1 -ProjectKey "ACQ1"
+.\CreateNewStandardProject.ps1 -ProjectKey "ACQE1"
+.\CreateNewStandardProject.ps1 -ProjectKey "ACM1"
+.\CreateNewStandardProject.ps1 -ProjectKey "AUT1"
+.\CreateNewStandardProject.ps1 -ProjectKey "BDME1"
+.\CreateNewStandardProject.ps1 -ProjectKey "BINT1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CCAL1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CRSK1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CES1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CARD1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CDL1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CISRE1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CCOL1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CNE1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CNS1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CNSS1"
+.\CreateNewStandardProject.ps1 -ProjectKey "DCOM1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CE1"
+.\CreateNewStandardProject.ps1 -ProjectKey "MCLNE1"
+.\CreateNewStandardProject.ps1 -ProjectKey "MCARD1"
+.\CreateNewStandardProject.ps1 -ProjectKey "MCCP1"
+.\CreateNewStandardProject.ps1 -ProjectKey "MCLD1"
+.\CreateNewStandardProject.ps1 -ProjectKey "COMMS1"
+.\CreateNewStandardProject.ps1 -ProjectKey "COMP1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CUSD1"
+.\CreateNewStandardProject.ps1 -ProjectKey "COR1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CAPE1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CCP1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CARC1"
+.\CreateNewStandardProject.ps1 -ProjectKey "COPS1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CACS1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CCE"
+.\CreateNewStandardProject.ps1 -ProjectKey "MCCE1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CIA1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CWG1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CDAD1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CITM1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CTEM1"
+.\CreateNewStandardProject.ps1 -ProjectKey "DBA1"
+.\CreateNewStandardProject.ps1 -ProjectKey "DP1"
+.\CreateNewStandardProject.ps1 -ProjectKey "DAWA1"
+.\CreateNewStandardProject.ps1 -ProjectKey "DARC1"
+.\CreateNewStandardProject.ps1 -ProjectKey "DS1"
+.\CreateNewStandardProject.ps1 -ProjectKey "DEP1"
+.\CreateNewStandardProject.ps1 -ProjectKey "DE1"
+.\CreateNewStandardProject.ps1 -ProjectKey "DOT1"
+.\CreateNewStandardProject.ps1 -ProjectKey "DR1"
+.\CreateNewStandardProject.ps1 -ProjectKey "DLP1"
+.\CreateNewStandardProject.ps1 -ProjectKey "DPSS1"
+.\CreateNewStandardProject.ps1 -ProjectKey "ENGOPS1"
+.\CreateNewStandardProject.ps1 -ProjectKey "ENHANCED"
+.\CreateNewStandardProject.ps1 -ProjectKey "EA1"
+.\CreateNewStandardProject.ps1 -ProjectKey "EMC1"
+.\CreateNewStandardProject.ps1 -ProjectKey "ERC1"
+.\CreateNewStandardProject.ps1 -ProjectKey "ERD1"
+.\CreateNewStandardProject.ps1 -ProjectKey "ESDL1"
+.\CreateNewStandardProject.ps1 -ProjectKey "QUAL1"
+.\CreateNewStandardProject.ps1 -ProjectKey "EPMC1"
+.\CreateNewStandardProject.ps1 -ProjectKey "ETAC1"
+.\CreateNewStandardProject.ps1 -ProjectKey "FLDR1"
+.\CreateNewStandardProject.ps1 -ProjectKey "FNTR1"
+.\CreateNewStandardProject.ps1 -ProjectKey "FSYS1"
+.\CreateNewStandardProject.ps1 -ProjectKey "FORMS1"
+.\CreateNewStandardProject.ps1 -ProjectKey "GENAI1"
+.\CreateNewStandardProject.ps1 -ProjectKey "IAM1"
+.\CreateNewStandardProject.ps1 -ProjectKey "IMG1"
+.\CreateNewStandardProject.ps1 -ProjectKey "BAS1"
+.\CreateNewStandardProject.ps1 -ProjectKey "AI1"
+.\CreateNewStandardProject.ps1 -ProjectKey "ICS1"
+.\CreateNewStandardProject.ps1 -ProjectKey "INEN1"
+.\CreateNewStandardProject.ps1 -ProjectKey "PDS1"
+.\CreateNewStandardProject.ps1 -ProjectKey "PSM1"
+.\CreateNewStandardProject.ps1 -ProjectKey "ZCS1"
+.\CreateNewStandardProject.ps1 -ProjectKey "INI1"
+.\CreateNewStandardProject.ps1 -ProjectKey "INSO1"
+.\CreateNewStandardProject.ps1 -ProjectKey "INTG1"
+.\CreateNewStandardProject.ps1 -ProjectKey "LAS1"
+.\CreateNewStandardProject.ps1 -ProjectKey "ME1"
+.\CreateNewStandardProject.ps1 -ProjectKey "MOD1"
+.\CreateNewStandardProject.ps1 -ProjectKey "DOC1"
+.\CreateNewStandardProject.ps1 -ProjectKey "OBE1"
+.\CreateNewStandardProject.ps1 -ProjectKey "OBSRV1"
+.\CreateNewStandardProject.ps1 -ProjectKey "SIGN1"
+.\CreateNewStandardProject.ps1 -ProjectKey "ONE1"
+.\CreateNewStandardProject.ps1 -ProjectKey "OPSAN1"
+.\CreateNewStandardProject.ps1 -ProjectKey "ORL1"
+.\CreateNewStandardProject.ps1 -ProjectKey "SRE1"
+.\CreateNewStandardProject.ps1 -ProjectKey "PLOS1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CENG1"
+.\CreateNewStandardProject.ps1 -ProjectKey "DCI1"
+.\CreateNewStandardProject.ps1 -ProjectKey "MES1"
+.\CreateNewStandardProject.ps1 -ProjectKey "EDME1"
+.\CreateNewStandardProject.ps1 -ProjectKey "POP1"
+.\CreateNewStandardProject.ps1 -ProjectKey "PLAQ1"
+.\CreateNewStandardProject.ps1 -ProjectKey "PSL"
+.\CreateNewStandardProject.ps1 -ProjectKey "POS1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CBRE1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CAD1"
+.\CreateNewStandardProject.ps1 -ProjectKey "HRES1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CONT1"
+.\CreateNewStandardProject.ps1 -ProjectKey "LAW1"
+.\CreateNewStandardProject.ps1 -ProjectKey "REM1"
+.\CreateNewStandardProject.ps1 -ProjectKey "SCOF1"
+.\CreateNewStandardProject.ps1 -ProjectKey "SCON1"
+.\CreateNewStandardProject.ps1 -ProjectKey "SE1"
+.\CreateNewStandardProject.ps1 -ProjectKey "NOW1"
+.\CreateNewStandardProject.ps1 -ProjectKey "SHP1"
+.\CreateNewStandardProject.ps1 -ProjectKey "STANDARD"
+.\CreateNewStandardProject.ps1 -ProjectKey "DBEAN1"
+.\CreateNewStandardProject.ps1 -ProjectKey "COL1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CTGR1"
+.\CreateNewStandardProject.ps1 -ProjectKey "OAE1"
+.\CreateNewStandardProject.ps1 -ProjectKey "OSO1"
+.\CreateNewStandardProject.ps1 -ProjectKey "CCT1"
+.\CreateNewStandardProject.ps1 -ProjectKey "TCET1"
+.\CreateNewStandardProject.ps1 -ProjectKey "TRIM1"
+.\CreateNewStandardProject.ps1 -ProjectKey "UPT1"
+.\CreateNewStandardProject.ps1 -ProjectKey "UN1"
+.\CreateNewStandardProject.ps1 -ProjectKey "UX1"
+.\CreateNewStandardProject.ps1 -ProjectKey "WL1"
+.\CreateNewStandardProject.ps1 -ProjectKey "XRAY"
+
+
+# =============================================================================
+# Script completed
+# =============================================================================
+
+Write-Host 'All project creation commands completed!' -ForegroundColor Green

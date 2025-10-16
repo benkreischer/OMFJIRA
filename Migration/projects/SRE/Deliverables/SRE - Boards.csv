@@ -1,0 +1,6 @@
+"Type","Name","Value","Details","Timestamp"
+"Summary","Source Boards Discovered","2","Boards found in source project","2025-10-16 07:23:56"
+"Summary","Boards Created/Reused","2","Boards successfully created or reused in target","2025-10-16 07:23:56"
+"Summary","Boards Skipped","0","Boards skipped due to issues","2025-10-16 07:23:56"
+"Board","SRE Kanban board","1436","Type: kanban, Filter: SRE1 - SRE Kanban board (copied from SRE 20251016072352)","2025-10-16 07:23:56"
+"Board","FIX - CTO Dashboard","1437","Type: kanban, Filter: SRE1 - FIX - CTO Dashboard (copied from SRE 20251016072354)","2025-10-16 07:23:56"

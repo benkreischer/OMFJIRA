@@ -1,0 +1,2 @@
+"Source Issue","Source URL","Target Issue","Target URL","Link Type","Direction","Linked To (Not Migrated)","Linked To URL","Reason","Action Required"
+"CTEM-81","https://onemain.atlassian.net/browse/CTEM-81","CTEM1-6","https://onemainfinancial-migrationsandbox.atlassian.net/browse/CTEM1-6","Relates","inward","CTEM-49","https://onemain.atlassian.net/browse/CTEM-49","Already exists (idempotency)","Manually create link when linked issue is migrated, or link to source instance"

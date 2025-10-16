@@ -1,0 +1,52 @@
+---
+description: CSV quality standards that must be met for all generated CSV files
+globs: .endpoints/**/*.csv,.endpoints/**/*.ps1
+alwaysApply: true
+---
+
+# CSV Quality Standards - MANDATORY
+
+## **CSV File Requirements:**
+
+### **Data Quality:**
+1. **ALL CSV files must be clean and readable**
+2. **NO [Record] or nested objects in CSV columns**
+3. **NO null columns with no data**
+4. **NO RawData columns with JSON garbage**
+5. **Flatten all nested JSON objects into separate columns**
+
+### **Data Transformation:**
+6. **Convert boolean values to lowercase text** ("true"/"false")
+7. **Join arrays with semicolon delimiter**
+8. **Handle missing fields gracefully with empty strings**
+9. **Extract fields in API response order**
+10. **Standardize field names** (remove special characters, use TitleCase)
+
+### **Field Extraction Standards:**
+- Flatten nested objects (e.g., `schema.type` → `SchemaType`)
+- Convert Atlassian Document Format to plain text
+- Handle null values consistently
+- Use consistent naming conventions
+
+### **Validation Checklist:**
+- ✅ No [Record] entries in any column
+- ✅ No JSON objects as cell values
+- ✅ All boolean values are "true" or "false" text
+- ✅ All arrays are joined with "; " delimiter
+- ✅ No completely empty columns
+- ✅ All field names are clean and readable
+- ✅ Data is properly flattened and structured
+
+### **Common Data Patterns:**
+- **Issue-related endpoints**: Include issue context (e.g., IssueKey column)
+- **Priority data**: Include both ID and name
+- **User data**: Include both accountId and displayName
+- **Project data**: Include both id and key
+
+### **PowerShell Script Requirements:**
+- Use `Export-Csv -NoTypeInformation` for clean output
+- Handle null values with empty strings
+- Convert booleans to text before export
+- Flatten nested objects into separate properties
+
+**NEVER generate CSV files with nested objects, JSON garbage, or unreadable data.**

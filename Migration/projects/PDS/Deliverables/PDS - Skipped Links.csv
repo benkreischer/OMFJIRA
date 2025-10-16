@@ -1,0 +1,2 @@
+"Source Issue","Source URL","Target Issue","Target URL","Link Type","Direction","Linked To (Not Migrated)","Linked To URL","Reason","Action Required"
+"PDS-1776","https://onemain.atlassian.net/browse/PDS-1776","PDS1-203","https://onemainfinancial-migrationsandbox.atlassian.net/browse/PDS1-203","Cloners","outward","PDS-1761","https://onemain.atlassian.net/browse/PDS-1761","Already exists (idempotency)","Manually create link when linked issue is migrated, or link to source instance"

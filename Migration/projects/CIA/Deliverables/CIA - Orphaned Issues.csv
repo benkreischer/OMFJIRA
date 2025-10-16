@@ -1,0 +1,2 @@
+"Source Issue","Source URL","Target Issue","Target URL","Issue Type","Summary","Missing Parent","Status","Reason","Action Required"
+"CIA-1912","https://onemain.atlassian.net/browse/CIA-1912","CIA1-218","https://onemainfinancial-migrationsandbox.atlassian.net/browse/CIA1-218","Task","UX - Convert CMT using new TM design system styles","CIA-582","In Progress","Parent was resolved/excluded from migration (not in export)","Manually link to appropriate parent or mark as orphaned"

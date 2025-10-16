@@ -1,0 +1,2 @@
+"Source Issue","Source URL","Target Issue","Target URL","Issue Type","Summary","Missing Parent","Status","Reason","Action Required"
+"PLAQ-151","https://onemain.atlassian.net/browse/PLAQ-151","PLAQ1-74","https://onemainfinancial-migrationsandbox.atlassian.net/browse/PLAQ1-74","Spike","Understand Authentication in Legacy UI","PLAQ-142","Backlog","Parent was resolved/excluded from migration (not in export)","Manually link to appropriate parent or mark as orphaned"

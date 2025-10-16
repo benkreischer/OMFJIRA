@@ -1,0 +1,3 @@
+"SourceKey","TargetKey","SourceCommentId","Author","Created","Error","ErrorDetails","SourceURL","TargetURL"
+"POP-179","POP1-56","237457","Avanthi Peduri","8/25/2023 12:34:45 PM","Response status code does not indicate success: 400 (Bad Request).","Bad Request - Invalid data or missing required fields","https://onemain.atlassian.net/browse/POP-179","https://onemainfinancial-migrationsandbox.atlassian.net/browse/POP1-56"
+"POP-385","POP1-68","372151","Tina Eilert","1/22/2025 12:00:46 PM","Response status code does not indicate success: 400 (Bad Request).","Bad Request - Invalid data or missing required fields","https://onemain.atlassian.net/browse/POP-385","https://onemainfinancial-migrationsandbox.atlassian.net/browse/POP1-68"

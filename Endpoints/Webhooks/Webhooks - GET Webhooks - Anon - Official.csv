@@ -1,0 +1,2 @@
+"Error","Reason","Authentication","GeneratedAt"
+"403 Forbidden - Requires OAuth 2.0 authentication","Webhooks endpoint is app-scoped and requires app-specific permissions","OAuth 2.0 required (Basic Auth not supported)","2025-09-27 22:05:17"

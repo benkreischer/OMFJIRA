@@ -1,0 +1,112 @@
+"Field Name","Field ID","Issue Count"
+"Status Category Changed","statuscategorychangedate",
+"Category","customfield_10190","0"
+"Linked items","customfield_10230","0"
+"Delivery progress","customfield_10231","0"
+"Fix versions","fixVersions",
+"Status Category","statusCategory","3326"
+"Delivery status","customfield_10232","0"
+"Parent","parent","1662"
+"Resolution","resolution","1215"
+"Idea archived on","customfield_10225","0"
+"Atlassian project","customfield_10226","0"
+"Atlassian project status","customfield_10227","0"
+"Insights","customfield_10228","0"
+"Comments","customfield_10229","0"
+"Last Viewed","lastViewed","0"
+"Expected Behavior","customfield_10100","21"
+"Priority","priority","3035"
+"Steps to Reproduce","customfield_10101","15"
+"Idea archived","customfield_10223","0"
+"Size","customfield_10102","1"
+"Labels","labels","429"
+"Idea archived by","customfield_10224","0"
+"Remaining Estimate","timeestimate","31"
+"?? Original Estimate","aggregatetimeoriginalestimate",
+"Affects versions","versions",
+"Linked Issues","issuelinks",
+"Assignee","assignee","1798"
+"Status","status","3326"
+"Components","components",
+"Key","issuekey",
+"Story Points","customfield_10058","632"
+"?? Remaining Estimate","aggregatetimeestimate",
+"Creator","creator","3326"
+"Sub-tasks","subtasks",
+"Reporter","reporter","3326"
+"?? Progress","aggregateprogress",
+"Approvals","customfield_10289",
+"Xray End Date","customfield_10159","0"
+"Progress","progress",
+"Votes","votes","3326"
+"Log Work","worklog",
+"Issue Type","issuetype","3326"
+"Time Spent","timespent","9"
+"Open forms","customfield_10030","0"
+"Project","project","3326"
+"Goals","customfield_10031","0"
+"Design","customfield_10032",
+"Vulnerability","customfield_10033",
+"?? Time Spent","aggregatetimespent",
+"Project overview key","customfield_10034","0"
+"Project overview status","customfield_10035","0"
+"Revision","customfield_10157","52"
+"Begin Date","customfield_10158","771"
+"Total forms","customfield_10027","0"
+"Submitted forms","customfield_10028","0"
+"Locked forms","customfield_10029","0"
+"Resolved","resolutiondate","1215"
+"Work Ratio","workratio","31"
+"Watchers","watches",
+"Restrict to","issuerestriction",
+"Images","thumbnail",
+"Created","created","3326"
+"Sprint","customfield_10020","1417"
+"Flagged","customfield_10021","2"
+"Target start","customfield_10022","0"
+"Target end","customfield_10023","0"
+"Sentiment","customfield_10024","0"
+"[CHART] Date of First Response","customfield_10025","284"
+"[CHART] Time in Status","customfield_10026","1215"
+"Story point estimate","customfield_10016","0"
+"Issue color","customfield_10017","208"
+"Parent Link","customfield_10018","1662"
+"Rank","customfield_10019",
+"Updated","updated","3326"
+"Acceptance Criteria","customfield_10091","779"
+"Assumptions","customfield_10092","285"
+"Test Plan","customfield_10093","55"
+"Test Results","customfield_10094","15"
+"Original estimate","timeoriginalestimate","31"
+"End Date","customfield_10095","0"
+"Environment Type","customfield_10096","41"
+"External issue ID","customfield_10250","294"
+"Reporting Source System","customfield_10097","0"
+"Description","description","1422"
+"Request Type","customfield_10010","0"
+"Source System ID","customfield_10098","0"
+"Severity","customfield_10099","41"
+"Epic Name","customfield_10011","30"
+"Epic Status","customfield_10012","155"
+"Epic Color","customfield_10013","177"
+"Focus Areas","customfield_10256",
+"Epic Link","customfield_10014","614"
+"Time tracking","timetracking",
+"Start date","customfield_10015","303"
+"Change type","customfield_10005","0"
+"Change risk","customfield_10006","0"
+"Security Level","security",
+"Change reason","customfield_10007","0"
+"Actual start","customfield_10008","0"
+"Attachment","attachment",
+"Actual end","customfield_10009","0"
+"Summary","summary","3326"
+"Development","customfield_10000",
+"Team","customfield_10001","1767"
+"Organizations","customfield_10002",
+"Environment Name","customfield_10124","21"
+"Approvers","customfield_10003",
+"Impact","customfield_10004","0"
+"Environment","environment","0"
+"Due date","duedate","357"
+"Comment","comment",

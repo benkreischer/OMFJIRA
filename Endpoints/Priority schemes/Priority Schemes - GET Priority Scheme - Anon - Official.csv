@@ -1,0 +1,2 @@
+"self","id","name","description","isDefault","defaultPriorityId"
+"https://onemain.atlassian.net/rest/api/3/priorityscheme/11948","11948","Default priority scheme","This is the default scheme used by all new and unassigned projects","True","3"

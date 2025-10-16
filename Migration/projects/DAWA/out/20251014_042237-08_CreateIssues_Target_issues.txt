@@ -1,0 +1,922 @@
+================================================================================
+ISSUES LOG: 08_CreateIssues_Target
+Generated: 2025-10-14 04:22:37
+================================================================================
+
+=== ERRORS (19) ===
+
+[2025-10-14 04:14:24] Issue Creation Failed
+  Issue: DAWA-3339
+  Failed to create issue: Response status code does not indicate success: 400 (Bad Request).
+    - IssueType: Task
+    - Summary: Update param file OPTPROD_SALES_FIMC_INSURANCE_SALE_UPD_SF 
+
+[2025-10-14 04:14:30] Issue Creation Failed
+  Issue: DAWA-3358
+  Failed to create issue: Response status code does not indicate success: 400 (Bad Request).
+    - IssueType: Task
+    - Summary: CACCLT00 table needs to be brought to SF
+
+[2025-10-14 04:14:34] Issue Creation Failed
+  Issue: DAWA-3373
+  Failed to create issue: Response status code does not indicate success: 400 (Bad Request).
+    - IssueType: Task
+    - Summary: Emergency Fix: change the FTp server name in  payment_atom  job
+
+[2025-10-14 04:14:34] Issue Creation Failed
+  Issue: DAWA-3374
+  Failed to create issue: Response status code does not indicate success: 400 (Bad Request).
+    - IssueType: Task
+    - Summary: Create a new schema FOURSIGHT schema in EDS Prod
+
+[2025-10-14 04:14:35] Issue Creation Failed
+  Issue: DAWA-3379
+  Failed to create issue: Response status code does not indicate success: 400 (Bad Request).
+    - IssueType: Task
+    - Summary: Emergency Fix : Changing to STP script - sq_ACHReconFrontier_Dly_Mstr  & sq_SF_DebitCardReconFrontier_Dly_Mst,  sq_Citi_Recon_Dly_Mstr.
+
+[2025-10-14 04:14:36] Issue Creation Failed
+  Issue: DAWA-3383
+  Failed to create issue: Response status code does not indicate success: 400 (Bad Request).
+    - IssueType: Task
+    - Summary: Emergency Fix: Delete duplicate records in Q1.rr_daily_count  table
+
+[2025-10-14 04:14:40] Issue Creation Failed
+  Issue: DAWA-3323
+  Failed to create issue: Response status code does not indicate success: 400 (Bad Request).
+    - IssueType: Task
+    - Summary: Add new field to midday extract process
+
+[2025-10-14 04:14:40] Issue Creation Failed
+  Issue: DAWA-3389
+  Failed to create issue: Response status code does not indicate success: 400 (Bad Request).
+    - IssueType: Task
+    - Summary: Snowflake Servicenow Table Ingestion Batch 1
+
+[2025-10-14 04:14:41] Issue Creation Failed
+  Issue: DAWA-3403
+  Failed to create issue: Response status code does not indicate success: 400 (Bad Request).
+    - IssueType: Task
+    - Summary: Delta records for PAI needs to be updates and then inserted
+
+[2025-10-14 04:15:00] Issue Creation Failed
+  Issue: DAWA-3390
+  Failed to create issue: Response status code does not indicate success: 400 (Bad Request).
+    - IssueType: Task
+    - Summary: Snowflake Servicenow Table Ingestion Batch 2
+
+[2025-10-14 04:15:07] Issue Creation Failed
+  Issue: DAWA-3275
+  Failed to create issue: Response status code does not indicate success: 400 (Bad Request).
+    - IssueType: Task
+    - Summary: Atom files Sweep to be changed to sweep every 15 mins rather than 30 mins
+
+[2025-10-14 04:15:58] Issue Creation Failed
+  Issue: DAWA-1392
+  Failed to create issue: Response status code does not indicate success: 400 (Bad Request).
+    - IssueType: Task
+    - Summary: add SND_PRIORITY_I column to  ods.sat_application_verification from LMVERT00 
+
+[2025-10-14 04:15:59] Issue Creation Failed
+  Issue: DAWA-1401
+  Failed to create issue: Response status code does not indicate success: 400 (Bad Request).
+    - IssueType: Task
+    - Summary: Revert the code Customer_call to how it was running previously in production.
+
+[2025-10-14 04:16:00] Issue Creation Failed
+  Issue: DAWA-1435
+  Failed to create issue: Response status code does not indicate success: 400 (Bad Request).
+    - IssueType: Task
+    - Summary: Fix the Replication of Intraday package from Class into Snowflake Schema DS_PROD
+
+[2025-10-14 04:16:01] Issue Creation Failed
+  Issue: DAWA-2956
+  Failed to create issue: Response status code does not indicate success: 400 (Bad Request).
+    - IssueType: Task
+    - Summary: public.offers need to be loaded to SF
+
+[2025-10-14 04:16:02] Issue Creation Failed
+  Issue: DAWA-3082
+  Failed to create issue: Response status code does not indicate success: 400 (Bad Request).
+    - IssueType: Task
+    - Summary: Sprint 13 - Snowflake PII Depersonalization
+
+[2025-10-14 04:22:20] Issue Creation Failed
+  Issue: DAWA-4838
+  Failed to create issue: Failed to create issue DAWA-4838 even after field removal: Response status code does not indicate success: 400 (Bad Request).
+    - IssueType: Bug
+    - Summary: Emergency fix : correct the SSN value in chicago.partial_applications table in snowflake 
+
+[2025-10-14 04:22:22] Issue Creation Failed
+  Issue: DAWA-4819
+  Failed to create issue: Failed to create issue DAWA-4819 even after field removal: Response status code does not indicate success: 400 (Bad Request).
+    - IssueType: Bug
+    - Summary: Prod Fix - sq_SF_AbsPortLom_Mthly_Mstr (dw_prod) job need to change the connector
+
+[2025-10-14 04:22:25] Issue Creation Failed
+  Issue: DAWA-4818
+  Failed to create issue: Failed to create issue DAWA-4818 even after field removal: Response status code does not indicate success: 400 (Bad Request).
+    - IssueType: Bug
+    - Summary:  Prod Fix - For sq_SF_ETL_Balancing_Mstr balancing job need to change connector in load step
+
+=== WARNINGS (1) ===
+
+[2025-10-14 04:22:19] Skipped Sub-task
+  Issue: DAWA-2876
+  Sub-task skipped because parent issue not yet migrated
+    - ParentKey: DAWA-2887
+
+=== ACTIONS REQUIRED (98) ===
+
+[2025-10-14 04:11:28] Assignee Permission
+  Issue: DAWA-4461
+  User 'Rupali Pilankar' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:4722ccd5-283a-4b53-b58a-3acb100c2637
+    - UserDisplayName: Rupali Pilankar
+    - IssueType: Initiative
+
+[2025-10-14 04:11:30] Assignee Permission
+  Issue: DAWA-4435
+  User 'Rupali Pilankar' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:4722ccd5-283a-4b53-b58a-3acb100c2637
+    - UserDisplayName: Rupali Pilankar
+    - IssueType: Epic
+
+[2025-10-14 04:11:38] Assignee Permission
+  Issue: DAWA-4487
+  User 'Rupali Pilankar' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:4722ccd5-283a-4b53-b58a-3acb100c2637
+    - UserDisplayName: Rupali Pilankar
+    - IssueType: Epic
+
+[2025-10-14 04:11:41] Assignee Permission
+  Issue: DAWA-4865
+  User 'Vinayak Belagur' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:4f1513df-a056-4913-9fd4-0833e4c86719
+    - UserDisplayName: Vinayak Belagur
+    - IssueType: Task
+
+[2025-10-14 04:11:45] Assignee Permission
+  Issue: DAWA-4846
+  User 'Jai Janbhani' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 6270089aca1fee006ae1757b
+    - UserDisplayName: Jai Janbhani
+    - IssueType: Task
+
+[2025-10-14 04:11:59] Assignee Permission
+  Issue: DAWA-4864
+  User 'Vinayak Belagur' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:4f1513df-a056-4913-9fd4-0833e4c86719
+    - UserDisplayName: Vinayak Belagur
+    - IssueType: Task
+
+[2025-10-14 04:12:05] Assignee Permission
+  Issue: DAWA-4813
+  User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff2367bda0071969f04
+    - UserDisplayName: Sumi Thanikaivelan
+    - IssueType: Task
+
+[2025-10-14 04:12:08] Assignee Permission
+  Issue: DAWA-4856
+  User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff2367bda0071969f04
+    - UserDisplayName: Sumi Thanikaivelan
+    - IssueType: Task
+
+[2025-10-14 04:12:14] Assignee Permission
+  Issue: DAWA-4826
+  User 'Khushbu Shah' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60ffcd67ec92ab0070601268
+    - UserDisplayName: Khushbu Shah
+    - IssueType: Story
+
+[2025-10-14 04:12:21] Assignee Permission
+  Issue: DAWA-4852
+  User 'Vinayak Belagur' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:4f1513df-a056-4913-9fd4-0833e4c86719
+    - UserDisplayName: Vinayak Belagur
+    - IssueType: Task
+
+[2025-10-14 04:12:25] Assignee Permission
+  Issue: DAWA-4851
+  User 'Vinayak Belagur' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:4f1513df-a056-4913-9fd4-0833e4c86719
+    - UserDisplayName: Vinayak Belagur
+    - IssueType: Task
+
+[2025-10-14 04:12:32] Assignee Permission
+  Issue: DAWA-4850
+  User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff2367bda0071969f04
+    - UserDisplayName: Sumi Thanikaivelan
+    - IssueType: Story
+
+[2025-10-14 04:12:34] Assignee Permission
+  Issue: DAWA-4839
+  User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff2367bda0071969f04
+    - UserDisplayName: Sumi Thanikaivelan
+    - IssueType: Task
+
+[2025-10-14 04:12:40] Assignee Permission
+  Issue: DAWA-4286
+  User 'Jagan Reddy' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60dc436b22c0920071aa8926
+    - UserDisplayName: Jagan Reddy
+    - IssueType: Task
+
+[2025-10-14 04:12:41] Assignee Permission
+  Issue: DAWA-4898
+  User 'Jagan Reddy' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60dc436b22c0920071aa8926
+    - UserDisplayName: Jagan Reddy
+    - IssueType: Story
+
+[2025-10-14 04:12:44] Assignee Permission
+  Issue: DAWA-4293
+  User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff2367bda0071969f04
+    - UserDisplayName: Sumi Thanikaivelan
+    - IssueType: Task
+
+[2025-10-14 04:14:25] Assignee Permission
+  Issue: DAWA-3355
+  User 'Sruthi Chappa' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 63c034d7157d36f44485122b
+    - UserDisplayName: Sruthi Chappa
+    - IssueType: Task
+
+[2025-10-14 04:14:28] Assignee Permission
+  Issue: DAWA-3356
+  User 'Sruthi Chappa' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 63c034d7157d36f44485122b
+    - UserDisplayName: Sruthi Chappa
+    - IssueType: Task
+
+[2025-10-14 04:14:31] Assignee Permission
+  Issue: DAWA-3369
+  User 'Sruthi Chappa' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 63c034d7157d36f44485122b
+    - UserDisplayName: Sruthi Chappa
+    - IssueType: Task
+
+[2025-10-14 04:14:37] Assignee Permission
+  Issue: DAWA-3385
+  User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff2367bda0071969f04
+    - UserDisplayName: Sumi Thanikaivelan
+    - IssueType: Task
+
+[2025-10-14 04:14:42] Assignee Permission
+  Issue: DAWA-4051
+  User 'Mayank Kumar Singh' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:c17e214c-6d28-4e17-9dd2-f324053a6406
+    - UserDisplayName: Mayank Kumar Singh
+    - IssueType: Task
+
+[2025-10-14 04:14:44] Assignee Permission
+  Issue: DAWA-4291
+  User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff2367bda0071969f04
+    - UserDisplayName: Sumi Thanikaivelan
+    - IssueType: Task
+
+[2025-10-14 04:14:47] Assignee Permission
+  Issue: DAWA-4308
+  User 'Mayank Kumar Singh' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:c17e214c-6d28-4e17-9dd2-f324053a6406
+    - UserDisplayName: Mayank Kumar Singh
+    - IssueType: Task
+
+[2025-10-14 04:14:50] Assignee Permission
+  Issue: DAWA-4414
+  User 'Pragna Ingilala' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60cb9549b1f93b00693cb176
+    - UserDisplayName: Pragna Ingilala
+    - IssueType: Story
+
+[2025-10-14 04:14:53] Assignee Permission
+  Issue: DAWA-4436
+  User 'Rupali Pilankar' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:4722ccd5-283a-4b53-b58a-3acb100c2637
+    - UserDisplayName: Rupali Pilankar
+    - IssueType: Story
+
+[2025-10-14 04:15:01] Assignee Permission
+  Issue: DAWA-3310
+  User 'Arunkumar Kannabiran' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 602d741c932cc200698d901d
+    - UserDisplayName: Arunkumar Kannabiran
+    - IssueType: Task
+
+[2025-10-14 04:15:04] Assignee Permission
+  Issue: DAWA-3308
+  User 'Madhuri Gupta' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 61f249306fa12a00705cc697
+    - UserDisplayName: Madhuri Gupta
+    - IssueType: Task
+
+[2025-10-14 04:16:06] Assignee Permission
+  Issue: DAWA-4502
+  User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff6860b9f006aed7da9
+    - UserDisplayName: Brian Sracic
+    - IssueType: Story
+
+[2025-10-14 04:16:15] Assignee Permission
+  Issue: DAWA-4832
+  User 'Soundhar B' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:668fef66-45cd-4ace-9d47-37818c9804ab
+    - UserDisplayName: Soundhar B
+    - IssueType: Task
+
+[2025-10-14 04:16:21] Assignee Permission
+  Issue: DAWA-4833
+  User 'Gayathri S' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:6a25a253-6ceb-4070-a2d6-426391e43da2
+    - UserDisplayName: Gayathri S
+    - IssueType: Story
+
+[2025-10-14 04:16:29] Assignee Permission
+  Issue: DAWA-4834
+  User 'Madhuri Gupta' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 61f249306fa12a00705cc697
+    - UserDisplayName: Madhuri Gupta
+    - IssueType: Story
+
+[2025-10-14 04:16:35] Assignee Permission
+  Issue: DAWA-4836
+  User 'Zahid Ahmad Kumar' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:e0d8a8c0-7c09-4a4a-998c-b84529baa4d5
+    - UserDisplayName: Zahid Ahmad Kumar
+    - IssueType: Task
+
+[2025-10-14 04:16:39] Assignee Permission
+  Issue: DAWA-4837
+  User 'Rachel Wilder' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60cb953b624d70006926b9b4
+    - UserDisplayName: Rachel Wilder
+    - IssueType: Story
+
+[2025-10-14 04:16:51] Assignee Permission
+  Issue: DAWA-4842
+  User 'Sruthi Chappa' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 63c034d7157d36f44485122b
+    - UserDisplayName: Sruthi Chappa
+    - IssueType: Task
+
+[2025-10-14 04:16:57] Assignee Permission
+  Issue: DAWA-4843
+  User 'Zahid Ahmad Kumar' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:e0d8a8c0-7c09-4a4a-998c-b84529baa4d5
+    - UserDisplayName: Zahid Ahmad Kumar
+    - IssueType: Task
+
+[2025-10-14 04:17:02] Assignee Permission
+  Issue: DAWA-4844
+  User 'Sruthi Chappa' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 63c034d7157d36f44485122b
+    - UserDisplayName: Sruthi Chappa
+    - IssueType: Task
+
+[2025-10-14 04:17:08] Assignee Permission
+  Issue: DAWA-4848
+  User 'Mayank Kumar Singh' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:c17e214c-6d28-4e17-9dd2-f324053a6406
+    - UserDisplayName: Mayank Kumar Singh
+    - IssueType: Task
+
+[2025-10-14 04:17:12] Assignee Permission
+  Issue: DAWA-4831
+  User 'Soundhar B' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:668fef66-45cd-4ace-9d47-37818c9804ab
+    - UserDisplayName: Soundhar B
+    - IssueType: Task
+
+[2025-10-14 04:17:15] Assignee Permission
+  Issue: DAWA-4849
+  User 'Sruthi Chappa' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 63c034d7157d36f44485122b
+    - UserDisplayName: Sruthi Chappa
+    - IssueType: Task
+
+[2025-10-14 04:17:22] Assignee Permission
+  Issue: DAWA-4857
+  User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff2367bda0071969f04
+    - UserDisplayName: Sumi Thanikaivelan
+    - IssueType: Story
+
+[2025-10-14 04:17:28] Assignee Permission
+  Issue: DAWA-4858
+  User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff2367bda0071969f04
+    - UserDisplayName: Sumi Thanikaivelan
+    - IssueType: Story
+
+[2025-10-14 04:17:34] Assignee Permission
+  Issue: DAWA-4861
+  User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff2367bda0071969f04
+    - UserDisplayName: Sumi Thanikaivelan
+    - IssueType: Story
+
+[2025-10-14 04:17:40] Assignee Permission
+  Issue: DAWA-4863
+  User 'Pragna Ingilala' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60cb9549b1f93b00693cb176
+    - UserDisplayName: Pragna Ingilala
+    - IssueType: Story
+
+[2025-10-14 04:17:44] Assignee Permission
+  Issue: DAWA-4867
+  User 'Zahid Ahmad Kumar' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:e0d8a8c0-7c09-4a4a-998c-b84529baa4d5
+    - UserDisplayName: Zahid Ahmad Kumar
+    - IssueType: Task
+
+[2025-10-14 04:17:56] Assignee Permission
+  Issue: DAWA-4854
+  User 'Jai Janbhani' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 6270089aca1fee006ae1757b
+    - UserDisplayName: Jai Janbhani
+    - IssueType: Task
+
+[2025-10-14 04:18:03] Assignee Permission
+  Issue: DAWA-4829
+  User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff2367bda0071969f04
+    - UserDisplayName: Sumi Thanikaivelan
+    - IssueType: Task
+
+[2025-10-14 04:18:09] Assignee Permission
+  Issue: DAWA-4816
+  User 'Pragna Ingilala' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60cb9549b1f93b00693cb176
+    - UserDisplayName: Pragna Ingilala
+    - IssueType: Story
+
+[2025-10-14 04:18:22] Assignee Permission
+  Issue: DAWA-4611
+  User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff6860b9f006aed7da9
+    - UserDisplayName: Brian Sracic
+    - IssueType: Story
+
+[2025-10-14 04:18:26] Assignee Permission
+  Issue: DAWA-4640
+  User 'Pragna Ingilala' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60cb9549b1f93b00693cb176
+    - UserDisplayName: Pragna Ingilala
+    - IssueType: Story
+
+[2025-10-14 04:18:32] Assignee Permission
+  Issue: DAWA-4646
+  User 'Madhuri Gupta' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 61f249306fa12a00705cc697
+    - UserDisplayName: Madhuri Gupta
+    - IssueType: Story
+
+[2025-10-14 04:18:34] Assignee Permission
+  Issue: DAWA-4684
+  User 'Sruthi Chappa' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 63c034d7157d36f44485122b
+    - UserDisplayName: Sruthi Chappa
+    - IssueType: Task
+
+[2025-10-14 04:18:37] Assignee Permission
+  Issue: DAWA-4686
+  User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff6860b9f006aed7da9
+    - UserDisplayName: Brian Sracic
+    - IssueType: Story
+
+[2025-10-14 04:18:39] Assignee Permission
+  Issue: DAWA-4692
+  User 'Madhuri Gupta' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 61f249306fa12a00705cc697
+    - UserDisplayName: Madhuri Gupta
+    - IssueType: Story
+
+[2025-10-14 04:18:46] Assignee Permission
+  Issue: DAWA-4828
+  User 'Sruthi Chappa' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 63c034d7157d36f44485122b
+    - UserDisplayName: Sruthi Chappa
+    - IssueType: Task
+
+[2025-10-14 04:18:52] Assignee Permission
+  Issue: DAWA-4734
+  User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff6860b9f006aed7da9
+    - UserDisplayName: Brian Sracic
+    - IssueType: Task
+
+[2025-10-14 04:19:01] Assignee Permission
+  Issue: DAWA-4767
+  User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff6860b9f006aed7da9
+    - UserDisplayName: Brian Sracic
+    - IssueType: Task
+
+[2025-10-14 04:19:03] Assignee Permission
+  Issue: DAWA-4781
+  User 'Gayathri S' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:6a25a253-6ceb-4070-a2d6-426391e43da2
+    - UserDisplayName: Gayathri S
+    - IssueType: Story
+
+[2025-10-14 04:19:05] Assignee Permission
+  Issue: DAWA-4790
+  User 'Vinayak Belagur' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:4f1513df-a056-4913-9fd4-0833e4c86719
+    - UserDisplayName: Vinayak Belagur
+    - IssueType: Task
+
+[2025-10-14 04:19:08] Assignee Permission
+  Issue: DAWA-4792
+  User 'Madhuri Gupta' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 61f249306fa12a00705cc697
+    - UserDisplayName: Madhuri Gupta
+    - IssueType: Story
+
+[2025-10-14 04:19:10] Assignee Permission
+  Issue: DAWA-4793
+  User 'Madhuri Gupta' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 61f249306fa12a00705cc697
+    - UserDisplayName: Madhuri Gupta
+    - IssueType: Story
+
+[2025-10-14 04:19:12] Assignee Permission
+  Issue: DAWA-4796
+  User 'Naga Manne' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60cb9530deecef006a945fdc
+    - UserDisplayName: Naga Manne
+    - IssueType: Story
+
+[2025-10-14 04:19:18] Assignee Permission
+  Issue: DAWA-4799
+  User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff2367bda0071969f04
+    - UserDisplayName: Sumi Thanikaivelan
+    - IssueType: Task
+
+[2025-10-14 04:19:21] Assignee Permission
+  Issue: DAWA-4800
+  User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff2367bda0071969f04
+    - UserDisplayName: Sumi Thanikaivelan
+    - IssueType: Story
+
+[2025-10-14 04:19:23] Assignee Permission
+  Issue: DAWA-4802
+  User 'Sruthi Chappa' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 63c034d7157d36f44485122b
+    - UserDisplayName: Sruthi Chappa
+    - IssueType: Task
+
+[2025-10-14 04:19:27] Assignee Permission
+  Issue: DAWA-4815
+  User 'Jai Janbhani' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 6270089aca1fee006ae1757b
+    - UserDisplayName: Jai Janbhani
+    - IssueType: Task
+
+[2025-10-14 04:19:31] Assignee Permission
+  Issue: DAWA-4766
+  User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff6860b9f006aed7da9
+    - UserDisplayName: Brian Sracic
+    - IssueType: Task
+
+[2025-10-14 04:19:38] Assignee Permission
+  Issue: DAWA-4440
+  User 'Rupali Pilankar' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:4722ccd5-283a-4b53-b58a-3acb100c2637
+    - UserDisplayName: Rupali Pilankar
+    - IssueType: Story
+
+[2025-10-14 04:19:40] Assignee Permission
+  Issue: DAWA-4441
+  User 'Rupali Pilankar' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:4722ccd5-283a-4b53-b58a-3acb100c2637
+    - UserDisplayName: Rupali Pilankar
+    - IssueType: Story
+
+[2025-10-14 04:19:42] Assignee Permission
+  Issue: DAWA-4465
+  User 'Rachel Wilder' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60cb953b624d70006926b9b4
+    - UserDisplayName: Rachel Wilder
+    - IssueType: Task
+
+[2025-10-14 04:19:47] Assignee Permission
+  Issue: DAWA-4467
+  User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff6860b9f006aed7da9
+    - UserDisplayName: Brian Sracic
+    - IssueType: Task
+
+[2025-10-14 04:19:49] Assignee Permission
+  Issue: DAWA-4472
+  User 'Preethi Madhav Ponna' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:53b794ea-8c4f-41c1-9fe3-574c7af84d20
+    - UserDisplayName: Preethi Madhav Ponna
+    - IssueType: Story
+
+[2025-10-14 04:19:55] Assignee Permission
+  Issue: DAWA-4474
+  User 'Akshay Nanasaheb Thakare' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:4c402b9d-f3a4-4ef8-8346-fde6f53aa112
+    - UserDisplayName: Akshay Nanasaheb Thakare
+    - IssueType: Story
+
+[2025-10-14 04:20:02] Assignee Permission
+  Issue: DAWA-4477
+  User 'Preethi Madhav Ponna' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:53b794ea-8c4f-41c1-9fe3-574c7af84d20
+    - UserDisplayName: Preethi Madhav Ponna
+    - IssueType: Story
+
+[2025-10-14 04:20:11] Assignee Permission
+  Issue: DAWA-4478
+  User 'Akshay Nanasaheb Thakare' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:4c402b9d-f3a4-4ef8-8346-fde6f53aa112
+    - UserDisplayName: Akshay Nanasaheb Thakare
+    - IssueType: Story
+
+[2025-10-14 04:20:20] Assignee Permission
+  Issue: DAWA-4480
+  User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff6860b9f006aed7da9
+    - UserDisplayName: Brian Sracic
+    - IssueType: Task
+
+[2025-10-14 04:20:22] Assignee Permission
+  Issue: DAWA-4481
+  User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff6860b9f006aed7da9
+    - UserDisplayName: Brian Sracic
+    - IssueType: Task
+
+[2025-10-14 04:20:24] Assignee Permission
+  Issue: DAWA-4482
+  User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff6860b9f006aed7da9
+    - UserDisplayName: Brian Sracic
+    - IssueType: Story
+
+[2025-10-14 04:20:26] Assignee Permission
+  Issue: DAWA-496
+  User 'Naga Manne' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60cb9530deecef006a945fdc
+    - UserDisplayName: Naga Manne
+    - IssueType: Task
+
+[2025-10-14 04:20:29] Assignee Permission
+  Issue: DAWA-4503
+  User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff6860b9f006aed7da9
+    - UserDisplayName: Brian Sracic
+    - IssueType: Task
+
+[2025-10-14 04:20:31] Assignee Permission
+  Issue: DAWA-4516
+  User 'Shaik Saif Ali Khan' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:00c497bb-b790-46b0-8147-f8a18bbeefaf
+    - UserDisplayName: Shaik Saif Ali Khan
+    - IssueType: Story
+
+[2025-10-14 04:20:37] Assignee Permission
+  Issue: DAWA-4517
+  User 'Preethi Madhav Ponna' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:53b794ea-8c4f-41c1-9fe3-574c7af84d20
+    - UserDisplayName: Preethi Madhav Ponna
+    - IssueType: Story
+
+[2025-10-14 04:20:43] Assignee Permission
+  Issue: DAWA-4520
+  User 'Akshay Nanasaheb Thakare' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:4c402b9d-f3a4-4ef8-8346-fde6f53aa112
+    - UserDisplayName: Akshay Nanasaheb Thakare
+    - IssueType: Story
+
+[2025-10-14 04:20:49] Assignee Permission
+  Issue: DAWA-4521
+  User 'Preethi Madhav Ponna' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:53b794ea-8c4f-41c1-9fe3-574c7af84d20
+    - UserDisplayName: Preethi Madhav Ponna
+    - IssueType: Story
+
+[2025-10-14 04:20:59] Assignee Permission
+  Issue: DAWA-4522
+  User 'Shaik Saif Ali Khan' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:00c497bb-b790-46b0-8147-f8a18bbeefaf
+    - UserDisplayName: Shaik Saif Ali Khan
+    - IssueType: Story
+
+[2025-10-14 04:21:13] Assignee Permission
+  Issue: DAWA-4439
+  User 'Rupali Pilankar' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:4722ccd5-283a-4b53-b58a-3acb100c2637
+    - UserDisplayName: Rupali Pilankar
+    - IssueType: Story
+
+[2025-10-14 04:21:15] Assignee Permission
+  Issue: DAWA-1011
+  User 'Joey Michael' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 61ead5a85fcc3700689648a3
+    - UserDisplayName: Joey Michael
+    - IssueType: Task
+
+[2025-10-14 04:21:17] Assignee Permission
+  Issue: DAWA-4437
+  User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff6860b9f006aed7da9
+    - UserDisplayName: Brian Sracic
+    - IssueType: Task
+
+[2025-10-14 04:21:33] Assignee Permission
+  Issue: DAWA-4438
+  User 'Rupali Pilankar' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:4722ccd5-283a-4b53-b58a-3acb100c2637
+    - UserDisplayName: Rupali Pilankar
+    - IssueType: Story
+
+[2025-10-14 04:21:42] Assignee Permission
+  Issue: DAWA-4892
+  User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff2367bda0071969f04
+    - UserDisplayName: Sumi Thanikaivelan
+    - IssueType: Task
+
+[2025-10-14 04:21:51] Assignee Permission
+  Issue: DAWA-4893
+  User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff2367bda0071969f04
+    - UserDisplayName: Sumi Thanikaivelan
+    - IssueType: Task
+
+[2025-10-14 04:21:56] Assignee Permission
+  Issue: DAWA-4894
+  User 'Arunkumar Kannabiran' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 602d741c932cc200698d901d
+    - UserDisplayName: Arunkumar Kannabiran
+    - IssueType: Story
+
+[2025-10-14 04:21:59] Assignee Permission
+  Issue: DAWA-4895
+  User 'Jai Janbhani' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 6270089aca1fee006ae1757b
+    - UserDisplayName: Jai Janbhani
+    - IssueType: Task
+
+[2025-10-14 04:22:04] Assignee Permission
+  Issue: DAWA-4896
+  User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff2367bda0071969f04
+    - UserDisplayName: Sumi Thanikaivelan
+    - IssueType: Task
+
+[2025-10-14 04:22:08] Assignee Permission
+  Issue: DAWA-4897
+  User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 60b91ff2367bda0071969f04
+    - UserDisplayName: Sumi Thanikaivelan
+    - IssueType: Task
+
+[2025-10-14 04:22:18] Assignee Permission
+  Issue: DAWA-4667
+  User 'Preethi Madhav Ponna' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 712020:53b794ea-8c4f-41c1-9fe3-574c7af84d20
+    - UserDisplayName: Preethi Madhav Ponna
+    - IssueType: Sub-task
+
+[2025-10-14 04:22:20] Assignee Permission
+  Issue: DAWA-4838
+  User 'Arunkumar Kannabiran' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 602d741c932cc200698d901d
+    - UserDisplayName: Arunkumar Kannabiran
+    - IssueType: Bug
+
+[2025-10-14 04:22:21] Assignee Permission
+  Issue: DAWA-4819
+  User 'Madhuri Gupta' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 61f249306fa12a00705cc697
+    - UserDisplayName: Madhuri Gupta
+    - IssueType: Bug
+
+[2025-10-14 04:22:25] Assignee Permission
+  Issue: DAWA-4818
+  User 'Madhuri Gupta' cannot be assigned - grant 'Assignable User' permission
+  🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+    - AccountId: 61f249306fa12a00705cc697
+    - UserDisplayName: Madhuri Gupta
+    - IssueType: Bug
+
+================================================================================
+SUMMARY
+================================================================================
+Errors: 19
+Warnings: 1
+Actions Required: 98
+Informational: 0
+================================================================================

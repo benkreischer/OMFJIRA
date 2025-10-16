@@ -1,0 +1,2 @@
+"SourceKey","IssueType","Summary","Error","ErrorDetails","Priority","Status","Assignee","Reporter","Created","Updated","Description","SourceURL"
+"DEP-821","Spike","SPIKE: Schedule ""How to Implement WAFR (for AWS Audit)"" meeting with AWS","Response status code does not indicate success: 400 (Bad Request).","Bad Request - Invalid data or missing required fields","Medium","Backlog","","Bhavani Yellapragada","2/17/2025 3:25:29 PM","5/20/2025 1:11:54 PM","ADF content - parsing failed","https://onemain.atlassian.net/browse/DEP-821"

@@ -1,0 +1,2 @@
+"Source Issue","Source URL","Target Issue","Target URL","Link Type","Direction","Linked To (Not Migrated)","Linked To URL","Reason","Action Required"
+"DS-358","https://onemain.atlassian.net/browse/DS-358","DS1-42","https://onemainfinancial-migrationsandbox.atlassian.net/browse/DS1-42","Cloners","outward","DS-357","https://onemain.atlassian.net/browse/DS-357","Already exists (idempotency)","Manually create link when linked issue is migrated, or link to source instance"

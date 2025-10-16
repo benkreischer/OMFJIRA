@@ -1,0 +1,8 @@
+﻿"Error","ErrorDescription","Timestamp"
+"Invalid URI: The hostname could not be parsed.","System.UriFormatException: Invalid URI: The hostname could not be parsed.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at Microsoft.PowerShell.Commands.WebRequestPSCmdlet.CheckProtocol(Uri uri)
+   at Microsoft.PowerShell.Commands.WebRequestPSCmdlet.PrepareUri(Uri uri)
+   at Microsoft.PowerShell.Commands.WebRequestPSCmdlet.GetRequest(Uri uri)
+   at Microsoft.PowerShell.Commands.WebRequestPSCmdlet.ProcessRecord()
+   at System.Management.Automation.CommandProcessor.ProcessRecord()","2025-10-07T18:15:11.884Z"

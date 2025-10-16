@@ -1,0 +1,8 @@
+"ValidationType","CheckName","Status","Details","Timestamp"
+"Parameter","ProjectKey","PASS","Project key configured","2025-10-16 10:44:08"
+"Parameter","SourceEnvironment.BaseUrl","PASS","Source environment URL configured","2025-10-16 10:44:08"
+"Parameter","TargetEnvironment.BaseUrl","PASS","Target environment URL configured","2025-10-16 10:44:08"
+"Project","Source Project Exists","PASS","Source project 'FLDR' validated","2025-10-16 10:44:08"
+"Project","Target Project Status","EXISTS","Target project 'FLDR1' exists","2025-10-16 10:44:08"
+"Step","Step Start Time","INFO","Step execution started","2025-10-16 10:44:08"
+"Step","Step End Time","INFO","Step execution completed","2025-10-16 10:44:08"

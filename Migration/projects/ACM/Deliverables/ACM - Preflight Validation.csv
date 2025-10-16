@@ -1,0 +1,6 @@
+"ValidationType","CheckName","Status","Details","Timestamp"
+"Parameter","ProjectKey","PASS","Project key configured","2025-10-16 08:45:38"
+"Parameter","SourceEnvironment.BaseUrl","PASS","Source environment URL configured","2025-10-16 08:45:38"
+"Parameter","TargetEnvironment.BaseUrl","PASS","Target environment URL configured","2025-10-16 08:45:38"
+"Project","Source Project Exists","PASS","Source project 'ACM' validated","2025-10-16 08:45:38"
+"Project","Target Project Status","EXISTS","Target project 'ACM1' exists","2025-10-16 08:45:38"

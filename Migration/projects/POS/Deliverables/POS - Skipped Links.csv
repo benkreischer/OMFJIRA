@@ -1,0 +1,2 @@
+"Source Issue","Source URL","Target Issue","Target URL","Link Type","Direction","Linked To (Not Migrated)","Linked To URL","Reason","Action Required"
+"POS-532","https://onemain.atlassian.net/browse/POS-532","POS1-31","https://onemainfinancial-migrationsandbox.atlassian.net/browse/POS1-31","Relates","inward","POS-518","https://onemain.atlassian.net/browse/POS-518","Already exists (idempotency)","Manually create link when linked issue is migrated, or link to source instance"

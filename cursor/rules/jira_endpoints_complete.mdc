@@ -1,0 +1,119 @@
+---
+description: Complete Jira Endpoints Development Rules - ALL rules from endpoint_compliance_tracking.md
+globs: .endpoints/**/*, endpoint_compliance_tracking.md
+alwaysApply: true
+---
+
+# 🚨 COMPLETE JIRA ENDPOINTS DEVELOPMENT RULES
+
+## **CRITICAL API COMPLIANCE RULES:**
+
+### **Before Implementing ANY Endpoint:**
+1. **ALL .ps1 and .pq files MUST match the official Atlassian Jira REST API v3 documentation EXACTLY**
+2. **CRITICAL: Before implementing ANY endpoint, MUST verify the API endpoint URL and purpose against official documentation**
+3. **ONLY use documented fields** from the API reference
+4. **ONLY use documented parameters** (expand, maxResults, etc.)
+5. **ONLY use documented expand options** listed in the API docs
+6. **NO custom field extractions** beyond what the API returns
+7. **NO assumptions** about nested data structure
+8. **NO additional columns** beyond what the API actually provides
+9. **NO RawData columns** with JSON garbage
+10. **NO artificial record count limits** - use proper pagination
+
+### **File Synchronization:**
+11. **ALL .ps1 files must mirror their .pq counterparts exactly** (same API endpoint, same field extraction)
+12. **Track actual field list returned by each endpoint using semicolon (;) as delimiter**
+13. **Track API documentation accuracy - mark "API Docs in Synch?" as ❌ when actual API response differs from documented fields**
+14. **List specific fields missing from documentation in "Docs Out of Synch Fields" column - use semicolon delimiter for multiple fields**
+
+### **Endpoint Management:**
+15. **Move non-API-documented endpoints to .trash folder - Only endpoints that exist in official Atlassian API documentation should remain**
+16. **CRITICAL: After running PS1 scripts, MUST: 1) Verify .pq matches .ps1 exactly, 2) Delete old CSV, 3) Rerun .ps1, 4) Validate results, 5) Update tracker**
+
+## **FILE STRUCTURE RULES:**
+
+### **Required Files Per Endpoint (3 files each):**
+- **`.pq`** (Power Query M language for Power BI)
+- **`.ps1`** (PowerShell script for CSV generation) 
+- **`.csv`** (data file with results)
+- **NO `.md` files needed**
+
+### **File Naming Convention:**
+- Use format: `[Category] - [Action] - Anon.[extension]`
+- Example: `Issue Priorities - GET Priorities - Anon.ps1`
+- Use uppercase HTTP verbs: GET, POST, PUT, DEL (not DELETE)
+
+### **File Count Per Folder:**
+- **Exactly [Number of Endpoints] × 3 files**
+- Example: 4 endpoints = 12 files total
+
+## **CSV QUALITY RULES:**
+
+1. **ALL CSV files must be clean and readable**
+2. **NO [Record] or nested objects in CSV columns**
+3. **NO null columns with no data**
+4. **NO RawData columns with JSON garbage**
+5. **Flatten all nested JSON objects into separate columns**
+6. **Convert boolean values to lowercase text ("true"/"false")**
+7. **Join arrays with semicolon delimiter**
+8. **Handle missing fields gracefully with empty strings**
+
+## **DATA TRANSFORMATION RULES:**
+
+### **Field Extraction Standards:**
+- Extract fields in API response order
+- Flatten nested objects (e.g., `schema.type` → `SchemaType`)
+- Standardize field names (remove special characters, use TitleCase)
+- Convert Atlassian Document Format to plain text
+- Handle null values consistently
+
+### **Common Patterns:**
+- **Issue-related endpoints**: Use ORL-8004 as test issue
+- **Authentication**: Use consistent Basic Auth headers
+- **Base URL**: https://onemain-omfdirty.atlassian.net
+- **Error handling**: Log errors and continue processing
+
+## **VALIDATION PROCESS:**
+
+### **For Every Endpoint:**
+1. **Check API documentation** against official Atlassian docs
+2. **Create .ps1 file** with proper API endpoint
+3. **Create .pq file** with same API endpoint (different syntax)
+4. **Run .ps1 script** to generate CSV
+5. **Validate CSV content** (clean data, correct fields)
+6. **Update tracking document** with compliance status
+7. **Verify file count** matches expected (endpoints × 3)
+
+### **Tracking Document Updates:**
+- Mark PQ Compliant: ✅ or ❌
+- Mark PS1 Compliant: ✅ or ❌  
+- Mark CSV Compliant: ✅ or ❌
+- Record field count and record count
+- Note API documentation sync status
+- List out-of-sync fields if any
+
+## **COMMON MISTAKES TO AVOID:**
+
+❌ **DON'T:**
+- Assume endpoint purpose without checking API docs
+- Create endpoints that don't match user expectations
+- Leave .pq and .ps1 files out of sync
+- Generate CSV files without validating results
+- Use wrong API endpoints (e.g., `/priority/{id}` instead of `/issue/{key}` for issue priority)
+- Create custom fields not in API documentation
+- Leave nested objects unexpanded in CSV
+
+✅ **DO:**
+- Check API documentation first
+- Follow established patterns (ORL-8004, field structure)
+- Validate every endpoint against tracking document
+- Update compliance status after validation
+- Use consistent naming conventions
+- Flatten all nested data structures
+- Handle errors gracefully
+
+## **REFERENCE LINKS:**
+- **Main API Reference**: https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#version
+- **Projects API**: https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-projects/#api-group-projects
+- **Issues API**: https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/#api-group-issues
+- **Users API**: https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-users/#api-group-users

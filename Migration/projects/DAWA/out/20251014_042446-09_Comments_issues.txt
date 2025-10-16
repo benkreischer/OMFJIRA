@@ -1,0 +1,386 @@
+================================================================================
+ISSUES LOG: 09_Comments
+Generated: 2025-10-14 04:24:46
+================================================================================
+
+=== WARNINGS (53) ===
+
+[2025-10-14 04:22:55] Comment Migration Failed
+  Issue: DAWA1-152
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Madhuri Gupta
+    - CommentDate: 10/06/2025 08:07:11
+    - SourceIssue: DAWA-4692
+
+[2025-10-14 04:22:58] Comment Migration Failed
+  Issue: DAWA1-157
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Gayathri S
+    - CommentDate: 10/13/2025 00:37:02
+    - SourceIssue: DAWA-4781
+
+[2025-10-14 04:22:59] Comment Migration Failed
+  Issue: DAWA1-157
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Gayathri S
+    - CommentDate: 10/14/2025 03:28:58
+    - SourceIssue: DAWA-4781
+
+[2025-10-14 04:23:02] Comment Migration Failed
+  Issue: DAWA1-164
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Sruthi Chappa
+    - CommentDate: 10/03/2025 09:36:21
+    - SourceIssue: DAWA-4802
+
+[2025-10-14 04:23:02] Comment Migration Failed
+  Issue: DAWA1-164
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Sruthi Chappa
+    - CommentDate: 10/03/2025 09:39:44
+    - SourceIssue: DAWA-4802
+
+[2025-10-14 04:23:04] Comment Migration Failed
+  Issue: DAWA1-12
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Khushbu Shah
+    - CommentDate: 10/10/2025 09:55:30
+    - SourceIssue: DAWA-4826
+
+[2025-10-14 04:23:05] Comment Migration Failed
+  Issue: DAWA1-12
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Khushbu Shah
+    - CommentDate: 10/10/2025 09:56:01
+    - SourceIssue: DAWA-4826
+
+[2025-10-14 04:23:05] Comment Migration Failed
+  Issue: DAWA1-12
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Khushbu Shah
+    - CommentDate: 10/10/2025 09:56:39
+    - SourceIssue: DAWA-4826
+
+[2025-10-14 04:23:05] Comment Migration Failed
+  Issue: DAWA1-12
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Khushbu Shah
+    - CommentDate: 10/10/2025 09:56:59
+    - SourceIssue: DAWA-4826
+
+[2025-10-14 04:23:12] Comment Migration Failed
+  Issue: DAWA1-124
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Sruthi Chappa
+    - CommentDate: 10/09/2025 00:29:10
+    - SourceIssue: DAWA-4842
+
+[2025-10-14 04:23:55] Comment Migration Failed
+  Issue: DAWA1-95
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Madhuri Gupta
+    - CommentDate: 05/16/2024 05:47:41
+    - SourceIssue: DAWA-3308
+
+[2025-10-14 04:23:55] Comment Migration Failed
+  Issue: DAWA1-95
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Madhuri Gupta
+    - CommentDate: 05/16/2024 05:48:50
+    - SourceIssue: DAWA-3308
+
+[2025-10-14 04:23:56] Comment Migration Failed
+  Issue: DAWA1-95
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Madhuri Gupta
+    - CommentDate: 05/16/2024 07:56:37
+    - SourceIssue: DAWA-3308
+
+[2025-10-14 04:23:56] Comment Migration Failed
+  Issue: DAWA1-95
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Madhuri Gupta
+    - CommentDate: 05/16/2024 07:57:50
+    - SourceIssue: DAWA-3308
+
+[2025-10-14 04:23:57] Comment Migration Failed
+  Issue: DAWA1-95
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Madhuri Gupta
+    - CommentDate: 05/17/2024 10:32:22
+    - SourceIssue: DAWA-3308
+
+[2025-10-14 04:23:58] Comment Migration Failed
+  Issue: DAWA1-95
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Madhuri Gupta
+    - CommentDate: 05/17/2024 10:42:41
+    - SourceIssue: DAWA-3308
+
+[2025-10-14 04:24:00] Comment Migration Failed
+  Issue: DAWA1-95
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Madhuri Gupta
+    - CommentDate: 05/22/2024 22:03:17
+    - SourceIssue: DAWA-3308
+
+[2025-10-14 04:24:00] Comment Migration Failed
+  Issue: DAWA1-95
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Madhuri Gupta
+    - CommentDate: 05/23/2024 04:32:49
+    - SourceIssue: DAWA-3308
+
+[2025-10-14 04:24:02] Comment Migration Failed
+  Issue: DAWA1-94
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Arunkumar Kannabiran
+    - CommentDate: 05/20/2024 13:48:17
+    - SourceIssue: DAWA-3310
+
+[2025-10-14 04:24:02] Comment Migration Failed
+  Issue: DAWA1-94
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Arunkumar Kannabiran
+    - CommentDate: 05/20/2024 13:48:35
+    - SourceIssue: DAWA-3310
+
+[2025-10-14 04:24:02] Comment Migration Failed
+  Issue: DAWA1-94
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Arunkumar Kannabiran
+    - CommentDate: 05/20/2024 13:49:53
+    - SourceIssue: DAWA-3310
+
+[2025-10-14 04:24:03] Comment Migration Failed
+  Issue: DAWA1-94
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Arunkumar Kannabiran
+    - CommentDate: 05/20/2024 13:50:35
+    - SourceIssue: DAWA-3310
+
+[2025-10-14 04:24:03] Comment Migration Failed
+  Issue: DAWA1-94
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Arunkumar Kannabiran
+    - CommentDate: 05/20/2024 13:50:53
+    - SourceIssue: DAWA-3310
+
+[2025-10-14 04:24:05] Comment Migration Failed
+  Issue: DAWA1-94
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Arunkumar Kannabiran
+    - CommentDate: 05/22/2024 17:48:12
+    - SourceIssue: DAWA-3310
+
+[2025-10-14 04:24:07] Comment Migration Failed
+  Issue: DAWA1-82
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Sruthi Chappa
+    - CommentDate: 05/22/2024 21:50:36
+    - SourceIssue: DAWA-3355
+
+[2025-10-14 04:24:10] Comment Migration Failed
+  Issue: DAWA1-83
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Sruthi Chappa
+    - CommentDate: 05/22/2024 21:51:44
+    - SourceIssue: DAWA-3356
+
+[2025-10-14 04:24:10] Comment Migration Failed
+  Issue: DAWA1-83
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Sruthi Chappa
+    - CommentDate: 05/22/2024 21:53:53
+    - SourceIssue: DAWA-3356
+
+[2025-10-14 04:24:12] Comment Migration Failed
+  Issue: DAWA1-84
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Sruthi Chappa
+    - CommentDate: 05/22/2024 21:57:02
+    - SourceIssue: DAWA-3369
+
+[2025-10-14 04:24:13] Comment Migration Failed
+  Issue: DAWA1-84
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Sruthi Chappa
+    - CommentDate: 05/22/2024 21:57:28
+    - SourceIssue: DAWA-3369
+
+[2025-10-14 04:24:14] Comment Migration Failed
+  Issue: DAWA1-85
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Sumi Thanikaivelan
+    - CommentDate: 05/17/2024 15:16:15
+    - SourceIssue: DAWA-3385
+
+[2025-10-14 04:24:17] Comment Migration Failed
+  Issue: DAWA1-85
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Sumi Thanikaivelan
+    - CommentDate: 05/17/2024 15:16:53
+    - SourceIssue: DAWA-3385
+
+[2025-10-14 04:24:30] Comment Migration Failed
+  Issue: DAWA1-92
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Pushpkant Garg
+    - CommentDate: 12/27/2021 10:57:00
+    - SourceIssue: DAWA-493
+
+[2025-10-14 04:24:31] Comment Migration Failed
+  Issue: DAWA1-92
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Pushpkant Garg
+    - CommentDate: 01/04/2022 10:02:00
+    - SourceIssue: DAWA-493
+
+[2025-10-14 04:24:31] Comment Migration Failed
+  Issue: DAWA1-92
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Pushpkant Garg
+    - CommentDate: 01/04/2022 11:59:00
+    - SourceIssue: DAWA-493
+
+[2025-10-14 04:24:31] Comment Migration Failed
+  Issue: DAWA1-92
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Pushpkant Garg
+    - CommentDate: 01/04/2022 12:35:00
+    - SourceIssue: DAWA-493
+
+[2025-10-14 04:24:31] Comment Migration Failed
+  Issue: DAWA1-92
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Pushpkant Garg
+    - CommentDate: 01/04/2022 12:35:00
+    - SourceIssue: DAWA-493
+
+[2025-10-14 04:24:32] Comment Migration Failed
+  Issue: DAWA1-92
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Pushpkant Garg
+    - CommentDate: 01/04/2022 12:36:00
+    - SourceIssue: DAWA-493
+
+[2025-10-14 04:24:33] Comment Migration Failed
+  Issue: DAWA1-92
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Pushpkant Garg
+    - CommentDate: 01/05/2022 10:56:00
+    - SourceIssue: DAWA-493
+
+[2025-10-14 04:24:35] Comment Migration Failed
+  Issue: DAWA1-93
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Pushpkant Garg
+    - CommentDate: 12/24/2021 03:06:00
+    - SourceIssue: DAWA-494
+
+[2025-10-14 04:24:36] Comment Migration Failed
+  Issue: DAWA1-93
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Pushpkant Garg
+    - CommentDate: 12/24/2021 03:29:00
+    - SourceIssue: DAWA-494
+
+[2025-10-14 04:24:36] Comment Migration Failed
+  Issue: DAWA1-93
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Pushpkant Garg
+    - CommentDate: 12/24/2021 03:38:00
+    - SourceIssue: DAWA-494
+
+[2025-10-14 04:24:37] Comment Migration Failed
+  Issue: DAWA1-93
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Pushpkant Garg
+    - CommentDate: 12/24/2021 03:42:00
+    - SourceIssue: DAWA-494
+
+[2025-10-14 04:24:37] Comment Migration Failed
+  Issue: DAWA1-93
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Pushpkant Garg
+    - CommentDate: 12/24/2021 03:47:00
+    - SourceIssue: DAWA-494
+
+[2025-10-14 04:24:38] Comment Migration Failed
+  Issue: DAWA1-93
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Pushpkant Garg
+    - CommentDate: 12/27/2021 10:12:00
+    - SourceIssue: DAWA-494
+
+[2025-10-14 04:24:38] Comment Migration Failed
+  Issue: DAWA1-93
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Pushpkant Garg
+    - CommentDate: 01/04/2022 04:33:00
+    - SourceIssue: DAWA-494
+
+[2025-10-14 04:24:39] Comment Migration Failed
+  Issue: DAWA1-93
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Pushpkant Garg
+    - CommentDate: 01/07/2022 06:08:00
+    - SourceIssue: DAWA-494
+
+[2025-10-14 04:24:40] Comment Migration Failed
+  Issue: DAWA1-93
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Sucheta Sadyasnata
+    - CommentDate: 05/11/2022 07:10:21
+    - SourceIssue: DAWA-494
+
+[2025-10-14 04:24:40] Comment Migration Failed
+  Issue: DAWA1-93
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Sucheta Sadyasnata
+    - CommentDate: 05/11/2022 07:12:06
+    - SourceIssue: DAWA-494
+
+[2025-10-14 04:24:41] Comment Migration Failed
+  Issue: DAWA1-183
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Pushpkant Garg
+    - CommentDate: 10/16/2020 10:36:00
+    - SourceIssue: DAWA-496
+
+[2025-10-14 04:24:42] Comment Migration Failed
+  Issue: DAWA1-183
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Pushpkant Garg
+    - CommentDate: 10/16/2020 10:39:00
+    - SourceIssue: DAWA-496
+
+[2025-10-14 04:24:43] Comment Migration Failed
+  Issue: DAWA1-183
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Pushpkant Garg
+    - CommentDate: 10/16/2020 17:06:00
+    - SourceIssue: DAWA-496
+
+[2025-10-14 04:24:43] Comment Migration Failed
+  Issue: DAWA1-183
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Pushpkant Garg
+    - CommentDate: 10/16/2020 17:10:00
+    - SourceIssue: DAWA-496
+
+[2025-10-14 04:24:44] Comment Migration Failed
+  Issue: DAWA1-194
+  Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    - Author: Joey Michael
+    - CommentDate: 07/06/2022 09:39:49
+    - SourceIssue: DAWA-1011
+
+================================================================================
+SUMMARY
+================================================================================
+Errors: 0
+Warnings: 53
+Actions Required: 0
+Informational: 0
+================================================================================

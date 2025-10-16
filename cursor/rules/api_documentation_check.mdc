@@ -1,0 +1,46 @@
+---
+description: API documentation verification that must be done before implementing any endpoint
+globs: .endpoints/**/*
+alwaysApply: true
+---
+
+# API Documentation Check - MANDATORY BEFORE IMPLEMENTATION
+
+## **OFFICIAL API DOCUMENTATION SOURCE**
+- **ONLY use**: https://developer.atlassian.com/cloud/jira/platform/rest/v3/ as the official source
+- **NEVER use**: Other sources, web search results, or assumptions about API endpoints
+- **ALWAYS verify**: All endpoint URLs, parameters, and response formats against the official documentation
+
+## **BEFORE creating ANY .ps1 or .pq file:**
+
+### **Step 1: Verify API Endpoint Purpose**
+- Check official Atlassian Jira REST API v3 documentation
+- **Reference**: https://developer.atlassian.com/cloud/jira/platform/rest/v3/
+- Verify the endpoint actually does what the user expects
+- Understand the difference between similar endpoints
+
+### **Step 2: Confirm API Endpoint URL**
+- Use EXACT endpoint URL from documentation
+- Verify parameters and query strings
+- Check if endpoint requires specific IDs or keys
+- For issue-related data, use ORL-8004 as test issue when applicable
+
+### **Step 3: Identify Expected Fields**
+- List ONLY documented fields from API reference
+- Note field order and data types
+- Identify nested objects that need flattening
+- Check for expand parameters or special options
+
+### **Common API Endpoint Patterns:**
+- **Get all items**: `/rest/api/3/[resource]` (e.g., `/rest/api/3/priority`)
+- **Get single item**: `/rest/api/3/[resource]/{id}` (e.g., `/rest/api/3/priority/1`)
+- **Get item from issue**: `/rest/api/3/issue/{key}` then extract field (e.g., priority from ORL-8004)
+- **Search with parameters**: `/rest/api/3/[resource]/search?param=value`
+
+### **Critical Examples:**
+- ❌ **WRONG**: `/rest/api/3/priority/1` to get priority of ORL-8004
+- ✅ **CORRECT**: `/rest/api/3/issue/ORL-8004` then extract priority field
+- ❌ **WRONG**: Assume endpoint purpose without checking docs
+- ✅ **CORRECT**: Verify endpoint purpose matches user expectation
+
+**NEVER implement an endpoint without first checking the API documentation and confirming the endpoint purpose.**

@@ -1,0 +1,158 @@
+# =============================================================================
+# GITIGNORE FOR JIRA ANALYTICS PROJECT
+# =============================================================================
+
+
+# Random files
+*.xml
+tasks/ 
+
+# Security - Never commit these files
+*.env
+.env.*
+env.template
+!env.example
+*credentials*
+*secrets*
+*tokens*
+*api-keys*
+
+# PowerShell scripts with embedded tokens
+*-embedded.ps1
+*embedded*.ps1
+
+# Excel files with embedded credentials
+*.xlsx
+*.xlsm
+*.xls
+!template*.xlsx
+!sample*.xlsx
+
+# PowerBI files (may contain embedded credentials)
+*.pbix
+*.pbit
+
+# Log files
+*.log
+logs/
+Logs/
+
+# Temporary files
+*.tmp
+*.temp
+*~
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Windows
+desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+
+# Backup files
+*.bak
+*.backup
+*_backup.*
+*.trash
+
+# Cache files
+*.cache
+.cache/
+
+# Node modules (if using any Node.js tools)
+node_modules/
+npm-debug.log*
+
+# Python (if using any Python scripts)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# R (if using R for analytics)
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# Data files (be careful with these)
+# *.csv - commented out to allow csv files to be committed
+*.json
+# !sample*.csv
+!template*.json
+
+# Personal notes
+notes.txt
+personal-notes.*
+todo-personal.*
+
+# Test files
+test-*
+*test*
+!*test*.md
+
+# Authentication and user data
+user-profiles/
+credentials/
+*-credentials.json
+audit-log.json
+security-incidents.json
+compliance-report-*.json
+performance-report-*.json
+data-warehouse-metrics-*.json
+
+# Live monitoring data
+live-dashboard.json
+live-dashboard.html
+
+# Backup directories
+backups/
+backup/
+
+# SQLite databases (may contain sensitive data)
+*.sqlite
+*.db
+
+# Logs
+logs
+yarn-debug.log*
+yarn-error.log*
+dev-debug.log
+# Dependency directories
+# Environment variables
+.env
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+# OS specific
+
+# Task files
+tasks.json
+tasks/ 

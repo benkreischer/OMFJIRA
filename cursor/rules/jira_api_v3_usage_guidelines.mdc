@@ -1,0 +1,162 @@
+---
+description: Comprehensive guidelines for using Jira REST API v3 based on official documentation
+globs: .endpoints/**/*
+alwaysApply: true
+---
+
+# Jira REST API v3 Usage Guidelines - MANDATORY
+
+## **AUTHENTICATION & AUTHORIZATION**
+
+### **Basic Authentication (For Personal Scripts)**
+- **Use for**: Personal scripts, bots, and ad-hoc execution
+- **URI Structure**: `https://<site-url>/rest/api/3/<resource-name>`
+- **Example**: `https://your-domain.atlassian.net/rest/api/3/issue/DEMO-1`
+- **Required**: Basic auth with username:API token
+
+### **Required Permissions**
+- **Administer Jira**: Required for most operations (granted by Jira Administrators global permission)
+- **Administer the Cloud site**: For site-wide operations (site-admins group)
+- **Access Jira**: Basic access (Jira Users global permission)
+- **Project permissions**: Browse projects, Administer projects for project-specific operations
+
+### **Anonymous Access**
+- Only available if permissions are granted to the Public group
+- Operations marked "This operation can be accessed anonymously" support anonymous access
+- If anonymous access not available, operation returns error
+
+## **API RESPONSE STRUCTURE**
+
+### **Pagination (CRITICAL)**
+- **MANDATORY**: Always implement pagination for bulk endpoints
+- **Response Structure**:
+  ```json
+  {
+    "startAt": 0,
+    "maxResults": 10,
+    "total": 200,
+    "isLast": false,
+    "values": [/* results */]
+  }
+  ```
+- **Implementation Rules**:
+  - Use `startAt` and `maxResults` parameters
+  - Check `isLast` flag to determine if more pages exist
+  - Continue fetching until `isLast` is true
+  - **NEVER artificially limit results** - use proper pagination
+
+### **Expansion**
+- Use `expand` query parameter to include additional resource parts
+- **Syntax**: `?expand=names,renderedFields`
+- **Nested objects**: Use dot notation `?expand=changelog.histories`
+- **Multiple objects**: Comma-separated list
+- **Discovery**: Check `expand` property in response objects
+
+### **Ordering**
+- Use `orderBy` query parameter
+- **Syntax**: `?orderBy=name` (ascending), `?orderBy=-name` (descending)
+- **Default**: Ascending order
+- **Check documentation**: Verify which fields support ordering
+
+## **DATA FORMATS**
+
+### **Timestamps**
+- **Default**: ISO 8601 format in system default timezone
+- **User timezone**: Use `renderedFields` in expand parameter
+- **Format**: `2025-09-20T10:14:08.000+0000`
+
+### **Atlassian Document Format (ADF)**
+- **Version 3 supports ADF** in:
+  - Body in comments
+  - Comment in worklogs
+  - Description and environment fields in issues
+  - Textarea type custom fields (multi-line text)
+- **Single line custom fields**: Accept strings, don't handle ADF
+
+## **ERROR HANDLING**
+
+### **HTTP Status Codes**
+- Use standard HTTP status codes
+- **Common codes**: 200 (OK), 401 (Unauthorized), 403 (Forbidden), 404 (Not Found)
+
+### **Error Response Format**
+```json
+{
+  "errorMessages": ["string"],
+  "errors": {
+    "field": "error message"
+  },
+  "status": 400
+}
+```
+
+### **Asynchronous Operations**
+- **Long-running tasks**: Return 303 (See Other) with Location header
+- **Task monitoring**: Query Location header for progress updates
+- **Result field**: Contains operation-specific results when task completes
+- **Order**: Tasks not guaranteed to run in order
+
+## **SPECIAL HEADERS**
+
+### **Required Headers**
+- **X-Atlassian-Token**: `no-check` for multipart/form-data requests (CSRF protection)
+- **X-Force-Accept-Language**: `true` to process Accept-Language header
+- **Authorization**: Basic auth for personal scripts
+- **Accept**: `application/json` for JSON responses
+
+### **Response Headers**
+- **X-AAccountId**: Contains authenticated user's Atlassian account ID
+
+## **EXPERIMENTAL FEATURES**
+- **Marked as experimental**: May change without notice
+- **Feedback welcome**: Report issues to Developer and Marketplace support
+- **Use with caution**: Not recommended for production systems
+
+## **IMPLEMENTATION RULES**
+
+### **Before Creating Any Endpoint**
+1. **Check official documentation**: https://developer.atlassian.com/cloud/jira/platform/rest/v3/
+2. **Verify permissions**: Ensure user has required permissions
+3. **Understand pagination**: Check if endpoint supports pagination
+4. **Review expansion options**: Identify what can be expanded
+5. **Test with small datasets**: Validate response structure
+
+### **PowerShell Implementation**
+- **Always implement pagination loops** for bulk endpoints
+- **Handle errors gracefully** with try-catch blocks
+- **Use proper authentication headers**
+- **Export clean CSV data** without nested objects
+- **Validate actual record counts** against API responses
+
+### **Power Query Implementation**
+- **Use recursive functions** for pagination
+- **Handle expansion parameters** properly
+- **Convert ADF to plain text** when needed
+- **Flatten nested objects** into separate columns
+- **Add timestamps** for data lineage
+
+## **COMMON MISTAKES TO AVOID**
+
+❌ **DON'T**:
+- Assume endpoints work without checking permissions
+- Skip pagination implementation for bulk endpoints
+- Use hardcoded field IDs without validation
+- Ignore error responses and status codes
+- Mix authentication methods
+- Assume anonymous access is available
+
+✅ **DO**:
+- Always check official documentation first
+- Implement proper pagination for all bulk endpoints
+- Handle errors gracefully with appropriate fallbacks
+- Use consistent authentication methods
+- Validate API responses before data transformation
+- Test with known good data (e.g., ORL-8004 issue)
+- Follow official URI structures exactly
+
+## **REFERENCE LINKS**
+- **Official Documentation**: https://developer.atlassian.com/cloud/jira/platform/rest/v3/
+- **Authentication Guide**: Basic auth for REST APIs
+- **Permissions Overview**: Managing global permissions
+- **Pagination Examples**: Standard pagination patterns
+- **Error Handling**: Standard HTTP status codes

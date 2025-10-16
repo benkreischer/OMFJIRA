@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMF Jira Migration Launcher</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 15px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 20px;
+        }
+        
+        .step-section {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+        }
+        
+        .step-section h2 {
+            color: #667eea;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #495057;
+            font-size: 14px;
+        }
+        
+        select, .listbox {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #d0d0d0;
+            border-radius: 6px;
+            font-size: 14px;
+            background: white;
+            transition: border-color 0.3s;
+        }
+        
+        select:focus, .listbox:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .listbox {
+            height: 150px;
+            overflow-y: auto;
+            cursor: pointer;
+        }
+        
+        .project-item {
+            padding: 8px 10px;
+            border-bottom: 1px solid #e8e8e8;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .project-item:hover {
+            background: #f0f0f0;
+        }
+        
+        .project-item.selected {
+            background: #667eea;
+            color: white;
+        }
+        
+        .project-key {
+            font-weight: bold;
+            font-size: 13px;
+        }
+        
+        .project-name {
+            font-size: 11px;
+            opacity: 0.7;
+            margin-top: 2px;
+        }
+        
+        .info-text {
+            margin-top: 5px;
+            font-size: 12px;
+            color: #6c757d;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #667eea;
+        }
+        
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px 12px;
+            background: white;
+            border: 1px solid #d0d0d0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .radio-option:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+        
+        .radio-option.selected {
+            border-color: #667eea;
+            background: #f0f2ff;
+        }
+        
+        .radio-option input[type="radio"] {
+            margin-right: 10px;
+            margin-top: 2px;
+        }
+        
+        .radio-label {
+            flex: 1;
+        }
+        
+        .radio-title {
+            font-weight: 600;
+            color: #212529;
+            margin-bottom: 2px;
+            font-size: 14px;
+        }
+        
+        .radio-description {
+            font-size: 12px;
+            color: #6c757d;
+            display: none;
+        }
+        
+        .radio-option:hover .radio-description {
+            display: block;
+        }
+        
+        .recommended {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            margin-left: 8px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        
+        .summary-box {
+            background: #e7f3ff;
+            border: 1px solid #0052cc;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        
+        .summary-box h3 {
+            color: #0052cc;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #cce5ff;
+            font-size: 13px;
+        }
+        
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+        
+        .summary-label {
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .summary-value {
+            color: #212529;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .command-box {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            margin-top: 15px;
+            overflow-x: auto;
+        }
+        
+        .copy-btn {
+            float: right;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .copy-btn:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Jira Migration Launcher</h1>
+            <p>Configure and launch your Jira project migration</p>
+        </div>
+        
+        <div class="content">
+            <!-- Step 1: Select Environment -->
+            <div class="step-section">
+                <h2><span class="step-number">1</span> Select Environment</h2>
+                <label for="environmentSelect">Source Environment:</label>
+                <select id="environmentSelect" onchange="loadProjects()">
+                    <option value="">-- Select Environment --</option>
+                    <option value="onemain">OneMain Production (onemain.atlassian.net)</option>
+                    <option value="onemain-sandbox">OneMain Migration Sandbox (onemain-migrationsandbox.atlassian.net)</option>
+                    <option value="omf-sandbox">OMF Sandbox 575 (onemainfinancial-sandbox-575.atlassian.net)</option>
+                    <option value="omf-migration-sandbox">OMF Migration Sandbox (onemainfinancial-migrationsandbox.atlassian.net)</option>
+                </select>
+                <div class="info-text" id="envInfo"></div>
+            </div>
+            
+            <!-- Step 2: Select Project -->
+            <div class="step-section">
+                <h2><span class="step-number">2</span> Select Project</h2>
+                <label for="projectList">Available Projects:</label>
+                <div class="listbox" id="projectList">
+                    <div class="loading" style="display: none;">Loading projects...</div>
+                    <div class="info-text" style="padding: 20px; text-align: center;">
+                        Select an environment above to load projects
+                    </div>
+                </div>
+                <div class="info-text" id="projectInfo" style="margin-top: 15px;"></div>
+            </div>
+            
+            <!-- Step 3: Configuration Template -->
+            <div class="step-section">
+                <h2><span class="step-number">3</span> Project Configuration Template</h2>
+                <div class="radio-group">
+                    <label class="radio-option selected" onclick="selectRadio('template', 'XRAY', this)">
+                        <input type="radio" name="template" value="XRAY" checked>
+                        <div class="radio-label">
+                            <div class="radio-title">XRAY <span class="recommended">Recommended</span></div>
+                            <div class="radio-description">Copy configuration from XRAY reference project (workflows, schemes, fields)</div>
+                        </div>
+                    </label>
+                    <label class="radio-option" onclick="selectRadio('template', 'STANDARD', this)">
+                        <input type="radio" name="template" value="STANDARD">
+                        <div class="radio-label">
+                            <div class="radio-title">Standard</div>
+                            <div class="radio-description">Create standard Jira project with default configuration</div>
+                        </div>
+                    </label>
+                    <label class="radio-option" onclick="selectRadio('template', 'ENHANCED', this)">
+                        <input type="radio" name="template" value="ENHANCED">
+                        <div class="radio-label">
+                            <div class="radio-title">Enhanced</div>
+                            <div class="radio-description">Use custom ENHANCED template project configuration</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Step 4: Export Scope -->
+            <div class="step-section">
+                <h2><span class="step-number">4</span> Issue Export Scope</h2>
+                <div class="radio-group">
+                    <label class="radio-option selected" onclick="selectRadio('scope', 'UNRESOLVED', this)">
+                        <input type="radio" name="scope" value="UNRESOLVED" checked>
+                        <div class="radio-label">
+                            <div class="radio-title">Unresolved work items <span class="recommended">Recommended</span></div>
+                            <div class="radio-description">Export only active/open issues (faster, smaller dataset)</div>
+                        </div>
+                    </label>
+                    <label class="radio-option" onclick="selectRadio('scope', 'ALL', this)">
+                        <input type="radio" name="scope" value="ALL">
+                        <div class="radio-label">
+                            <div class="radio-title">All Issues including resolved work items</div>
+                            <div class="radio-description">Export complete historical data (slower, complete migration)</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Step 5: Sprint Migration -->
+            <div class="step-section">
+                <h2><span class="step-number">5</span> Sprint Migration</h2>
+                <div class="radio-group">
+                    <label class="radio-option selected" onclick="selectRadio('sprints', 'YES', this)">
+                        <input type="radio" name="sprints" value="YES" checked>
+                        <div class="radio-label">
+                            <div class="radio-title">YES - Migrate sprints <span class="recommended">Recommended</span></div>
+                            <div class="radio-description">Copy all sprints with dates, goals, and issue assignments</div>
+                        </div>
+                    </label>
+                    <label class="radio-option" onclick="selectRadio('sprints', 'NO', this)">
+                        <input type="radio" name="sprints" value="NO">
+                        <div class="radio-label">
+                            <div class="radio-title">NO - Skip sprint migration</div>
+                            <div class="radio-description">Exclude sprints from migration</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Step 6: SubTasks -->
+            <div class="step-section">
+                <h2><span class="step-number">6</span> Include SubTasks</h2>
+                <div class="radio-group">
+                    <label class="radio-option selected" onclick="selectRadio('subtasks', 'YES', this)">
+                        <input type="radio" name="subtasks" value="YES" checked>
+                        <div class="radio-label">
+                            <div class="radio-title">YES - Include sub-tasks <span class="recommended">Recommended</span></div>
+                            <div class="radio-description">Migrate sub-tasks along with parent issues</div>
+                        </div>
+                    </label>
+                    <label class="radio-option" onclick="selectRadio('subtasks', 'NO', this)">
+                        <input type="radio" name="subtasks" value="NO">
+                        <div class="radio-label">
+                            <div class="radio-title">NO - Exclude sub-tasks</div>
+                            <div class="radio-description">Skip sub-task migration (simpler, faster)</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Configuration Summary -->
+            <div class="summary-box" id="summaryBox" style="display: none;">
+                <h3>📋 Configuration Summary</h3>
+                <div class="summary-item">
+                    <span class="summary-label">Source Environment:</span>
+                    <span class="summary-value" id="summarySourceEnv">-</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Source Project:</span>
+                    <span class="summary-value" id="summarySourceProject">-</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Target Environment:</span>
+                    <span class="summary-value" id="summaryTargetEnv">-</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Target Project:</span>
+                    <span class="summary-value" id="summaryTargetProject">-</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Configuration Template:</span>
+                    <span class="summary-value" id="summaryTemplate">XRAY</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Export Scope:</span>
+                    <span class="summary-value" id="summaryScope">UNRESOLVED</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Migrate Sprints:</span>
+                    <span class="summary-value" id="summarySprints">YES</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Include SubTasks:</span>
+                    <span class="summary-value" id="summarySubtasks">YES</span>
+                </div>
+            </div>
+            
+            <!-- PowerShell Command -->
+            <div id="commandSection" style="display: none;">
+                <h3 style="margin-top: 30px; color: #667eea;">🔧 PowerShell Command</h3>
+                <div class="command-box">
+                    <button class="copy-btn" onclick="copyCommand()">📋 Copy</button>
+                    <pre id="psCommand" style="margin: 0; white-space: pre-wrap; word-wrap: break-word;"></pre>
+                </div>
+                <div class="info-text" style="margin-top: 10px;">
+                    Copy this command and run it in PowerShell from the Migration directory
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="button-group">
+                <button class="btn" onclick="generateProject()" id="generateBtn" disabled>
+                    🚀 Create Migration Project
+                </button>
+                <button class="btn btn-secondary" onclick="resetForm()">
+                    🔄 Reset
+                </button>
+            </div>
+            
+            <div id="statusMessage"></div>
+        </div>
+    </div>
+    
+    <script>
+        // API Configuration
+        const API_BASE = 'http://localhost:8765';
+        const useLiveData = true;  // Set to true when running via Start-MigrationServer.ps1
+        
+        // Environment configurations (used as fallback if server not running)
+        const environments = {
+            'onemain': {
+                name: 'OneMain Production',
+                url: 'https://onemain.atlassian.net',
+                apiUrl: 'https://onemain.atlassian.net/rest/api/3/project',
+                targetEnv: 'omf-sandbox',
+                targetUrl: 'https://onemainfinancial-sandbox-575.atlassian.net'
+            },
+            'onemain-sandbox': {
+                name: 'OneMain Migration Sandbox',
+                url: 'https://onemain-migrationsandbox.atlassian.net',
+                apiUrl: 'https://onemain-migrationsandbox.atlassian.net/rest/api/3/project',
+                targetEnv: 'omf-migration-sandbox',
+                targetUrl: 'https://onemainfinancial-migrationsandbox.atlassian.net'
+            },
+            'omf-sandbox': {
+                name: 'OMF Sandbox 575',
+                url: 'https://onemainfinancial-sandbox-575.atlassian.net',
+                apiUrl: 'https://onemainfinancial-sandbox-575.atlassian.net/rest/api/3/project',
+                targetEnv: 'onemain',
+                targetUrl: 'https://onemain.atlassian.net'
+            },
+            'omf-migration-sandbox': {
+                name: 'OMF Migration Sandbox',
+                url: 'https://onemainfinancial-migrationsandbox.atlassian.net',
+                apiUrl: 'https://onemainfinancial-migrationsandbox.atlassian.net/rest/api/3/project',
+                targetEnv: 'onemain-sandbox',
+                targetUrl: 'https://onemain-migrationsandbox.atlassian.net'
+            }
+        };
+        
+        let selectedProject = null;
+        let selectedEnvironment = null;
+        let allEnvironments = {};
+        
+        // Load environments on page load
+        async function loadEnvironments() {
+            if (!useLiveData) return;
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/environments`);
+                if (response.ok) {
+                    const envs = await response.json();
+                    allEnvironments = {};
+                    envs.forEach(env => {
+                        allEnvironments[env.key] = env;
+                    });
+                    console.log('✅ Loaded live environments from server');
+                }
+            } catch (error) {
+                console.warn('⚠️ Could not load live environments, using fallback data:', error);
+                allEnvironments = environments;
+            }
+        }
+        
+        function selectRadio(name, value, element) {
+            // Update radio selection
+            document.querySelectorAll(`input[name="${name}"]`).forEach(radio => {
+                radio.checked = (radio.value === value);
+            });
+            
+            // Update visual selection
+            const parent = element.closest('.radio-group');
+            parent.querySelectorAll('.radio-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            
+            // Update summary
+            updateSummary();
+        }
+        
+        async function loadProjects() {
+            const envSelect = document.getElementById('environmentSelect');
+            const envKey = envSelect.value;
+            const projectList = document.getElementById('projectList');
+            const envInfo = document.getElementById('envInfo');
+            
+            if (!envKey) {
+                projectList.innerHTML = '<div class="info-text" style="padding: 20px; text-align: center;">Select an environment above to load projects</div>';
+                envInfo.textContent = '';
+                selectedEnvironment = null;
+                selectedProject = null;
+                document.getElementById('generateBtn').disabled = true;
+                return;
+            }
+            
+            const envData = allEnvironments[envKey] || environments[envKey];
+            selectedEnvironment = envData;
+            envInfo.innerHTML = `<strong>URL:</strong> ${selectedEnvironment.url}<br><strong>Loading projects...</strong>`;
+            
+            // Show loading
+            projectList.innerHTML = '<div class="loading">🔄 Loading projects from Jira...</div>';
+            
+            if (useLiveData) {
+                // Fetch LIVE data from server
+                try {
+                    const response = await fetch(`${API_BASE}/api/projects?env=${envKey}`);
+                    if (response.ok) {
+                        const projects = await response.json();
+                        displayProjects(projects);
+                        envInfo.innerHTML = `<strong>URL:</strong> ${selectedEnvironment.url}<br><strong>✅ Loaded ${projects.length} projects</strong>`;
+                    } else {
+                        throw new Error(`HTTP ${response.status}`);
+                    }
+                } catch (error) {
+                    console.error('Failed to load live projects:', error);
+                    projectList.innerHTML = `
+                        <div class="error" style="margin: 20px;">
+                            ❌ Could not connect to local server.<br><br>
+                            <strong>Please start the server first:</strong><br>
+                            <code style="background: #333; color: #fff; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-top: 8px;">
+                                .\\Start-MigrationServer.ps1
+                            </code>
+                        </div>
+                    `;
+                    envInfo.innerHTML = `<strong>URL:</strong> ${selectedEnvironment.url}<br><span style="color: #dc3545;">❌ Server not running</span>`;
+                }
+            } else {
+                // Use mock data
+                setTimeout(() => {
+                    loadMockProjects(envKey);
+                }, 500);
+            }
+        }
+        
+        function displayProjects(projects) {
+            const projectList = document.getElementById('projectList');
+            
+            if (projects.length === 0) {
+                projectList.innerHTML = '<div class="info-text" style="padding: 20px; text-align: center;">No projects found</div>';
+                return;
+            }
+            
+            projectList.innerHTML = projects.map((project, index) => `
+                <div class="project-item" onclick="selectProject('${project.key}', '${project.name}', this)">
+                    <div class="project-key">${project.key}</div>
+                    <div class="project-name">${project.name}</div>
+                </div>
+            `).join('');
+        }
+        
+        function loadMockProjects(envKey) {
+            // Fallback mock data when server is not running
+            const mockProjects = {
+                'onemain': [
+                    { key: 'LAS', name: 'Loan Automation Services' },
+                    { key: 'DEP', name: 'Deployments' },
+                    { key: 'SEC', name: 'Security & Compliance' },
+                    { key: 'PLAT', name: 'Platform Engineering' }
+                ],
+                'onemain-sandbox': [
+                    { key: 'XXX', name: 'Test Migration Project' },
+                    { key: 'TEST', name: 'Testing Environment' },
+                    { key: 'DEV', name: 'Development Sandbox' }
+                ],
+                'omf-sandbox': [
+                    { key: 'LAS1', name: 'LAS Sandbox' },
+                    { key: 'DEP1', name: 'Deployments Sandbox' }
+                ],
+                'omf-migration-sandbox': [
+                    { key: 'XXX1', name: 'Test Migration Target' },
+                    { key: 'MIGR1', name: 'Migration Test' }
+                ]
+            };
+            
+            const projects = mockProjects[envKey] || [];
+            displayProjects(projects);
+        }
+        
+        function selectProject(key, name, element) {
+            // Update selection
+            document.querySelectorAll('.project-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            
+            selectedProject = { key, name };
+            
+            // Update info
+            document.getElementById('projectInfo').innerHTML = `
+                <strong>Selected:</strong> ${key} - ${name}<br>
+                <strong>Target Project:</strong> ${key}1 - ${name} Sandbox
+            `;
+            
+            // Enable generate button
+            document.getElementById('generateBtn').disabled = false;
+            
+            // Update summary
+            updateSummary();
+        }
+        
+        function updateSummary() {
+            const summaryBox = document.getElementById('summaryBox');
+            
+            if (!selectedProject || !selectedEnvironment) {
+                summaryBox.style.display = 'none';
+                return;
+            }
+            
+            summaryBox.style.display = 'block';
+            
+            // Get current selections
+            const template = document.querySelector('input[name="template"]:checked').value;
+            const scope = document.querySelector('input[name="scope"]:checked').value;
+            const sprints = document.querySelector('input[name="sprints"]:checked').value;
+            const subtasks = document.querySelector('input[name="subtasks"]:checked').value;
+            
+            // Get target environment
+            const targetEnv = environments[selectedEnvironment.targetEnv];
+            
+            // Update summary display
+            document.getElementById('summarySourceEnv').textContent = selectedEnvironment.url;
+            document.getElementById('summarySourceProject').textContent = `${selectedProject.key} - ${selectedProject.name}`;
+            document.getElementById('summaryTargetEnv').textContent = targetEnv.url;
+            document.getElementById('summaryTargetProject').textContent = `${selectedProject.key}1 - ${selectedProject.name} Sandbox`;
+            document.getElementById('summaryTemplate').textContent = template;
+            document.getElementById('summaryScope').textContent = scope;
+            document.getElementById('summarySprints').textContent = sprints;
+            document.getElementById('summarySubtasks').textContent = subtasks;
+        }
+        
+        function generateProject() {
+            if (!selectedProject || !selectedEnvironment) {
+                alert('Please select an environment and project first');
+                return;
+            }
+            
+            // Get all configuration values
+            const template = document.querySelector('input[name="template"]:checked').value;
+            const scope = document.querySelector('input[name="scope"]:checked').value;
+            const sprints = document.querySelector('input[name="sprints"]:checked').value === 'YES';
+            const subtasks = document.querySelector('input[name="subtasks"]:checked').value === 'YES';
+            
+            const targetEnv = environments[selectedEnvironment.targetEnv];
+            
+            // Generate PowerShell command
+            const command = `# Step 1: Create migration project
+.\\CreateNewProject.ps1 -ProjectKey "${selectedProject.key}" \\
+    -SourceBaseUrl "${selectedEnvironment.url}/" \\
+    -TargetBaseUrl "${targetEnv.url}/"
+
+# Step 2: Update configuration (already set by prompts, but you can manually edit)
+# Edit: .\\projects\\${selectedProject.key}\\parameters.json
+# - ConfigurationTemplate: ${template}
+# - IssueExportSettings.Scope: ${scope}
+# - MigrateSprints: ${sprints}
+# - IncludeSubTasks: ${subtasks}
+
+# Step 3: Launch migration
+.\\RunMigration.ps1 -Project ${selectedProject.key}
+
+# Or auto-run all 16 steps:
+# .\\RunMigration.ps1 -Project ${selectedProject.key} -AutoRun`;
+            
+            // Show command
+            document.getElementById('psCommand').textContent = command;
+            document.getElementById('commandSection').style.display = 'block';
+            
+            // Show success message
+            const statusMsg = document.getElementById('statusMessage');
+            statusMsg.innerHTML = `
+                <div class="success" style="margin-top: 20px;">
+                    ✅ <strong>Configuration Ready!</strong><br>
+                    Copy the PowerShell command above and run it in your Migration directory.
+                </div>
+            `;
+            
+            // Scroll to command
+            document.getElementById('commandSection').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        function copyCommand() {
+            const command = document.getElementById('psCommand').textContent;
+            navigator.clipboard.writeText(command).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Copied!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            });
+        }
+        
+        function resetForm() {
+            document.getElementById('environmentSelect').value = '';
+            document.getElementById('projectList').innerHTML = '<div class="info-text" style="padding: 20px; text-align: center;">Select an environment above to load projects</div>';
+            document.getElementById('envInfo').textContent = '';
+            document.getElementById('projectInfo').innerHTML = '';
+            document.getElementById('summaryBox').style.display = 'none';
+            document.getElementById('commandSection').style.display = 'none';
+            document.getElementById('statusMessage').innerHTML = '';
+            document.getElementById('generateBtn').disabled = true;
+            
+            selectedProject = null;
+            selectedEnvironment = null;
+            
+            // Reset radio buttons to defaults
+            selectRadio('template', 'XRAY', document.querySelector('input[name="template"][value="XRAY"]').closest('.radio-option'));
+            selectRadio('scope', 'UNRESOLVED', document.querySelector('input[name="scope"][value="UNRESOLVED"]').closest('.radio-option'));
+            selectRadio('sprints', 'YES', document.querySelector('input[name="sprints"][value="YES"]').closest('.radio-option'));
+            selectRadio('subtasks', 'YES', document.querySelector('input[name="subtasks"][value="YES"]').closest('.radio-option'));
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', async () => {
+            console.log('OMF Jira Migration Launcher loaded');
+            
+            // Load environments if using live data
+            if (useLiveData) {
+                await loadEnvironments();
+                console.log('Live data mode enabled');
+            } else {
+                allEnvironments = environments;
+                console.log('Using mock data (start server for live data)');
+            }
+        });
+    </script>
+</body>
+</html>
+

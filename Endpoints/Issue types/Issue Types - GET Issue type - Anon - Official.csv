@@ -1,0 +1,2 @@
+"Id","Name","Description","IsSubtask","IconUrl","Self","GeneratedAt"
+"10115","Sub Test Execution","This is the Xray Sub Test Execution Issue Type. Used to execute test cases already defined. A Sub Test Execution can be created for a parent issue like a requirement in order to execute the test cases associated with it.","true","https://onemain.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10605?size=medium","https://onemain.atlassian.net/rest/api/3/issuetype/10115","2025-09-23 22:10:36"

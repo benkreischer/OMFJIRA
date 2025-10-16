@@ -1,0 +1,43 @@
+---
+description: Endpoint validation process that must be followed for every endpoint
+globs: .endpoints/**/*.ps1,.endpoints/**/*.pq
+alwaysApply: true
+---
+
+# Endpoint Validation Process - MUST FOLLOW
+
+## **CRITICAL: After running ANY .ps1 script, MUST complete ALL steps:**
+
+1. **Verify .pq matches .ps1 exactly** (same API endpoint, same field extraction logic)
+2. **Delete old CSV file** 
+3. **Rerun .ps1 script** to generate fresh CSV
+4. **Validate CSV results** (check field count, record count, data quality)
+   - **CRITICAL:** Always check actual CSV file line count: `(Get-Content "filename.csv" | Measure-Object -Line).Lines - 1`
+   - **NEVER trust PowerShell script output messages** - validate against actual file contents
+   - Verify headers are present and data rows match expected count
+5. **Update tracking document** with compliance status
+
+## **File Synchronization Check:**
+- ✅ Both files call the SAME API endpoint
+- ✅ Both files extract the SAME fields in the SAME order
+- ✅ Both files handle nested objects the SAME way
+- ✅ Both files convert data types the SAME way
+
+## **CSV Quality Validation:**
+- ✅ Clean, readable data (no [Record] or JSON garbage)
+- ✅ All fields properly extracted and flattened
+- ✅ Boolean values converted to "true"/"false" text
+- ✅ Arrays joined with semicolon delimiter
+- ✅ No null columns with no data
+- ✅ **CRITICAL:** Validate actual record count matches expectations
+- ✅ **CRITICAL:** Check CSV file directly - don't trust script output messages
+
+## **Tracking Document Updates:**
+- ✅ Mark PQ Compliant: ✅ or ❌
+- ✅ Mark PS1 Compliant: ✅ or ❌
+- ✅ Mark CSV Compliant: ✅ or ❌
+- ✅ Record field count and record count
+- ✅ Note API documentation sync status
+- ✅ List out-of-sync fields if any
+
+**NEVER skip any of these steps. This process ensures data quality and file synchronization.**

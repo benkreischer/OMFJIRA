@@ -1,0 +1,2 @@
+"Source Issue","Source URL","Target Issue","Target URL","Link Type","Direction","Linked To (Not Migrated)","Linked To URL","Reason","Action Required"
+"ICS-577","https://onemain.atlassian.net/browse/ICS-577","ICS1-6","https://onemainfinancial-migrationsandbox.atlassian.net/browse/ICS1-6","Cloners","outward","ICS-530","https://onemain.atlassian.net/browse/ICS-530","Already exists (idempotency)","Manually create link when linked issue is migrated, or link to source instance"

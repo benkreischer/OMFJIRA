@@ -1,0 +1,2 @@
+"Source Issue","Source URL","Target Issue","Target URL","Link Type","Direction","Linked To (Not Migrated)","Linked To URL","Reason","Action Required","Timestamp"
+"SIGN-229","https://onemain.atlassian.net/browse/SIGN-229","SIGN1-81","https://onemainfinancial-migrationsandbox.atlassian.net/browse/SIGN1-81","Cloners","outward","SIGN-228","https://onemain.atlassian.net/browse/SIGN-228","Already exists (idempotency)","Manually create link when linked issue is migrated, or link to source instance","2025-10-16 07:26:04"

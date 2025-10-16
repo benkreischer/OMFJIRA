@@ -1,0 +1,2 @@
+"Source Issue","Source URL","Target Issue","Target URL","Issue Type","Summary","Missing Parent","Status","Reason","Action Required"
+"ETAC-681","https://onemain.atlassian.net/browse/ETAC-681","ETAC1-161","https://onemainfinancial-migrationsandbox.atlassian.net/browse/ETAC1-161","Task","IA Total Comp & Benefits: Final Report Issued / Issues documented in Archer","ETAC-671","In Progress","Parent was resolved/excluded from migration (not in export)","Manually link to appropriate parent or mark as orphaned"

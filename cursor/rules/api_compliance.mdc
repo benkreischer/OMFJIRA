@@ -1,0 +1,70 @@
+---
+description: CRITICAL RULE: ALL endpoints must match Atlassian API reference exactly
+globs: .endpoints/**/*.ps1, .endpoints/**/*.pq
+alwaysApply: true
+---
+
+# API Compliance Rule
+
+**CRITICAL REQUIREMENT**: ALL .ps1 and .pq files MUST match the official Atlassian Jira REST API v3 documentation EXACTLY.
+
+## **What This Means:**
+
+- **ONLY use documented fields** from the API reference
+- **ONLY use documented parameters** (expand, maxResults, etc.)
+- **ONLY use documented expand options** listed in the API docs
+- **NO custom field extractions** beyond what the API returns
+- **NO assumptions** about nested data structure
+- **NO additional columns** beyond what the API actually provides
+
+## **Reference Documentation:**
+- **Main API Reference**: https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#version
+- **Projects API**: https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-projects/#api-group-projects
+- **Issues API**: https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/#api-group-issues
+- **Users API**: https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-users/#api-group-users
+
+## **Before Making ANY Changes:**
+
+1. **READ the API documentation** for the specific endpoint
+2. **Identify EXACTLY** what fields are returned
+3. **Identify EXACTLY** what expand options are available
+4. **Use ONLY** documented fields and parameters
+5. **Test against** the actual API response structure
+
+## **Common Mistakes to AVOID:**
+
+❌ **DON'T**: Add custom field extractions like `lead_avatarUrl` when API only returns `lead.avatarUrls.48x48`
+❌ **DON'T**: Create calculated fields like `issueTypeCount` when API doesn't provide this
+❌ **DON'T**: Assume nested object structure without checking API docs
+❌ **DON'T**: Add fields that aren't in the documented response schema
+
+## **Correct Approach:**
+
+✅ **DO**: Use only fields documented in the API response schema
+✅ **DO**: Use only expand options listed in the API documentation  
+✅ **DO**: Extract nested data exactly as documented (e.g., `lead.displayName`)
+✅ **DO**: Handle null values properly without creating custom fields
+✅ **DO**: Test with actual API calls to verify response structure
+
+## **Example - Projects API:**
+
+**CORRECT** (from API docs):
+```powershell
+# API returns: lead.displayName, lead.accountId, lead.active
+$leadDisplayName = if ($project.lead -and $project.lead.displayName) { $project.lead.displayName } else { "" }
+```
+
+**INCORRECT** (custom extraction):
+```powershell
+# API doesn't return lead.avatarUrls.48x48 directly - this is custom logic
+$leadAvatarUrl = if ($project.lead.avatarUrls.'48x48') { $project.lead.avatarUrls.'48x48' } else { "" }
+```
+
+## **Enforcement:**
+
+- **EVERY endpoint** must be reviewed against API documentation
+- **EVERY field** must be documented in the API reference
+- **EVERY parameter** must be documented in the API reference
+- **NO EXCEPTIONS** - if it's not in the API docs, don't use it
+
+This rule prevents field expansion issues, null columns, and ensures data accuracy.

@@ -1,0 +1,8 @@
+"Type","Name","Value","Details","Timestamp"
+"Summary","Source Boards Discovered","4","Boards found in source project","2025-10-16 07:23:22"
+"Summary","Boards Created/Reused","4","Boards successfully created or reused in target","2025-10-16 07:23:22"
+"Summary","Boards Skipped","0","Boards skipped due to issues","2025-10-16 07:23:22"
+"Board","INEN-ZCS Scrum Board","1432","Type: scrum, Filter: ZCS1 - INEN-ZCS Scrum Board (copied from ZCS 20251016072314)","2025-10-16 07:23:22"
+"Board","INEN-ZCS Kanban Board","1433","Type: kanban, Filter: ZCS1 - INEN-ZCS Kanban Board (copied from ZCS 20251016072316)","2025-10-16 07:23:22"
+"Board","FIX - INEN-Planned Work Needing Due Date","1434","Type: kanban, Filter: ZCS1 - FIX - INEN-Planned Work Needing Due Date (copied from ZCS 20251016072318)","2025-10-16 07:23:22"
+"Board","FIX - INEN-Due Date","1435","Type: kanban, Filter: ZCS1 - FIX - INEN-Due Date (copied from ZCS 20251016072320)","2025-10-16 07:23:22"

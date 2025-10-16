@@ -1,0 +1,233 @@
+
+================================================================================
+STEP: 08_CreateIssues_Target - 2025-10-13 09:58:50
+================================================================================
+❌ ERRORS: 37
+⚠️  WARNINGS: 140
+🔧 ACTIONS: 87
+
+Top Errors:
+  • Issue Creation Failed: Failed to create issue: The property 'emailAddress' cannot be found on this object. Verify that the property exists.
+    Issue: QUAL-610
+  • Issue Creation Failed: Failed to create issue: The property 'emailAddress' cannot be found on this object. Verify that the property exists.
+    Issue: QUAL-227
+  • Issue Creation Failed: Failed to create issue: The property 'emailAddress' cannot be found on this object. Verify that the property exists.
+    Issue: QUAL-526
+  • Issue Creation Failed: Failed to create issue: The property 'emailAddress' cannot be found on this object. Verify that the property exists.
+    Issue: QUAL-528
+  • Issue Creation Failed: Failed to create issue: The property 'emailAddress' cannot be found on this object. Verify that the property exists.
+    Issue: QUAL-515
+  ... and 32 more errors (see .\projects\QUAL\out\20251013_095849-08_CreateIssues_Target_issues.txt)
+
+Top Warnings:
+  • Skipped Sub-task: Sub-task skipped because parent issue not yet migrated
+    Issue: QUAL-6452
+  • Skipped Sub-task: Sub-task skipped because parent issue not yet migrated
+    Issue: QUAL-6453
+  • Skipped Sub-task: Sub-task skipped because parent issue not yet migrated
+    Issue: QUAL-6454
+  • Skipped Sub-task: Sub-task skipped because parent issue not yet migrated
+    Issue: QUAL-6490
+  • Skipped Sub-task: Sub-task skipped because parent issue not yet migrated
+    Issue: QUAL-6489
+  ... and 135 more warnings (see .\projects\QUAL\out\20251013_095849-08_CreateIssues_Target_issues.txt)
+
+Actions Required:
+  🔧 User 'Gayathri Venkataraman' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Altaf Shariff' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Tommie Payne' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Altaf Shariff' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Tommie Payne' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Tommie Payne' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Jamie Hayes' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Jamie Hayes' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Jamie Hayes' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Jamie Hayes' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Jamie Hayes' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Jamie Hayes' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Jamie Hayes' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Jamie Hayes' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Gayathri Venkataraman' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Altaf Shariff' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Jamie Hayes' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Tommie Payne' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Anuparun Waindeshkar' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Anuparun Waindeshkar' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Anuparun Waindeshkar' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Anuparun Waindeshkar' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Gayathri Venkataraman' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Gayathri Venkataraman' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Atul Hatode' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Tommie Payne' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Tommie Payne' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Altaf Shariff' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Tommie Payne' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Jamie Hayes' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Tommie Payne' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Jamie Hayes' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Tommie Payne' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Tommie Payne' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Gayathri Venkataraman' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Gayathri Venkataraman' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Tommie Payne' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Prasanth Kaleeswaran' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Tommie Payne' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Tommie Payne' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Tommie Payne' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Angela Colclasure' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Gayathri Venkataraman' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Gayathri Venkataraman' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Lisa Ruby' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Lisa Ruby' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Angela Cureton' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Gayathri Venkataraman' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Lisa Ruby' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Lisa Ruby' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Jamie Hayes' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Gayathri Venkataraman' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Roxana Vlad' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Anuparun Waindeshkar' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Angela Cureton' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Angela Cureton' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Angela Cureton' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Lisa Ruby' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Lisa Ruby' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Lisa Ruby' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Lisa Ruby' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Lisa Ruby' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Lisa Ruby' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Gayathri Venkataraman' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Gayathri Venkataraman' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Atul Hatode' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Alice Merrill' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Ramkumar Jagannathan' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Gayathri Venkataraman' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Jamie Hayes' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Jamie Hayes' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Tommie Payne' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Roxana Vlad' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Jamie Hayes' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Angela Cureton' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Angela Cureton' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Angela Cureton' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Lisa Ruby' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Lisa Ruby' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Jamie Hayes' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Alice Merrill' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Aravindakrishna Naraharisetty' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Gayathri Venkataraman' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Gayathri Venkataraman' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Gayathri Venkataraman' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Angela Cureton' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+  🔧 User 'Angela Cureton' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/QUAL1/permissions
+
+Detailed log: .\projects\QUAL\out\20251013_095849-08_CreateIssues_Target_issues.txt
+
+
+================================================================================
+STEP: 09_Comments - 2025-10-13 10:06:52
+================================================================================
+⚠️  WARNINGS: 8
+
+Top Warnings:
+  • Comment Migration Failed: Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    Issue: QUAL1-194
+  • Comment Migration Failed: Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    Issue: QUAL1-322
+  • Comment Migration Failed: Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    Issue: QUAL1-322
+  • Comment Migration Failed: Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    Issue: QUAL1-322
+  • Comment Migration Failed: Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    Issue: QUAL1-322
+  ... and 3 more warnings (see .\projects\QUAL\out\20251013_100652-09_Comments_issues.txt)
+
+Detailed log: .\projects\QUAL\out\20251013_100652-09_Comments_issues.txt
+

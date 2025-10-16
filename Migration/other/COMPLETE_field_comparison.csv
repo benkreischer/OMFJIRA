@@ -1,0 +1,463 @@
+Environment,Name,SourceID (OneMain),TargetID (OneMainFinancial),MatchStatus
+Source,Status Category,statusCategory,statusCategory,Jira Native
+Source,Parent,parent,parent,Jira Native
+Source,Risk Approver (migrated),customfield_10750,,No Match
+Source,Resolution,resolution,resolution,Jira Native
+Source,Impact,customfield_11841,customfield_10004,Different ID
+Source,Risk Approver2 (migrated),customfield_10752,,No Match
+Source,ICON Approver (migrated),customfield_10742,,No Match
+Source,Modeling Accounting Approver (migrated),customfield_10743,,No Match
+Source,Account Manual Fields (migrated),customfield_10744,,No Match
+Source,Loan Accounting Analyst (migrated),customfield_10745,,No Match
+Source,Treasury Notes (migrated),customfield_10746,,No Match
+Source,Risk Manual Fields (migrated),customfield_10747,,No Match
+Source,Risk Preparer (migrated),customfield_10748,,No Match
+Source,EA4J Auto Approver Custom Field,customfield_11837,,No Match
+Source,Treasury Preparer (migrated),customfield_10749,,No Match
+Source,Last Viewed,lastViewed,lastViewed,Jira Native
+Source,Modeling Accounting Preparer (migrated),customfield_10740,,No Match
+Source,Count (migrated),customfield_10741,,No Match
+Source,Charge Off Amount (migrated),customfield_10731,,No Match
+Source,Insights,customfield_11942,customfield_10228,Different ID
+Source,Additional Pricing Required (migrated),customfield_10732,,No Match
+Source,Atlassian project status,customfield_11941,customfield_10227,Different ID
+Source,Collateral Preparer (migrated),customfield_10733,,No Match
+Source,Linked items,customfield_11944,customfield_10230,Different ID
+Source,Category (migrated),customfield_10612,,No Match
+Source,Comments,customfield_11943,customfield_10229,Different ID
+Source,Treasury Approver 2 (migrated),customfield_10734,,No Match
+Source,Σ Original Estimate,aggregatetimeoriginalestimate,aggregatetimeoriginalestimate,Jira Native
+Source,Recovery (migrated),customfield_10735,,No Match
+Source,Delivery status,customfield_11946,customfield_10232,Different ID
+Source,Collateral Approver (migrated),customfield_10736,,No Match
+Source,Delivery progress,customfield_11945,customfield_10231,Different ID
+Source,Risk Notes (migrated),customfield_10737,,No Match
+Source,Category (migrated) (migrated),customfield_10979,,No Match
+Source,UPB (migrated),customfield_10738,,No Match
+Source,ICON Preparer (migrated),customfield_10739,,No Match
+Source,Linked Issues,issuelinks,issuelinks,Jira Native
+Source,Assignee,assignee,assignee,Jira Native
+Source,Atlassian project,customfield_11940,customfield_10226,Different ID
+Source,Treasury Approver 1 (migrated),customfield_10730,,No Match
+Source,Reviewers: Sprint/Role/Generic,customfield_10725,,No Match
+Source,Approvers: Sprint/Role/Generic,customfield_10726,,No Match
+Source,Workfront Automation Required (migrated),customfield_10605,,No Match
+Source,Idea archived,customfield_11937,customfield_10223,Different ID
+Source,ACH/Wire Transaction # (migrated),customfield_10727,,No Match
+Source,Risk Approver Required (migrated),customfield_10728,,No Match
+Source,Idea archived on,customfield_11939,customfield_10225,Different ID
+Source,Notes (migrated),customfield_10729,,No Match
+Source,Idea archived by,customfield_11938,customfield_10224,Different ID
+Source,Sub-tasks,subtasks,subtasks,Jira Native
+Source,Confidence,customfield_11801,,No Match
+Source,Idea short description,customfield_11800,,No Match
+Source,Product Lane,customfield_11803,,No Match
+Source,Documents,customfield_11802,,No Match
+Source,End User Coordination Effort (migrated),customfield_10716,,No Match
+Source,Sentiment,customfield_11807,customfield_10024,Different ID
+Source,Treasury Approver 2,customfield_10718,,No Match
+Source,Log Work,worklog,worklog,Jira Native
+Source,Goals,customfield_11808,customfield_10031,Different ID
+Source,Issue Type,issuetype,issuetype,Jira Native
+Source,Service (migrated) (migrated),customfield_10946,,No Match
+Source,Planned Start Date (migrated),customfield_10704,,No Match
+Source,Time tracking,timetracking,timetracking,Jira Native
+Source,Environment,environment,environment,Jira Native
+Source,Due date,duedate,duedate,Jira Native
+Source,Change Number,customfield_10350,,No Match
+Source,Freeze End Date,customfield_10230,,No Match
+Source,Category,customfield_10351,customfield_10190,Different ID
+Source,Service (migrated) (migrated) (migrated),customfield_11561,,No Match
+Source,VP Freeze Approver,customfield_10231,,No Match
+Source,Service,customfield_10352,,No Match
+Source,Deployment Date,customfield_10232,,No Match
+Source,Configuration Item,customfield_10353,,No Match
+Source,Bitbucket Repo Task Branch,customfield_10233,,No Match
+Source,Assignment Group,customfield_10354,,No Match
+Source,Alert!!!,customfield_10234,,No Match
+Source,Disco Requirements,customfield_10113,,No Match
+Source,Regulatory/Compliance/Legal (migrated),customfield_10476,,No Match
+Source,Justification,customfield_10355,,No Match
+Source,Planned Start Date (migrated) (migrated) (migrated),customfield_11686,,No Match
+Source,Implementation Plan,customfield_10356,,No Match
+Source,List of Available Discos,customfield_10114,,No Match
+Source,Submitted forms,customfield_10346,customfield_10028,Different ID
+Source,Effort,customfield_11799,,No Match
+Source,R&D Tax Credits,customfield_10225,,No Match
+Source,Developer,customfield_10104,,No Match
+Source,Health Status,customfield_10226,,No Match
+Source,QA Engineer,customfield_10105,,No Match
+Source,Locked forms,customfield_10347,customfield_10029,Different ID
+Source,Value,customfield_11798,,No Match
+Source,Promotion Date,customfield_10227,,No Match
+Source,Total forms,customfield_10348,customfield_10027,Different ID
+Source,Jira_Issue_Key,customfield_10228,,No Match
+Source,Begin Date,customfield_10108,customfield_10158,Different ID
+Source,Freeze Start Date,customfield_10229,,No Match
+Source,End Date,customfield_10109,customfield_10095,Different ID
+Source,Impact score,customfield_11791,,No Match
+Source,Dependent Teams,customfield_11790,,No Match
+Source,Rollback Version,customfield_10340,,No Match
+Source,Spec ready,customfield_11793,,No Match
+Source,Treasury Approver 1,customfield_10582,,No Match
+Source,Modeling Accounting Preparer,customfield_10583,,No Match
+Source,Regulatory/Compliance/Legal,customfield_10220,,No Match
+Source,Health Status Comments,customfield_10341,,No Match
+Source,Customer segments,customfield_11792,,No Match
+Source,Lane,customfield_10100,,No Match
+Source,Information,customfield_10342,,No Match
+Source,Project start,customfield_11795,,No Match
+Source,IT Manager,customfield_10221,,No Match
+Source,System Manager,customfield_10222,,No Match
+Source,SARB Approved,customfield_11794,,No Match
+Source,Scrum Team,customfield_10101,,No Match
+Source,Engineering Lead,customfield_10343,,No Match
+Source,External Issue ID,customfield_10102,customfield_10250,Different ID
+Source,Late Add Date Difference,customfield_10344,,No Match
+Source,Program Priority,customfield_10223,,No Match
+Source,Category,customfield_11797,customfield_10190,Different ID
+Source,Project target,customfield_11796,,No Match
+Source,PMD Categorization,customfield_10224,,No Match
+Source,External Issue URL,customfield_10103,,No Match
+Source,End Date (migrated),customfield_10466,,No Match
+Source,Open forms,customfield_10345,customfield_10030,Different ID
+Source,Benefits,customfield_10215,,No Match
+Source,Service (migrated),customfield_10579,,No Match
+Source,Collateral Approver,customfield_10458,,No Match
+Source,Requesting Department,customfield_10216,,No Match
+Source,Security Code Review (migrated) (migrated) (migrated),customfield_11548,,No Match
+Source,Risk Approver Required (migrated 2) (migrated),customfield_11668,,No Match
+Source,Size,customfield_10217,customfield_10102,Different ID
+Source,Remaining Estimate,timeestimate,timeestimate,Jira Native
+Source,SDD Required,customfield_10218,,No Match
+Source,Lane - Capabilities,customfield_10219,,No Match
+Source,Status,status,status,Jira Native
+Source,Resource Platform,customfield_10330,,No Match
+Source,Deployment Approver,customfield_10210,,No Match
+Source,Severity,customfield_10694,customfield_10099,Different ID
+Source,Deployment Approval Date,customfield_10211,,No Match
+Source,Environment Deployed,customfield_10212,,No Match
+Source,Configuration Item ID (migrated) (migrated),customfield_11665,,No Match
+Source,RoadMap,customfield_11786,,No Match
+Source,Reported during,customfield_10213,,No Match
+Source,Goal,customfield_11785,,No Match
+Source,Risk and Impact Analysis (migrated) (migrated) (migrated),customfield_11664,,No Match
+Source,Targeted Communication Outside of Training Deck?,customfield_10324,,No Match
+Source,Approvers: Design Review,customfield_10204,,No Match
+Source,Problem Ticket ID,customfield_10325,,No Match
+Source,Approvers: Code Review,customfield_10205,,No Match
+Source,Impact,customfield_11779,customfield_10004,Different ID
+Source,Start Date (migrated) (migrated),customfield_11416,,No Match
+Source,Problem Severity,customfield_10326,,No Match
+Source,Task Approver,customfield_10206,,No Match
+Source,Vulnerability,customfield_11778,customfield_10033,Different ID
+Source,Deployed to Pricing,customfield_10327,,No Match
+Source,Σ Remaining Estimate,aggregatetimeestimate,aggregatetimeestimate,Jira Native
+Source,Task Approval Date,customfield_10207,,No Match
+Source,Deployed to Pricing Status,customfield_10328,,No Match
+Source,Freeze Approver,customfield_10208,,No Match
+Source,Freeze Approval Date,customfield_10209,,No Match
+Source,Creator,creator,creator,Jira Native
+Source,Deployment Closing Validation,customfield_11771,,No Match
+Source,Risk and Impact Analysis (migrated),customfield_10682,,No Match
+Source,UAT or Validate Results,customfield_10320,,No Match
+Source,Configuration Item ID,customfield_10683,,No Match
+Source,Communicated in Training Deck?,customfield_10321,,No Match
+Source,Approvers: QA,customfield_10200,,No Match
+Source,Policy and Procedure Impact,customfield_10322,,No Match
+Source,Approvers: UAT,customfield_10201,,No Match
+Source,Modeling Accounting Approver,customfield_10685,,No Match
+Source,Training department,customfield_10323,,No Match
+Source,Risk Approver Required,customfield_10686,,No Match
+Source,Security Code Review (migrated),customfield_10565,,No Match
+Source,Emergency Deployment Approver,customfield_10313,,No Match
+Source,Emergency Deployment Approval Date,customfield_10314,,No Match
+Source,Lane Name,customfield_10315,,No Match
+Source,Team Name,customfield_10316,,No Match
+Source,Customer Facing?,customfield_10317,,No Match
+Source,Pilot,customfield_10318,,No Match
+Source,Operations Owner,customfield_10319,,No Match
+Source,Time Spent,timespent,timespent,Jira Native
+Source,Σ Time Spent,aggregatetimespent,aggregatetimespent,Jira Native
+Source,Project overview key,customfield_11762,customfield_10034,Different ID
+Source,Functional Test Status,customfield_10310,,No Match
+Source,Design,customfield_11761,customfield_10032,Different ID
+Source,Start Date (migrated),customfield_10432,,No Match
+Source,UAT Test Status,customfield_10311,,No Match
+Source,Sum StoryPoints ,customfield_11764,,No Match
+Source,ICON Preparer,customfield_10553,,No Match
+Source,Documented Test Plan,customfield_10312,,No Match
+Source,Project overview status,customfield_11763,customfield_10035,Different ID
+Source,Project Requirement Review Date,customfield_10302,,No Match
+Source,Impact (migrated) (migrated) (migrated),customfield_11512,,No Match
+Source,Business/QA Review Date,customfield_10303,,No Match
+Source,Backout Plan,customfield_10304,,No Match
+Source,Scheduler Change,customfield_10305,,No Match
+Source,Table Change,customfield_10306,,No Match
+Source,Table Alter,customfield_10307,,No Match
+Source,Large Table Change,customfield_10308,,No Match
+Source,Name of table,customfield_10309,,No Match
+Source,Work Ratio,workratio,workratio,Jira Native
+Source,Support Ticket,customfield_10301,,No Match
+Source,Product Area,customfield_11865,,No Match
+Source,Documents,customfield_11864,,No Match
+Source,Resolution (migrated),customfield_11743,,No Match
+Source,Implementation Plan (migrated) (migrated) (migrated),customfield_11628,,No Match
+Source,Health Status Comment,customfield_10419,,No Match
+Source,Effort,customfield_11861,,No Match
+Source,Value,customfield_11860,,No Match
+Source,Publication Description,customfield_10652,,No Match
+Source,Confidence,customfield_11863,,No Match
+Source,Idea short description,customfield_11862,,No Match
+Source,Customer segments,customfield_11854,,No Match
+Source,UAT Testing Status,customfield_10765,,No Match
+Source,Designs ready,customfield_11856,,No Match
+Source,Design & Accessibility Review Required,customfield_10766,,No Match
+Source,Spec ready,customfield_11855,,No Match
+Source,Implementation Plan (migrated),customfield_10646,,No Match
+Source,Project target,customfield_11858,,No Match
+Source,Begin Date (migrated 2),customfield_10769,,No Match
+Source,Project start,customfield_11857,,No Match
+Source,Additional Pricing Required,customfield_10648,,No Match
+Source,ICON Approver,customfield_10649,,No Match
+Source,Impact (migrated),customfield_10529,,No Match
+Source,Category,customfield_11859,customfield_10190,Different ID
+Source,Environment Type,customfield_10760,customfield_10096,Different ID
+Source,External issue ID,customfield_11970,customfield_10250,Different ID
+Source,Environment Name,customfield_10761,customfield_10124,Different ID
+Source,Teams,customfield_11852,,No Match
+Source,Deployment State,customfield_10753,,No Match
+Source,Resolution,customfield_10754,resolution,Different ID
+Source,Goal,customfield_11847,,No Match
+Source,Workfront ID,customfield_10757,,No Match
+Source,Reporting Source System,customfield_10758,customfield_10097,Different ID
+Source,Source System ID,customfield_10759,customfield_10098,Different ID
+Source,Integration Target Date,customfield_10190,,No Match
+Source,QA Target Date,customfield_10191,,No Match
+Source,Testing Priority,customfield_10192,,No Match
+Source,CI/CD,customfield_10193,,No Match
+Source,Design Review Date,customfield_10194,,No Match
+Source,Change type (migrated 3),customfield_11162,,No Match
+Source,Reviewers: Design Review,customfield_10195,,No Match
+Source,Code Review Date,customfield_10196,,No Match
+Source,Security Code Review,customfield_10197,,No Match
+Source,Approvers: Unit,customfield_10198,,No Match
+Source,Approvers: Int,customfield_10199,,No Match
+Source,Approvals,customfield_12135,customfield_10289,Different ID
+Source,Risk and Impact Analysis (migrated) (migrated),customfield_11049,,No Match
+Source,Deployed to Training,customfield_10180,,No Match
+Source,Deployed to Training Status,customfield_10181,,No Match
+Source,Planned Deployment,customfield_10182,,No Match
+Source,Post Implementation Validation,customfield_10183,,No Match
+Source,Post Implementation Testers,customfield_10184,,No Match
+Source,Rollout Switch,customfield_10185,,No Match
+Source,Validation Priority,customfield_10186,,No Match
+Source,Date added to Deployment,customfield_10187,,No Match
+Source,Dependency,customfield_10188,,No Match
+Source,Testing Communication,customfield_10189,,No Match
+Source,Labels,labels,labels,Jira Native
+Source,Components,components,components,Jira Native
+Source,Approvers: Secure Code,customfield_10290,,No Match
+Source,Deployment Key,customfield_10291,,No Match
+Source,Deployed to Regression Status,customfield_10170,,No Match
+Source,Deployment Summary,customfield_10292,,No Match
+Source,Received Regression Callback,customfield_10171,,No Match
+Source,Begin Date (migrated) (migrated) (migrated),customfield_11382,,No Match
+Source,Satisfaction,customfield_10293,,No Match
+Source,Deployed to UAT,customfield_10172,,No Match
+Source,Deployed to UAT Status,customfield_10173,,No Match
+Source,Satisfaction date,customfield_10294,,No Match
+Source,Request language,customfield_10295,,No Match
+Source,Deployed to PROD,customfield_10174,,No Match
+Source,Deployed to PROD Status,customfield_10175,,No Match
+Source,Affected services,customfield_10296,,No Match
+Source,Withdraw Alert!!,customfield_10297,,No Match
+Source,Received Production Callback,customfield_10176,,No Match
+Source,Epic Approval,customfield_10298,,No Match
+Source,Deployed to Post Release,customfield_10177,,No Match
+Source,Health Status (migrated 2),customfield_11267,,No Match
+Source,Deployed to Post Release Status,customfield_10178,,No Match
+Source,Production Deployment Approvals,customfield_10299,,No Match
+Source,Received Post Release/Training Callback,customfield_10179,,No Match
+Source,Risk Approver Required (migrated) (migrated),customfield_11139,,No Match
+Source,Testers: QA,customfield_10160,,No Match
+Source,Testers: UAT,customfield_10161,,No Match
+Source,External issue ID,customfield_10283,customfield_10250,Different ID
+Source,Artifact,customfield_10162,,No Match
+Source,Phase Activity,customfield_10284,,No Match
+Source,Platform,customfield_10163,,No Match
+Source,Deployed to DEV,customfield_10164,,No Match
+Source,Reporter,reporter,reporter,Jira Native
+Source,Deployed to DEV Status,customfield_10165,,No Match
+Source,Process Date,customfield_10287,,No Match
+Source,Implementation Plan (migrated) (migrated),customfield_11013,,No Match
+Source,Deployed to INT,customfield_10167,,No Match
+Source,Focus Areas,customfield_12102,customfield_10256,Different ID
+Source,Score,customfield_10288,,No Match
+Source,Additional Pricing Required (migrated 2),customfield_11015,,No Match
+Source,Business Case,customfield_10289,,No Match
+Source,Deployed to INT Status,customfield_10168,,No Match
+Source,Deployed to Regression,customfield_10169,,No Match
+Source,Testers: Int,customfield_10159,,No Match
+Source,Progress,progress,progress,Jira Native
+Source,Project Analyst,customfield_10270,,No Match
+Source,Package No,customfield_10150,,No Match
+Source,Consists of Core Integrations,customfield_10392,,No Match
+Source,Project Manager,customfield_10271,,No Match
+Source,Time Frame,customfield_10272,,No Match
+Source,Run vs Build,customfield_10393,,No Match
+Source,Emergency Request,customfield_10151,,No Match
+Source,Acceptance Criteria,customfield_10030,customfield_10091,Different ID
+Source,Project,project,project,Jira Native
+Source,CICD Version,customfield_10152,,No Match
+Source,Test Plan,customfield_10394,customfield_10093,Different ID
+Source,Target start,customfield_10031,customfield_10022,Different ID
+Source,Initiative Approval Date,customfield_10273,,No Match
+Source,Initiative Approver,customfield_10274,,No Match
+Source,Target end,customfield_10032,customfield_10023,Different ID
+Source,Bitbucket Repo Slug,customfield_10153,,No Match
+Source,Test Results,customfield_10395,customfield_10094,Different ID
+Source,Global Rank,customfield_10154,,No Match
+Source,Expected Behavior,customfield_10396,customfield_10100,Different ID
+Source,Planned Start Date,customfield_10155,,No Match
+Source,Planned End Date,customfield_10156,,No Match
+Source,Request Approver,customfield_10278,,No Match
+Source,Reviewers: Code Review,customfield_10157,,No Match
+Source,Testers: Unit,customfield_10158,,No Match
+Source,How and Who,customfield_10148,,No Match
+Source,Steps to Reproduce,customfield_10027,customfield_10101,Different ID
+Source,IT Sponsor,customfield_10269,,No Match
+Source,Actual Result,customfield_10028,,No Match
+Source,Expected Result,customfield_10029,,No Match
+Source,Resolved,resolutiondate,resolutiondate,Jira Native
+Source,Watchers,watches,watches,Jira Native
+Source,Testing Oversight,customfield_10380,,No Match
+Source,Secure Code Review Date,customfield_10260,,No Match
+Source,Outage and Backout Duration,customfield_10381,,No Match
+Source,Product Lead,customfield_10261,,No Match
+Source,Impact in Case of Change Failure,customfield_10382,,No Match
+Source,External issue ID,customfield_10141,customfield_10250,Different ID
+Source,Risk,customfield_10383,,No Match
+Source,Sprint,customfield_10020,customfield_10020,Same ID
+Source,Deployment Link,customfield_10384,,No Match
+Source,Project Type,customfield_10142,,No Match
+Source,Flagged,customfield_10021,customfield_10021,Same ID
+Source,Category (migrated) (migrated) (migrated),customfield_11594,,No Match
+Source,Project,customfield_10143,project,Different ID
+Source,T-Shirt Size,customfield_10264,,No Match
+Source,[CHART] Date of First Response,customfield_10022,customfield_10025,Different ID
+Source,Integrated Deployment Link,customfield_10385,,No Match
+Source,[CHART] Time in Status,customfield_10023,customfield_10026,Different ID
+Source,Defect Link2,customfield_10386,,No Match
+Source,Workfront Automation Required,customfield_10265,,No Match
+Source,Project Lead,customfield_10144,,No Match
+Source,Deployment Notes,customfield_10387,,No Match
+Source,Work Type,customfield_10145,,No Match
+Source,Workfront Reference Number,customfield_10266,,No Match
+Source,Business Sponsor,customfield_10267,,No Match
+Source,Executive Sponsor,customfield_10268,,No Match
+Source,Story Points,customfield_10026,customfield_10058,Different ID
+Source,Program,customfield_10137,,No Match
+Source,Reviewers: Secure Code,customfield_10258,,No Match
+Source,Validation Plan,customfield_10379,,No Match
+Source,Story point estimate,customfield_10016,customfield_10016,Same ID
+Source,Business Context,customfield_10138,,No Match
+Source,Issue color,customfield_10017,customfield_10017,Same ID
+Source,Freeze Approval Received,customfield_10259,,No Match
+Source,Jira Issue Key,customfield_10139,,No Match
+Source,Parent Link,customfield_10018,customfield_10018,Same ID
+Source,Rank,customfield_10019,customfield_10019,Same ID
+Source,Updated,updated,updated,Jira Native
+Source,Original estimate,timeoriginalestimate,timeoriginalestimate,Jira Native
+Source,Potential Workaround,customfield_10370,,No Match
+Source,Contact Information,customfield_10250,,No Match
+Source,Override,customfield_10251,,No Match
+Source,Description,description,description,Jira Native
+Source,Requested For,customfield_10130,,No Match
+Source,Regulatory/Compliance/Legal (migrated) (migrated),customfield_11460,,No Match
+Source,Request Type,customfield_10010,customfield_10010,Same ID
+Source,Github Username,customfield_10131,,No Match
+Source,Epic Name,customfield_10011,customfield_10011,Same ID
+Source,Checklist Completed,customfield_10375,,No Match
+Source,Override Environment,customfield_10254,,No Match
+Source,Epic Status,customfield_10012,customfield_10012,Same ID
+Source,Github Organizations,customfield_10134,,No Match
+Source,Epic Color,customfield_10013,customfield_10013,Same ID
+Source,CMS Approver,customfield_10255,,No Match
+Source,Checklist Text,customfield_10377,,No Match
+Source,Epic Link,customfield_10014,customfield_10014,Same ID
+Source,Github Team,customfield_10135,,No Match
+Source,CMS Approval Date,customfield_10256,,No Match
+Source,Date moved from Deployment,customfield_10378,,No Match
+Source,Approving Manager,customfield_10136,,No Match
+Source,PMD Categorization,customfield_10257,,No Match
+Source,Start date,customfield_10015,customfield_10015,Same ID
+Source,Deployed to DevInt Status,customfield_10368,,No Match
+Source,Run Instructions,customfield_10247,,No Match
+Source,Value Score,customfield_10126,,No Match
+Source,Change type,customfield_10005,customfield_10005,Same ID
+Source,Impact to Blocked Issues,customfield_10369,,No Match
+Source,External issue ID,customfield_10127,customfield_10250,Different ID
+Source,ENV,customfield_10128,,No Match
+Source,Critical,customfield_10249,,No Match
+Source,LAN_ID,customfield_10129,,No Match
+Source,Summary,summary,summary,Jira Native
+Source,Request participants,customfield_10240,customfield_10322,Different ID
+Source,Legal/Compliance Engaged?,customfield_10362,,No Match
+Source,External issue ID,customfield_10120,customfield_10250,Different ID
+Source,Development,customfield_10000,customfield_10000,Same ID
+Source,One Support Engaged?,customfield_10363,,No Match
+Source,Health Check,customfield_10121,,No Match
+Source,Deployment Approval,customfield_10242,,No Match
+Source,Business Partner,customfield_10122,,No Match
+Source,Cross Department Impact?,customfield_10364,,No Match
+Source,QA Deployment Date,customfield_10243,,No Match
+Source,Team,customfield_10001,customfield_10001,Same ID
+Source,Assumptions,customfield_10244,customfield_10092,Different ID
+Source,Organizations,customfield_10002,customfield_10002,Same ID
+Source,Trail Blazers Needed?,customfield_10365,,No Match
+Source,End User Coordination Effort (migrated) (migrated) (migrated),customfield_11698,,No Match
+Source,Category,customfield_10366,customfield_10190,Different ID
+Source,External issue ID,customfield_10245,customfield_10250,Different ID
+Source,Issue Attribute(s),customfield_10124,,No Match
+Source,Approvers,customfield_10003,customfield_10003,Same ID
+Source,Probability,customfield_10125,,No Match
+Source,Request Type,customfield_10246,customfield_10010,Different ID
+Source,Deployed to DevInt,customfield_10367,,No Match
+Source,Impact,customfield_10004,customfield_10004,Same ID
+Source,Risk and Impact Analysis,customfield_10357,,No Match
+Source,Verification Priority,customfield_10236,,No Match
+Source,Integrated Test Data and date/method requested,customfield_10115,,No Match
+Source,End User Coordination Effort,customfield_10358,,No Match
+Source,Integrated Test Data Available,customfield_10116,,No Match
+Source,Planned Live Date,customfield_10237,,No Match
+Source,OKR,customfield_10359,,No Match
+Source,Planned Start Date (migrated 2),customfield_11207,,No Match
+Source,Comment,comment,comment,Jira Native
+Source,Status Category Changed,statuscategorychangedate,statuscategorychangedate,Jira Native
+Source,Fix versions,fixVersions,fixVersions,Jira Native
+Source,Priority,priority,priority,Jira Native
+Source,Affects versions,versions,versions,Jira Native
+Source,Key,issuekey,issuekey,Jira Native
+Source,Σ Progress,aggregateprogress,aggregateprogress,Jira Native
+Source,cf_User1,customfield_12170,,No Match
+Source,End User Coordination Effort (migrated) (migrated),customfield_11083,,No Match
+Source,Restrict to,issuerestriction,issuerestriction,Jira Native
+Source,Images,thumbnail,thumbnail,Jira Native
+Source,Created,created,created,Jira Native
+Source,cf_Radio2,customfield_12169,,No Match
+Source,cf_Radio1,customfield_12168,,No Match
+Source,Security Level,security,security,Jira Native
+Source,Attachment,attachment,attachment,Jira Native
+Source,Configuration Item ID (migrated),customfield_11050,,No Match
+Source,Risk Approver Required (New),customfield_11053,,No Match
+Source,Begin Date (migrated 2) (migrated),customfield_11178,,No Match
+Target Only,uuid,,customfield_10355,No Match (Target Only)
+Target Only,Location,,customfield_10356,No Match (Target Only)
+Target Only,Xray End Date,,customfield_10159,No Match (Target Only)
+Target Only,Revision,,customfield_10157,No Match (Target Only)
+Target Only,Tech Debt,,customfield_10389,No Match (Target Only)
+Target Only,Change risk,,customfield_10006,No Match (Target Only)
+Target Only,Change reason,,customfield_10007,No Match (Target Only)
+Target Only,Actual start,,customfield_10008,No Match (Target Only)
+Target Only,Actual end,,customfield_10009,No Match (Target Only)

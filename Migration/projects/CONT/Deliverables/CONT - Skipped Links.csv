@@ -1,0 +1,2 @@
+"Source Issue","Source URL","Target Issue","Target URL","Link Type","Direction","Linked To (Not Migrated)","Linked To URL","Reason","Action Required"
+"CONT-883","https://onemain.atlassian.net/browse/CONT-883","CONT1-131","https://onemainfinancial-migrationsandbox.atlassian.net/browse/CONT1-131","Cloners","inward","CONT-1962","https://onemain.atlassian.net/browse/CONT-1962","Already exists (idempotency)","Manually create link when linked issue is migrated, or link to source instance"

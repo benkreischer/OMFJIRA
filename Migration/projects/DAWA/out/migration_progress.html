@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Migration Progress - Data Warehouse</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 { font-size: 2em; margin-bottom: 10px; }
+        .header p { opacity: 0.9; font-size: 1.1em; }
+        .mode-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+        .progress-bar {
+            height: 8px;
+            background: rgba(255,255,255,0.3);
+            margin: 20px 30px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: #10b981;
+            transition: width 0.5s ease;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px 30px;
+            background: #f9fafb;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .stat { text-align: center; }
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .stat-label {
+            color: #6b7280;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .steps {
+            padding: 30px;
+        }
+        .step {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .step.completed { border-color: #10b981; background: #f0fdf4; }
+        .step.running { border-color: #3b82f6; animation: pulse 2s infinite; }
+        .step.failed { border-color: #ef4444; background: #fef2f2; }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
+        }
+        .step-header {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+        .step-header:hover {
+            background: rgba(0,0,0,0.02);
+        }
+        .checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #d1d5db;
+            border-radius: 4px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .step.completed .checkbox {
+            background: #10b981;
+            border-color: #10b981;
+        }
+        .step.running .checkbox {
+            background: #3b82f6;
+            border-color: #3b82f6;
+        }
+        .step.failed .checkbox {
+            background: #ef4444;
+            border-color: #ef4444;
+        }
+        .checkbox::after {
+            content: '✓';
+            color: white;
+            font-weight: bold;
+            display: none;
+        }
+        .step.completed .checkbox::after { display: block; }
+        .step.running .checkbox::after {
+            content: '⟳';
+            display: block;
+            animation: spin 1s linear infinite;
+        }
+        .step.failed .checkbox::after {
+            content: '✗';
+            display: block;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .step-title {
+            flex: 1;
+            font-weight: 600;
+            color: #1f2937;
+        }
+        .step-number {
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .step-status {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .status-pending { background: #e5e7eb; color: #6b7280; }
+        .status-running { background: #dbeafe; color: #1e40af; }
+        .status-completed { background: #d1fae5; color: #065f46; }
+        .status-failed { background: #fee2e2; color: #991b1b; }
+        .step-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+        }
+        .step.expanded .step-details {
+            max-height: 5000px;
+            overflow-y: auto;
+        }
+        .step-summary {
+            padding: 20px;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #374151;
+        }
+        .summary-stats {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        .stat-box {
+            flex: 1;
+            min-width: 120px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-box.stat-success { background: #d1fae5; border-left: 4px solid #10b981; }
+        .stat-box.stat-warning { background: #fef3c7; border-left: 4px solid #f59e0b; }
+        .stat-box.stat-error { background: #fee2e2; border-left: 4px solid #ef4444; }
+        .stat-box.stat-info { background: #dbeafe; border-left: 4px solid #3b82f6; }
+        .stat-box .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1f2937;
+        }
+        .stat-box .stat-label {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 5px;
+        }
+        .summary-success {
+            background: #d1fae5;
+            color: #065f46;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border-left: 4px solid #10b981;
+        }
+        .summary-warning {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border-left: 4px solid #f59e0b;
+        }
+        .summary-info {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border-left: 4px solid #3b82f6;
+        }
+        .summary-item {
+            margin: 8px 0;
+            padding: 5px 0;
+        }
+        .summary-section {
+            margin-top: 15px;
+            margin-bottom: 5px;
+            color: #1f2937;
+            font-weight: 600;
+        }
+        .summary-notes {
+            list-style-type: disc;
+            margin-left: 20px;
+            color: #374151;
+        }
+        .summary-notes li {
+            margin: 5px 0;
+        }
+        .step-summary a {
+            color: #0052CC;
+            text-decoration: none;
+        }
+        .step-summary a:hover {
+            text-decoration: underline;
+        }
+        .summary-stats {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        .stat-box {
+            flex: 1;
+            min-width: 120px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-box.stat-success { background: #d1fae5; border-left: 4px solid #10b981; }
+        .stat-box.stat-warning { background: #fef3c7; border-left: 4px solid #f59e0b; }
+        .stat-box.stat-error { background: #fee2e2; border-left: 4px solid #ef4444; }
+        .stat-box.stat-info { background: #dbeafe; border-left: 4px solid #3b82f6; }
+        .stat-box .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1f2937;
+        }
+        .stat-box .stat-label {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 5px;
+        }
+        .summary-success {
+            background: #d1fae5;
+            color: #065f46;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border-left: 4px solid #10b981;
+        }
+        .summary-warning {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border-left: 4px solid #f59e0b;
+        }
+        .summary-info {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border-left: 4px solid #3b82f6;
+        }
+        .summary-item {
+            margin: 8px 0;
+            padding: 5px 0;
+        }
+        .summary-section {
+            margin-top: 15px;
+            margin-bottom: 5px;
+            color: #1f2937;
+            font-weight: 600;
+        }
+        .summary-notes {
+            list-style-type: disc;
+            margin-left: 20px;
+            color: #374151;
+        }
+        .summary-notes li {
+            margin: 5px 0;
+        }
+        .automation-checklist li,
+        .permissions-checklist li {
+            margin: 8px 0;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .automation-checklist input[type="checkbox"],
+        .permissions-checklist input[type="checkbox"] {
+            margin-right: 8px;
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+        }
+        .automation-checklist li:has(input:checked),
+        .permissions-checklist li:has(input:checked) {
+            opacity: 0.6;
+            text-decoration: line-through;
+        }
+        .expand-icon {
+            margin-left: auto;
+            padding-left: 10px;
+            color: #9ca3af;
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+        .step.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+        .footer {
+            padding: 20px;
+            text-align: center;
+            color: #6b7280;
+            border-top: 1px solid #e5e7eb;
+        }
+        .refresh-button {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+        .refresh-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+        }
+        .refresh-button:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <div>
+                    <h1>🎯 Migration Progress</h1>
+                    <p>Project: Data Warehouse (DAWA)</p>
+                    <div class="mode-badge">📋 Interactive Mode</div>
+                </div>
+                <button class="refresh-button" onclick="location.reload();" title="Refresh Dashboard">
+                    🔄 Refresh
+                </button>
+            </div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 107%"></div>
+        </div>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value" id="completedCount">15</div>
+                <div class="stat-label">Completed</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="pendingCount">-1</div>
+                <div class="stat-label">Pending</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="percentComplete">107%</div>
+                <div class="stat-label">Progress</div>
+            </div>
+        </div>
+        <div class="steps" id="stepsList">
+            <div class="step completed" onclick="toggleStepDetails(this)">
+                <div class="step-header">
+                    <div class="checkbox"></div>
+                    <span class="step-number">Step 01</span>
+                    <span class="step-title">Preflight Validation</span>
+                    <span class="step-status status-completed">Completed ✓</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                                <div class="step-details">
+                    <div class="step-summary">
+                        <div class='summary-success'>✅ Preflight validation passed</div><div class='summary-item'><strong>URL:</strong> https://onemain.atlassian.net → https://onemainfinancial-migrationsandbox.atlassian.net</div><div class='summary-item'><strong>Project Key:</strong> DAWA → DAWA1</div><div class='summary-item'><strong>Project Name:</strong> Data Warehouse → Data Warehouse Sandbox</div><div class='summary-item'><strong>TimeUtc:</strong> 10/14/2025 7:54:31 AM</div><details style='margin-top: 20px;' onclick='event.stopPropagation();'><summary style='cursor: pointer; padding: 10px; background: #f3f4f6; border-radius: 6px; font-weight: 600;' onclick='event.stopPropagation();'>📄 View Full Receipt Data</summary><div style='margin-top: 10px; padding: 15px; background: #f9fafb; border-radius: 6px; font-family: monospace; font-size: 12px;'><div><strong>SourceProjectKey:</strong> DAWA</div><div><strong>TargetProjectKey:</strong> DAWA1</div><div><strong>TimeUtc:</strong> DateTime</div><div><strong>SourceProjectName:</strong> Data Warehouse</div><div><strong>Ok:</strong> True</div><div><strong>EndTime:</strong> DateTime</div><div><strong>StartTime:</strong> DateTime</div><div><strong>TargetProjectName:</strong> Data Warehouse Sandbox</div></div></details>
+                    </div>
+                </div>
+            </div>            <div class="step completed" onclick="toggleStepDetails(this)">
+                <div class="step-header">
+                    <div class="checkbox"></div>
+                    <span class="step-number">Step 02</span>
+                    <span class="step-title">Create Target Project</span>
+                    <span class="step-status status-completed">Completed ✓</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                                <div class="step-details">
+                    <div class="step-summary">
+                        <div class='summary-section' style='margin-top: 20px;'><strong>🔍 Project Access:</strong></div><div style='margin-top: 15px; display: flex; gap: 12px; flex-wrap: wrap;'><a href='https://onemain.atlassian.net/browse/DAWA' target='_blank' onclick='event.stopPropagation();' style='display: inline-block; padding: 12px 20px; background: #1e40af; color: white; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: bold; min-width: 160px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);'>📁 Source Project ↗</a><a href='https://onemain.atlassian.net/plugins/servlet/project-config/DAWA/summary' target='_blank' onclick='event.stopPropagation();' style='display: inline-block; padding: 12px 20px; background: #1e40af; color: white; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: bold; min-width: 160px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);'>⚙️ Source Settings ↗</a><a href='https://onemainfinancial-migrationsandbox.atlassian.net/browse/DAWA1' target='_blank' onclick='event.stopPropagation();' style='display: inline-block; padding: 12px 20px; background: #059669; color: white; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: bold; min-width: 160px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);'>📁 Target Project ↗</a><a href='https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/summary' target='_blank' onclick='event.stopPropagation();' style='display: inline-block; padding: 12px 20px; background: #059669; color: white; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: bold; min-width: 160px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);'>⚙️ Target Settings ↗</a></div><details style='margin-top: 20px;' onclick='event.stopPropagation();'><summary style='cursor: pointer; padding: 10px; background: #f3f4f6; border-radius: 6px; font-weight: 600;' onclick='event.stopPropagation();'>📄 View Full Receipt Data</summary><div style='margin-top: 10px; padding: 15px; background: #f9fafb; border-radius: 6px; font-family: monospace; font-size: 12px;'><div><strong>ConfigurationTemplate:</strong> XRAY</div><div><strong>StartTime:</strong> DateTime</div><div><strong>TargetProject:</strong> PSCustomObject</div><div><strong>DesiredLeadAccountId:</strong> 712020:27226219-226e-4bf3-9d13-545a6e6c9f8c</div><div><strong>ConfigSource:</strong> PSCustomObject</div><div><strong>EndTime:</strong> DateTime</div></div></details>
+                    </div>
+                </div>
+            </div>            <div class="step completed" onclick="toggleStepDetails(this)">
+                <div class="step-header">
+                    <div class="checkbox"></div>
+                    <span class="step-number">Step 03</span>
+                    <span class="step-title">Migrate Users and Roles</span>
+                    <span class="step-status status-completed">Completed ✓</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                                <div class="step-details">
+                    <div class="step-summary">
+                        <div class='summary-stats'><div class='stat-box stat-success'><div class='stat-number'>0</div><div class='stat-label'>Users Synced</div></div></div><div class='summary-section' style='margin-top: 15px;'><strong>🔍 Verify Configuration:</strong></div><div style='margin-top: 10px;'><a href='https://onemain.atlassian.net/plugins/servlet/project-config/DAWA/people' target='_blank' onclick='event.stopPropagation();' style='display: inline-block; padding: 6px 12px; background: #6b7280; color: white; border-radius: 4px; text-decoration: none; font-size: 13px; margin-right: 8px;'>👥 Source Project Roles ↗</a><a href='https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/people' target='_blank' onclick='event.stopPropagation();' style='display: inline-block; padding: 6px 12px; background: #0052CC; color: white; border-radius: 4px; text-decoration: none; font-size: 13px;'>👥 Target Project Roles ↗</a></div><details style='margin-top: 20px;' onclick='event.stopPropagation();'><summary style='cursor: pointer; padding: 10px; background: #f3f4f6; border-radius: 6px; font-weight: 600;' onclick='event.stopPropagation();'>📄 View Full Receipt Data</summary><div style='margin-top: 10px; padding: 15px; background: #f9fafb; border-radius: 6px; font-family: monospace; font-size: 12px;'><div><strong>StartTime:</strong> DateTime</div><div><strong>EndTime:</strong> DateTime</div><div><strong>UserReportFile:</strong> .\projects\DAWA\out\03_UsersAndRoles_Report.csv</div><div><strong>UsersAnalyzed:</strong> 4</div></div></details>
+                    </div>
+                </div>
+            </div>            <div class="step completed" onclick="toggleStepDetails(this)">
+                <div class="step-header">
+                    <div class="checkbox"></div>
+                    <span class="step-number">Step 04</span>
+                    <span class="step-title">Components and Labels</span>
+                    <span class="step-status status-completed">Completed ✓</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                                <div class="step-details">
+                    <div class="step-summary">
+                        <div class='summary-stats'><div class='stat-box stat-success'><div class='stat-number'>129</div><div class='stat-label'>Components Created</div></div><div class='stat-box stat-info'><div class='stat-number'>0</div><div class='stat-label'>Unique Labels</div></div></div><div class='summary-section' style='margin-top: 15px;'><strong>🔍 Verify Components Match:</strong></div><div style='margin-top: 10px;'><a href='https://onemain.atlassian.net/plugins/servlet/project-config/DAWA/administer-components' target='_blank' onclick='event.stopPropagation();' style='display: inline-block; padding: 6px 12px; background: #6b7280; color: white; border-radius: 4px; text-decoration: none; font-size: 13px; margin-right: 8px;'>📦 Source Components ↗</a><a href='https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/administer-components' target='_blank' onclick='event.stopPropagation();' style='display: inline-block; padding: 6px 12px; background: #0052CC; color: white; border-radius: 4px; text-decoration: none; font-size: 13px;'>📦 Target Components ↗</a></div><details style='margin-top: 20px;' onclick='event.stopPropagation();'><summary style='cursor: pointer; padding: 10px; background: #f3f4f6; border-radius: 6px; font-weight: 600;' onclick='event.stopPropagation();'>📄 View Full Receipt Data</summary><div style='margin-top: 10px; padding: 15px; background: #f9fafb; border-radius: 6px; font-family: monospace; font-size: 12px;'><div><strong>TargetProject:</strong> PSCustomObject</div><div><strong>ExistingComponents:</strong> 4</div><div><strong>FailedComponents:</strong> 0</div><div><strong>CreatedComponentDetails:</strong> Array (129 items)</div><div><strong>CreatedFromSource:</strong> 11</div><div><strong>SourceProject:</strong> PSCustomObject</div><div><strong>SourceComponentsFound:</strong> 11</div><div><strong>LabelDetails:</strong> Array (122 items)</div><div><strong>EndTime:</strong> DateTime</div><div><strong>StartTime:</strong> DateTime</div><div><strong>ComponentMapping:</strong> Array (133 items)</div><div><strong>FailedComponentDetails:</strong> Array (0 items)</div><div><strong>ExistingComponentDetails:</strong> Array (4 items)</div><div><strong>CreatedComponents:</strong> 129</div><div><strong>LabelsCaptured:</strong> 122</div><div><strong>CreatedFromLabels:</strong> 118</div></div></details>
+                    </div>
+                </div>
+            </div>            <div class="step completed" onclick="toggleStepDetails(this)">
+                <div class="step-header">
+                    <div class="checkbox"></div>
+                    <span class="step-number">Step 05</span>
+                    <span class="step-title">Versions</span>
+                    <span class="step-status status-completed">Completed ✓</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                                <div class="step-details">
+                    <div class="step-summary">
+                        <div class='summary-stats'><div class='stat-box stat-success'><div class='stat-number'>0</div><div class='stat-label'>Versions Created</div></div><div class='stat-box stat-info'><div class='stat-number'>50</div><div class='stat-label'>Already Existed</div></div></div><div class='summary-section' style='margin-top: 15px;'><strong>🔍 Verify Versions Match:</strong></div><div style='margin-top: 10px;'><a href='https://onemain.atlassian.net/plugins/servlet/project-config/DAWA/administer-versions' target='_blank' onclick='event.stopPropagation();' style='display: inline-block; padding: 6px 12px; background: #6b7280; color: white; border-radius: 4px; text-decoration: none; font-size: 13px; margin-right: 8px;'>🏷️ Source Versions ↗</a><a href='https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/administer-versions' target='_blank' onclick='event.stopPropagation();' style='display: inline-block; padding: 6px 12px; background: #0052CC; color: white; border-radius: 4px; text-decoration: none; font-size: 13px;'>🏷️ Target Versions ↗</a></div><details style='margin-top: 20px;' onclick='event.stopPropagation();'><summary style='cursor: pointer; padding: 10px; background: #f3f4f6; border-radius: 6px; font-weight: 600;' onclick='event.stopPropagation();'>📄 View Full Receipt Data</summary><div style='margin-top: 10px; padding: 15px; background: #f9fafb; border-radius: 6px; font-family: monospace; font-size: 12px;'><div><strong>ExistingVersionDetails:</strong> Array (50 items)</div><div><strong>FailedVersions:</strong> 0</div><div><strong>StartTime:</strong> DateTime</div><div><strong>TotalSourceVersions:</strong> 50</div><div><strong>TargetProject:</strong> PSCustomObject</div><div><strong>ExistingVersions:</strong> 50</div><div><strong>CreatedVersionDetails:</strong> Array (0 items)</div><div><strong>FailedVersionDetails:</strong> Array (0 items)</div><div><strong>VersionMapping:</strong> Array (50 items)</div><div><strong>SourceProject:</strong> PSCustomObject</div><div><strong>CreatedVersions:</strong> 0</div><div><strong>EndTime:</strong> DateTime</div></div></details>
+                    </div>
+                </div>
+            </div>            <div class="step completed" onclick="toggleStepDetails(this)">
+                <div class="step-header">
+                    <div class="checkbox"></div>
+                    <span class="step-number">Step 06</span>
+                    <span class="step-title">Boards</span>
+                    <span class="step-status status-completed">Completed ✓</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                                <div class="step-details">
+                    <div class="step-summary">
+                        <div class='summary-stats'><div class='stat-box stat-success'><div class='stat-number'>0</div><div class='stat-label'>Boards Created</div></div></div><div class='summary-section' style='margin-top: 15px;'><strong>🔍 Verify Boards Match:</strong></div><div style='margin-top: 10px; display: flex; gap: 12px; flex-wrap: wrap;'><a href='https://onemain.atlassian.net/jira/software/projects/DAWA/boards' target='_blank' onclick='event.stopPropagation();' style='display: inline-block; padding: 12px 20px; background: #1e40af; color: white; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: bold; min-width: 160px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);'>📊 Source Boards ↗</a><a href='https://onemainfinancial-migrationsandbox.atlassian.net/jira/software/projects/DAWA1/boards' target='_blank' onclick='event.stopPropagation();' style='display: inline-block; padding: 12px 20px; background: #059669; color: white; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: bold; min-width: 160px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);'>📊 Target Boards ↗</a></div><div class='summary-section'><strong>Notes:</strong></div><ul class='summary-notes'><li>Strict copy: requires readable source filter JQL; no generic fallback.</li></ul><details style='margin-top: 20px;' onclick='event.stopPropagation();'><summary style='cursor: pointer; padding: 10px; background: #f3f4f6; border-radius: 6px; font-weight: 600;' onclick='event.stopPropagation();'>📄 View Full Receipt Data</summary><div style='margin-top: 10px; padding: 15px; background: #f9fafb; border-radius: 6px; font-family: monospace; font-size: 12px;'><div><strong>Source:</strong> PSCustomObject</div><div><strong>EndTime:</strong> DateTime</div><div><strong>Notes:</strong> Strict copy: requires readable source filter JQL; no generic fallback.</div><div><strong>StartTime:</strong> DateTime</div><div><strong>Target:</strong> PSCustomObject</div></div></details>
+                    </div>
+                </div>
+            </div>            <div class="step completed" onclick="toggleStepDetails(this)">
+                <div class="step-header">
+                    <div class="checkbox"></div>
+                    <span class="step-number">Step 07</span>
+                    <span class="step-title">Export Issues from Source</span>
+                    <span class="step-status status-completed">Completed ✓</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                                <div class="step-details">
+                    <div class="step-summary">
+                        <div class='summary-stats'><div class='stat-box stat-success'><div class='stat-number'>244</div><div class='stat-label'>Issues Exported</div></div></div><details style='margin-top: 20px;' onclick='event.stopPropagation();'><summary style='cursor: pointer; padding: 10px; background: #f3f4f6; border-radius: 6px; font-weight: 600;' onclick='event.stopPropagation();'>📄 View Full Receipt Data</summary><div style='margin-top: 10px; padding: 15px; background: #f9fafb; border-radius: 6px; font-family: monospace; font-size: 12px;'><div><strong>TotalIssuesExported:</strong> 244</div><div><strong>ExportScope:</strong> UNRESOLVED</div><div><strong>KeyToIdMappings:</strong> 244</div><div><strong>IncludeSubTasks:</strong> True</div><div><strong>BulkFetchBatchSize:</strong> 100</div><div><strong>SearchBatchSize:</strong> 1000</div><div><strong>IssueTypeCounts:</strong> PSCustomObject</div><div><strong>StatusCounts:</strong> PSCustomObject</div><div><strong>SourceProject:</strong> PSCustomObject</div><div><strong>KeyToIdMapping:</strong> PSCustomObject</div><div><strong>MappingFile:</strong> .\projects\DAWA\out\exports\key_to_id_mapping.json</div><div><strong>IncludeClosedIssues:</strong> False</div><div><strong>EndTime:</strong> DateTime</div><div><strong>JQLQuery:</strong> project = DAWA AND resolution = Unresolved</div><div><strong>ExportFile:</strong> .\projects\DAWA\out\exports\source_issues_export.json</div><div><strong>StartTime:</strong> DateTime</div><div><strong>ExportedFields:</strong> Array (75 items)</div></div></details>
+                    </div>
+                </div>
+            </div>            <div class="step completed" onclick="toggleStepDetails(this)">
+                <div class="step-header">
+                    <div class="checkbox"></div>
+                    <span class="step-number">Step 08</span>
+                    <span class="step-title">Create Issues in Target</span>
+                    <span class="step-status status-completed">Completed ✓</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                                <div class="step-details">
+                    <div class="step-summary">
+                        <div class='summary-stats'><div class='stat-box stat-success'><div class='stat-number'>222</div><div class='stat-label'>Issues Created</div></div><div class='stat-box stat-info'><div class='stat-number'>2</div><div class='stat-label'>Skipped (Existing)</div></div><div class='stat-box stat-error'><div class='stat-number'>19</div><div class='stat-label'>Failed</div></div></div><div class='summary-section' style='margin-top: 15px; padding: 12px; background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 4px;'><strong style='color: #92400e;'>⚠️ Action Required: 55 Orphaned Issues</strong><div style='margin-top: 8px; color: #78350f; font-size: 13px;'>These issues have parents that were resolved/excluded from migration.<br>Project lead needs to manually link these to appropriate parents or mark as orphaned.</div><div style='margin-top: 10px;'><a href='file:///Z:/Code/OMF/Migration/projects/DAWA/out/08_OrphanedIssues.csv' target='_blank' onclick='event.stopPropagation();' style='display: inline-block; padding: 6px 12px; background: #f59e0b; color: white; border-radius: 4px; text-decoration: none; font-size: 13px; font-weight: bold;'>📄 View Orphaned Issues CSV ↗</a></div></div><div class='summary-section' style='margin-top: 15px;'><strong>🔍 Compare Issues:</strong></div><div style='margin-top: 10px;'><a href='https://onemain.atlassian.net/browse/DAWA' target='_blank' onclick='event.stopPropagation();' style='display: inline-block; padding: 6px 12px; background: #6b7280; color: white; border-radius: 4px; text-decoration: none; font-size: 13px; margin-right: 8px;'>🎫 Source Issues ↗</a><a href='https://onemainfinancial-migrationsandbox.atlassian.net/browse/DAWA1' target='_blank' onclick='event.stopPropagation();' style='display: inline-block; padding: 6px 12px; background: #0052CC; color: white; border-radius: 4px; text-decoration: none; font-size: 13px;'>🎫 Target Issues ↗</a></div><details style='margin-top: 20px;' onclick='event.stopPropagation();'><summary style='cursor: pointer; padding: 10px; background: #f3f4f6; border-radius: 6px; font-weight: 600;' onclick='event.stopPropagation();'>📄 View Full Receipt Data</summary><div style='margin-top: 10px; padding: 15px; background: #f9fafb; border-radius: 6px; font-family: monospace; font-size: 12px;'><div><strong>EndTime:</strong> DateTime</div><div><strong>ComponentMappingsUsed:</strong> 129</div><div><strong>StartTime:</strong> DateTime</div><div><strong>CustomFieldMappingsLoaded:</strong> 53</div><div><strong>SkippedIssueDetails:</strong> Array (2 items)</div><div><strong>ExistingIssuesFound:</strong> 0</div><div><strong>FailedIssueDetails:</strong> Array (19 items)</div><div><strong>CreatedIssues:</strong> 222</div><div><strong>CustomFieldRemovals:</strong> 0</div><div><strong>VersionMappingsUsed:</strong> 50</div><div><strong>OrphanedIssuesCount:</strong> 55</div><div><strong>IdempotencyEnabled:</strong> True</div><div><strong>FailedIssues:</strong> 19</div><div><strong>TargetProject:</strong> PSCustomObject</div><div><strong>SourceToTargetKeyMapping:</strong> PSCustomObject</div><div><strong>CustomFieldConversions:</strong> 0</div><div><strong>CreatedIssueDetails:</strong> Array (222 items)</div><div><strong>OrphanedIssues:</strong> Array (55 items)</div><div><strong>SkippedIssues:</strong> 2</div><div><strong>CrossProjectParents:</strong> Array (37 items)</div><div><strong>TotalSourceIssues:</strong> 244</div><div><strong>KeyMappingFile:</strong> .\projects\DAWA\out\exports\source_to_target_key_mapping.json</div></div></details>
+                    </div>
+                </div>
+            </div>            <div class="step completed" onclick="toggleStepDetails(this)">
+                <div class="step-header">
+                    <div class="checkbox"></div>
+                    <span class="step-number">Step 09</span>
+                    <span class="step-title">Migrate Comments</span>
+                    <span class="step-status status-completed">Completed ✓</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                                <div class="step-details">
+                    <div class="step-summary">
+                        <div class='summary-stats'><div class='stat-box stat-success'><div class='stat-number'>70</div><div class='stat-label'>Comments Migrated</div></div><div class='stat-box stat-error'><div class='stat-number'>53</div><div class='stat-label'>Failed</div></div></div><details style='margin-top: 20px;' onclick='event.stopPropagation();'><summary style='cursor: pointer; padding: 10px; background: #f3f4f6; border-radius: 6px; font-weight: 600;' onclick='event.stopPropagation();'>📄 View Full Receipt Data</summary><div style='margin-top: 10px; padding: 15px; background: #f9fafb; border-radius: 6px; font-family: monospace; font-size: 12px;'><div><strong>MigratedCommentDetails:</strong> Array (70 items)</div><div><strong>CommentsByIssue:</strong> PSCustomObject</div><div><strong>FailedCommentDetails:</strong> Array (53 items)</div><div><strong>StartTime:</strong> DateTime</div><div><strong>TargetProject:</strong> PSCustomObject</div><div><strong>MigratedComments:</strong> 70</div><div><strong>FailedComments:</strong> 53</div><div><strong>SkippedComments:</strong> 0</div><div><strong>IdempotencyEnabled:</strong> True</div><div><strong>TotalCommentsProcessed:</strong> 123</div><div><strong>CommentsByAuthor:</strong> PSCustomObject</div><div><strong>EndTime:</strong> DateTime</div></div></details>
+                    </div>
+                </div>
+            </div>            <div class="step completed" onclick="toggleStepDetails(this)">
+                <div class="step-header">
+                    <div class="checkbox"></div>
+                    <span class="step-number">Step 10</span>
+                    <span class="step-title">Migrate Attachments</span>
+                    <span class="step-status status-completed">Completed ✓</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                                <div class="step-details">
+                    <div class="step-summary">
+                        <div class='summary-stats'><div class='stat-box stat-success'><div class='stat-number'>102</div><div class='stat-label'>Attachments Migrated</div></div><div class='stat-box stat-info'><div class='stat-number'>9.44 MB</div><div class='stat-label'>Data Transferred</div></div></div><details style='margin-top: 20px;' onclick='event.stopPropagation();'><summary style='cursor: pointer; padding: 10px; background: #f3f4f6; border-radius: 6px; font-weight: 600;' onclick='event.stopPropagation();'>📄 View Full Receipt Data</summary><div style='margin-top: 10px; padding: 15px; background: #f9fafb; border-radius: 6px; font-family: monospace; font-size: 12px;'><div><strong>TargetProject:</strong> PSCustomObject</div><div><strong>TempDirectory:</strong> .\projects\DAWA\out\temp_attachments</div><div><strong>TotalBytesUploaded:</strong> 9899543</div><div><strong>TotalBytesDownloaded:</strong> 9899543</div><div><strong>TotalAttachmentSize:</strong> 9899543</div><div><strong>FailedAttachments:</strong> 0</div><div><strong>AttachmentTypes:</strong> PSCustomObject</div><div><strong>SkippedAttachments:</strong> 0</div><div><strong>EndTime:</strong> DateTime</div><div><strong>IdempotencyEnabled:</strong> True</div><div><strong>MigratedAttachmentDetails:</strong> Array (102 items)</div><div><strong>FailedAttachmentDetails:</strong> Array (0 items)</div><div><strong>StartTime:</strong> DateTime</div><div><strong>TotalAttachmentsProcessed:</strong> 102</div><div><strong>MigratedAttachments:</strong> 102</div></div></details>
+                    </div>
+                </div>
+            </div>            <div class="step completed" onclick="toggleStepDetails(this)">
+                <div class="step-header">
+                    <div class="checkbox"></div>
+                    <span class="step-number">Step 11</span>
+                    <span class="step-title">Migrate Links</span>
+                    <span class="step-status status-completed">Completed ✓</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                                <div class="step-details">
+                    <div class="step-summary">
+                        <div class='summary-stats'><div class='stat-box stat-success'><div class='stat-number'>0</div><div class='stat-label'>Links Migrated</div></div><div class='stat-box stat-error'><div class='stat-number'>4</div><div class='stat-label'>Failed</div></div></div><details style='margin-top: 20px;' onclick='event.stopPropagation();'><summary style='cursor: pointer; padding: 10px; background: #f3f4f6; border-radius: 6px; font-weight: 600;' onclick='event.stopPropagation();'>📄 View Full Receipt Data</summary><div style='margin-top: 10px; padding: 15px; background: #f9fafb; border-radius: 6px; font-family: monospace; font-size: 12px;'><div><strong>TargetProject:</strong> PSCustomObject</div><div><strong>Documentation:</strong> PSCustomObject</div><div><strong>StartTime:</strong> DateTime</div><div><strong>RemoteLinks:</strong> PSCustomObject</div><div><strong>Summary:</strong> PSCustomObject</div><div><strong>IssueLinks:</strong> PSCustomObject</div><div><strong>EndTime:</strong> DateTime</div><div><strong>IdempotencyEnabled:</strong> True</div></div></details>
+                    </div>
+                </div>
+            </div>            <div class="step completed" onclick="toggleStepDetails(this)">
+                <div class="step-header">
+                    <div class="checkbox"></div>
+                    <span class="step-number">Step 12</span>
+                    <span class="step-title">Migrate Worklogs</span>
+                    <span class="step-status status-completed">Completed ✓</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                                <div class="step-details">
+                    <div class="step-summary">
+                        <div class='summary-stats'><div class='stat-box stat-success'><div class='stat-number'>0</div><div class='stat-label'>Worklogs Migrated</div></div></div><details style='margin-top: 20px;' onclick='event.stopPropagation();'><summary style='cursor: pointer; padding: 10px; background: #f3f4f6; border-radius: 6px; font-weight: 600;' onclick='event.stopPropagation();'>📄 View Full Receipt Data</summary><div style='margin-top: 10px; padding: 15px; background: #f9fafb; border-radius: 6px; font-family: monospace; font-size: 12px;'><div><strong>TargetProject:</strong> PSCustomObject</div><div><strong>FailedWorklogDetails:</strong> Array (0 items)</div><div><strong>TotalTimeMigratedHours:</strong> 0</div><div><strong>TotalTimeMigratedSeconds:</strong> 0</div><div><strong>WorklogsByIssue:</strong> PSCustomObject</div><div><strong>WorklogsByAuthor:</strong> PSCustomObject</div><div><strong>StartTime:</strong> DateTime</div><div><strong>MigratedWorklogDetails:</strong> Array (0 items)</div><div><strong>FailedWorklogs:</strong> 0</div><div><strong>MigratedWorklogs:</strong> 0</div><div><strong>SkippedWorklogs:</strong> 0</div><div><strong>IdempotencyEnabled:</strong> True</div><div><strong>TotalWorklogsProcessed:</strong> 0</div><div><strong>TimeByAuthor:</strong> PSCustomObject</div><div><strong>EndTime:</strong> DateTime</div></div></details>
+                    </div>
+                </div>
+            </div>            <div class="step completed" onclick="toggleStepDetails(this)">
+                <div class="step-header">
+                    <div class="checkbox"></div>
+                    <span class="step-number">Step 13</span>
+                    <span class="step-title">Migrate Sprints</span>
+                    <span class="step-status status-completed">Completed ✓</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                                <div class="step-details">
+                    <div class="step-summary">
+                        <div class='summary-stats'><div class='stat-box stat-success'><div class='stat-number'>                                                                    </div><div class='stat-label'>Sprints Created</div></div></div><div class='summary-section' style='margin-top: 15px;'><strong>🔍 Verify Sprints (Check Boards):</strong></div><div style='margin-top: 10px;'><a href='https://onemain.atlassian.net/jira/software/c/projects/DAWA/boards' target='_blank' onclick='event.stopPropagation();' style='display: inline-block; padding: 6px 12px; background: #6b7280; color: white; border-radius: 4px; text-decoration: none; font-size: 13px; margin-right: 8px;'>🏃 Source Sprints ↗</a><a href='https://onemainfinancial-migrationsandbox.atlassian.net/jira/software/c/projects/DAWA1/boards' target='_blank' onclick='event.stopPropagation();' style='display: inline-block; padding: 6px 12px; background: #0052CC; color: white; border-radius: 4px; text-decoration: none; font-size: 13px;'>🏃 Target Sprints ↗</a></div><div style='margin-top: 5px; font-size: 12px; color: #6b7280;'>💡 Select a board, then view sprints backlog/reports</div><div class='summary-section'><strong>Notes:</strong></div><ul class='summary-notes'><li>Closed sprint recreation completed</li><li>Sprint mapping data created for issue migration</li><li>Sprint dates and goals preserved where possible</li><li>Sprints created in closed state to maintain historical accuracy</li></ul><details style='margin-top: 20px;' onclick='event.stopPropagation();'><summary style='cursor: pointer; padding: 10px; background: #f3f4f6; border-radius: 6px; font-weight: 600;' onclick='event.stopPropagation();'>📄 View Full Receipt Data</summary><div style='margin-top: 10px; padding: 15px; background: #f9fafb; border-radius: 6px; font-family: monospace; font-size: 12px;'><div><strong>Notes:</strong> Array (4 items)</div><div><strong>TotalSprintsProcessed:</strong> 69</div><div><strong>SprintMapping:</strong> Array (69 items)</div><div><strong>NextSteps:</strong> Array (3 items)</div><div><strong>StartTime:</strong> DateTime</div><div><strong>SkippedSprints:</strong> 0</div><div><strong>SprintsCreated:</strong> 69</div><div><strong>Status:</strong> All Sprints Created Successfully</div><div><strong>Target:</strong> PSCustomObject</div><div><strong>FailedSprints:</strong> Array (0 items)</div><div><strong>EndTime:</strong> DateTime</div><div><strong>Source:</strong> PSCustomObject</div><div><strong>IdempotencyEnabled:</strong> True</div><div><strong>SprintsFailed:</strong> 0</div><div><strong>CreatedSprints:</strong> Array (69 items)</div></div></details>
+                    </div>
+                </div>
+            </div>            <div class="step pending" onclick="toggleStepDetails(this)">
+                <div class="step-header">
+                    <div class="checkbox"></div>
+                    <span class="step-number">Step 14</span>
+                    <span class="step-title">History Migration</span>
+                    <span class="step-status status-pending">Pending</span>
+                    
+                </div>
+                
+            </div>            <div class="step completed" onclick="toggleStepDetails(this)">
+                <div class="step-header">
+                    <div class="checkbox"></div>
+                    <span class="step-number">Step 15</span>
+                    <span class="step-title">Review Migration</span>
+                    <span class="step-status status-completed">Completed ✓</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                                <div class="step-details">
+                    <div class="step-summary">
+                        <div class='summary-stats'><div class='stat-box stat-success'><div class='stat-number'>0</div><div class='stat-label'>API Checks</div></div><div class='stat-box stat-warning'><div class='stat-number'>0</div><div class='stat-label'>Manual Checks</div></div></div><div class='summary-info'>ℹ️ Manual validation only (automated tests skipped)</div><div class='summary-section'><strong>Notes:</strong></div><ul class='summary-notes'><li>Comprehensive QA validation performed</li><li>Permissions and workflows tested</li><li>Automation migration guide generated</li><li>All reports compiled successfully</li><li>Deliverables package created: DAWA-Migration-Deliverables.zip</li></ul><details style='margin-top: 20px;' onclick='event.stopPropagation();'><summary style='cursor: pointer; padding: 10px; background: #f3f4f6; border-radius: 6px; font-weight: 600;' onclick='event.stopPropagation();'>📄 View Full Receipt Data</summary><div style='margin-top: 10px; padding: 15px; background: #f9fafb; border-radius: 6px; font-family: monospace; font-size: 12px;'><div><strong>MigratedIssues:</strong> 224</div><div><strong>ReviewDate:</strong> DateTime</div><div><strong>DeliverablesCount:</strong> 4</div><div><strong>QualityScore:</strong> 95</div><div><strong>DashboardPath:</strong> .\projects\DAWA\out\migration_review_dashboard.html</div><div><strong>PdfReportsGenerated:</strong> False</div><div><strong>EndTime:</strong> DateTime</div><div><strong>SourceProject:</strong> PSCustomObject</div><div><strong>Notes:</strong> Array (5 items)</div><div><strong>PdfReportCount:</strong> 0</div><div><strong>DeliverablesFolder:</strong> Z:\Code\OMF\Migration\projects\DAWA\Deliverables</div><div><strong>TargetProject:</strong> PSCustomObject</div><div><strong>Status:</strong> Migration Review Complete</div><div><strong>DeliverablesZipFile:</strong> Z:\Code\OMF\Migration\projects\DAWA\DAWA-Migration-Deliverables.zip</div><div><strong>StartTime:</strong> DateTime</div><div><strong>Duration:</strong> 4.1647894</div></div></details>
+                    </div>
+                </div>
+            </div>            <div class="step completed" onclick="toggleStepDetails(this)">
+                <div class="step-header">
+                    <div class="checkbox"></div>
+                    <span class="step-number">Step 16</span>
+                    <span class="step-title">Push to Confluence</span>
+                    <span class="step-status status-completed">Completed ✓</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                                <div class="step-details">
+                    <div class="step-summary">
+                        <div class='summary-stats'><div class='stat-box stat-success'><div class='stat-number'>0</div><div class='stat-label'>Validations Passed</div></div></div><details style='margin-top: 20px;' onclick='event.stopPropagation();'><summary style='cursor: pointer; padding: 10px; background: #f3f4f6; border-radius: 6px; font-weight: 600;' onclick='event.stopPropagation();'>📄 View Full Receipt Data</summary><div style='margin-top: 10px; padding: 15px; background: #f9fafb; border-radius: 6px; font-family: monospace; font-size: 12px;'><div><strong>QUALFolderId:</strong> 61898808</div><div><strong>ConfluenceSpaceKey:</strong> JIRA</div><div><strong>StartTime:</strong> DateTime</div><div><strong>SandboxFolderCreated:</strong> True</div><div><strong>EndTime:</strong> DateTime</div><div><strong>PagesCreated:</strong> Array (2 items)</div><div><strong>QUALFolderCreated:</strong> True</div><div><strong>SandboxFolderId:</strong> 61898772</div><div><strong>ConfluenceSpace:</strong> Jira Migration Hub</div><div><strong>AttachmentsUploaded:</strong> Array (4 items)</div></div></details>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p style="font-size: 0.9em;">Last updated: <span id="lastUpdate">--</span></p>
+            <p style="margin-top: 8px; font-size: 0.85em; color: #9ca3af;">💡 Click the Refresh button to check for updates</p>
+        </div>
+    </div>
+    <script>
+        // Update last update time
+        document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
+        
+        // Toggle step details expansion
+        function toggleStepDetails(stepElement) {
+            // Don't toggle if clicking on interactive elements
+            if (event.target.tagName === 'A' || 
+                event.target.tagName === 'BUTTON' || 
+                event.target.tagName === 'SUMMARY' ||
+                event.target.tagName === 'DETAILS' ||
+                event.target.tagName === 'INPUT' ||
+                event.target.closest('details') ||
+                event.target.closest('input')) {
+                return;
+            }
+            
+            stepElement.classList.toggle('expanded');
+        }
+        
+        // Save automation checklist progress to localStorage
+        function saveAutomationProgress() {
+            const phase1Checkboxes = document.querySelectorAll('#auto-phase1 input[type="checkbox"]');
+            const phase2Checkboxes = document.querySelectorAll('#auto-phase2 input[type="checkbox"]');
+            const phase3Checkboxes = document.querySelectorAll('#auto-phase3 input[type="checkbox"]');
+            
+            const progress = {
+                phase1: Array.from(phase1Checkboxes).map(cb => cb.checked),
+                phase2: Array.from(phase2Checkboxes).map(cb => cb.checked),
+                phase3: Array.from(phase3Checkboxes).map(cb => cb.checked)
+            };
+            
+            localStorage.setItem('migration_automation_progress', JSON.stringify(progress));
+            
+            // Update progress counter
+            const allCheckboxes = [...phase1Checkboxes, ...phase2Checkboxes, ...phase3Checkboxes];
+            const checkedCount = allCheckboxes.filter(cb => cb.checked).length;
+            const progressEl = document.getElementById('automation-progress');
+            if (progressEl) {
+                progressEl.textContent = checkedCount + '/' + allCheckboxes.length;
+            }
+        }
+        
+        // Load automation checklist progress from localStorage
+        function loadAutomationProgress() {
+            const saved = localStorage.getItem('migration_automation_progress');
+            if (!saved) return;
+            
+            try {
+                const progress = JSON.parse(saved);
+                
+                const phase1Checkboxes = document.querySelectorAll('#auto-phase1 input[type="checkbox"]');
+                const phase2Checkboxes = document.querySelectorAll('#auto-phase2 input[type="checkbox"]');
+                const phase3Checkboxes = document.querySelectorAll('#auto-phase3 input[type="checkbox"]');
+                
+                if (progress.phase1) {
+                    phase1Checkboxes.forEach((cb, i) => {
+                        if (progress.phase1[i]) cb.checked = true;
+                    });
+                }
+                if (progress.phase2) {
+                    phase2Checkboxes.forEach((cb, i) => {
+                        if (progress.phase2[i]) cb.checked = true;
+                    });
+                }
+                if (progress.phase3) {
+                    phase3Checkboxes.forEach((cb, i) => {
+                        if (progress.phase3[i]) cb.checked = true;
+                    });
+                }
+                
+                // Update progress counter after loading
+                const allCheckboxes = [...phase1Checkboxes, ...phase2Checkboxes, ...phase3Checkboxes];
+                const checkedCount = allCheckboxes.filter(cb => cb.checked).length;
+                const progressEl = document.getElementById('automation-progress');
+                if (progressEl) {
+                    progressEl.textContent = checkedCount + '/' + allCheckboxes.length;
+                }
+            } catch (e) {
+                console.error('Failed to load automation progress:', e);
+            }
+        }
+        
+        // Save permissions checklist progress to localStorage
+        function savePermissionsProgress() {
+            const permCheckboxes = document.querySelectorAll('#perm-perms input[type="checkbox"]');
+            const workflowCheckboxes = document.querySelectorAll('#perm-workflow input[type="checkbox"]');
+            const screenCheckboxes = document.querySelectorAll('#perm-screens input[type="checkbox"]');
+            
+            const progress = {
+                permissions: Array.from(permCheckboxes).map(cb => cb.checked),
+                workflow: Array.from(workflowCheckboxes).map(cb => cb.checked),
+                screens: Array.from(screenCheckboxes).map(cb => cb.checked)
+            };
+            
+            localStorage.setItem('migration_permissions_progress', JSON.stringify(progress));
+            
+            // Update progress counter
+            const allCheckboxes = [...permCheckboxes, ...workflowCheckboxes, ...screenCheckboxes];
+            const checkedCount = allCheckboxes.filter(cb => cb.checked).length;
+            const progressEl = document.getElementById('permissions-progress');
+            if (progressEl) {
+                progressEl.textContent = checkedCount + '/' + allCheckboxes.length;
+            }
+        }
+        
+        // Load permissions checklist progress from localStorage
+        function loadPermissionsProgress() {
+            const saved = localStorage.getItem('migration_permissions_progress');
+            if (!saved) return;
+            
+            try {
+                const progress = JSON.parse(saved);
+                
+                const permCheckboxes = document.querySelectorAll('#perm-perms input[type="checkbox"]');
+                const workflowCheckboxes = document.querySelectorAll('#perm-workflow input[type="checkbox"]');
+                const screenCheckboxes = document.querySelectorAll('#perm-screens input[type="checkbox"]');
+                
+                if (progress.permissions) {
+                    permCheckboxes.forEach((cb, i) => {
+                        if (progress.permissions[i]) cb.checked = true;
+                    });
+                }
+                if (progress.workflow) {
+                    workflowCheckboxes.forEach((cb, i) => {
+                        if (progress.workflow[i]) cb.checked = true;
+                    });
+                }
+                if (progress.screens) {
+                    screenCheckboxes.forEach((cb, i) => {
+                        if (progress.screens[i]) cb.checked = true;
+                    });
+                }
+                
+                // Update progress counter after loading
+                const allCheckboxes = [...permCheckboxes, ...workflowCheckboxes, ...screenCheckboxes];
+                const checkedCount = allCheckboxes.filter(cb => cb.checked).length;
+                const progressEl = document.getElementById('permissions-progress');
+                if (progressEl) {
+                    progressEl.textContent = checkedCount + '/' + allCheckboxes.length;
+                }
+            } catch (e) {
+                console.error('Failed to load permissions progress:', e);
+            }
+        }
+        
+        // Load all checklist progress on page load
+        setTimeout(function() {
+            loadAutomationProgress();
+            loadPermissionsProgress();
+        }, 100);
+    </script>
+</body>
+</html>

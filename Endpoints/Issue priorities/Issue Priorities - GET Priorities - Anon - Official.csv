@@ -1,0 +1,6 @@
+﻿"ID","Name","Description","StatusColor","IconURL","IsDefault","GeneratedAt"
+"1","Highest","This problem will block progress.","#d04437","https://onemain.atlassian.net/images/icons/priorities/highest_new.svg","false","2025-09-23T17:02:48.638Z"
+"2","High","Serious problem that could block progress.","#f15C75","https://onemain.atlassian.net/images/icons/priorities/high_new.svg","false","2025-09-23T17:02:48.650Z"
+"3","Medium","Has the potential to affect progress.","#f79232","https://onemain.atlassian.net/images/icons/priorities/medium_new.svg","false","2025-09-23T17:02:48.650Z"
+"4","Low","Minor problem or easily worked around.","#707070","https://onemain.atlassian.net/images/icons/priorities/low_new.svg","false","2025-09-23T17:02:48.650Z"
+"5","Lowest","Trivial problem with little or no impact on progress.","#999999","https://onemain.atlassian.net/images/icons/priorities/lowest_new.svg","false","2025-09-23T17:02:48.650Z"

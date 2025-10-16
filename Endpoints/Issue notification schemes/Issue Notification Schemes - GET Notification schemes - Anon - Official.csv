@@ -1,0 +1,13 @@
+"expand","id","self","name","scope"
+"notificationSchemeEvents,user,group,projectRole,field,all","10104","https://onemain.atlassian.net/rest/api/3/notificationscheme/10104","CYB: Simplified Notification Scheme","@{type=PROJECT; project=}"
+"notificationSchemeEvents,user,group,projectRole,field,all","10000","https://onemain.atlassian.net/rest/api/3/notificationscheme/10000","Default Notification Scheme",
+"notificationSchemeEvents,user,group,projectRole,field,all","10114","https://onemain.atlassian.net/rest/api/3/notificationscheme/10114","Default Notification Scheme (migrated)",
+"notificationSchemeEvents,user,group,projectRole,field,all","10003","https://onemain.atlassian.net/rest/api/3/notificationscheme/10003","DES: Simplified Notification Scheme","@{type=PROJECT; project=}"
+"notificationSchemeEvents,user,group,projectRole,field,all","10108","https://onemain.atlassian.net/rest/api/3/notificationscheme/10108","DIS: Simplified Notification Scheme","@{type=PROJECT; project=}"
+"notificationSchemeEvents,user,group,projectRole,field,all","10121","https://onemain.atlassian.net/rest/api/3/notificationscheme/10121","DPR: Simplified Notification Scheme","@{type=PROJECT; project=}"
+"notificationSchemeEvents,user,group,projectRole,field,all","10119","https://onemain.atlassian.net/rest/api/3/notificationscheme/10119","MDP: Simplified Notification Scheme","@{type=PROJECT; project=}"
+"notificationSchemeEvents,user,group,projectRole,field,all","10106","https://onemain.atlassian.net/rest/api/3/notificationscheme/10106","ODTEST: Simplified Notification Scheme","@{type=PROJECT; project=}"
+"notificationSchemeEvents,user,group,projectRole,field,all","10113","https://onemain.atlassian.net/rest/api/3/notificationscheme/10113","Securitization Notification Scheme (migrated)",
+"notificationSchemeEvents,user,group,projectRole,field,all","10117","https://onemain.atlassian.net/rest/api/3/notificationscheme/10117","Standard Project Notification Scheme",
+"notificationSchemeEvents,user,group,projectRole,field,all","10102","https://onemain.atlassian.net/rest/api/3/notificationscheme/10102","Testing",
+"notificationSchemeEvents,user,group,projectRole,field,all","10112","https://onemain.atlassian.net/rest/api/3/notificationscheme/10112","Whole Loan Notification Scheme (migrated)",

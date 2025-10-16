@@ -1,0 +1,2 @@
+"Source Issue","Source URL","Target Issue","Target URL","Link Type","Direction","Linked To (Not Migrated)","Linked To URL","Reason","Action Required"
+"BINT-1979","https://onemain.atlassian.net/browse/BINT-1979","BINT1-57","https://onemainfinancial-migrationsandbox.atlassian.net/browse/BINT1-57","Cloners","outward","BINT-1943","https://onemain.atlassian.net/browse/BINT-1943","Already exists (idempotency)","Manually create link when linked issue is migrated, or link to source instance"

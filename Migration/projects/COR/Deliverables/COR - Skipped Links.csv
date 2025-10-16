@@ -1,0 +1,2 @@
+"Source Issue","Source URL","Target Issue","Target URL","Link Type","Direction","Linked To (Not Migrated)","Linked To URL","Reason","Action Required"
+"COR-459","https://onemain.atlassian.net/browse/COR-459","COR1-2","https://onemainfinancial-migrationsandbox.atlassian.net/browse/COR1-2","Relates","outward","COR-273","https://onemain.atlassian.net/browse/COR-273","Already exists (idempotency)","Manually create link when linked issue is migrated, or link to source instance"

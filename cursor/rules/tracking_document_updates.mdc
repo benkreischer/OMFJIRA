@@ -1,0 +1,51 @@
+---
+description: Tracking document update requirements after validating each endpoint
+globs: endpoint_compliance_tracking.md
+alwaysApply: true
+---
+
+# Tracking Document Updates - MANDATORY
+
+## **After validating ANY endpoint, MUST update tracking document:**
+
+### **Required Updates:**
+1. **PQ Compliant**: ✅ or ❌
+2. **PS1 Compliant**: ✅ or ❌
+3. **CSV Compliant**: ✅ or ❌
+4. **Fields Returned**: List actual fields with semicolon delimiter
+5. **Field Count**: Number of columns in CSV
+6. **Record Count**: Number of data rows returned
+7. **API Docs in Synch?**: ✅ or ❌
+8. **Docs Out of Synch Fields**: List fields that differ from documentation
+
+### **Compliance Status Rules:**
+- ✅ **PQ Compliant**: Power Query file works in Power BI, calls correct endpoint, extracts correct fields
+- ✅ **PS1 Compliant**: PowerShell script runs successfully, generates clean CSV, matches .pq file
+- ✅ **CSV Compliant**: CSV file is clean, readable, no nested objects, proper data types
+- ✅ **API Docs in Synch**: Actual API response matches documented fields exactly
+
+### **Field Documentation:**
+- **Fields Returned**: Use semicolon (;) delimiter for multiple fields
+- **Example**: `Id;Name;Description;StatusColor;IconUrl;IsDefault`
+- **Field Count**: Count of actual columns in CSV file
+- **Record Count**: Number of data rows (excluding header)
+
+### **API Documentation Sync:**
+- ✅ **In Sync**: All documented fields present, no undocumented fields
+- ❌ **Out of Sync**: Missing documented fields OR extra undocumented fields
+- **Docs Out of Synch Fields**: List specific differences
+
+### **Update Process:**
+1. Run endpoint validation
+2. Check all compliance criteria
+3. Count fields and records in CSV
+4. Compare with API documentation
+5. Update tracking document row
+6. Save changes
+
+### **Example Tracking Row:**
+```
+| Issue Priorities | GET Priority - Anon | ✅ | ✅ | ✅ | api-group-issue-priorities/#api-rest-api-3-issue-issueidorkey-get | High | 1 | 7 | 1 | ✅ | - | - |
+```
+
+**NEVER mark an endpoint as complete without updating the tracking document with all required information.**

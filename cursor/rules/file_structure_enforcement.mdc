@@ -1,0 +1,60 @@
+---
+description: File structure and naming conventions that must be followed for all endpoint folders
+globs: .endpoints/**/*
+alwaysApply: true
+---
+
+# File Structure Enforcement - MANDATORY
+
+## **Required Files Per Endpoint (EXACTLY 3 files each):**
+- **`.pq`** (Power Query M language for Power BI)
+- **`.ps1`** (PowerShell script for CSV generation) 
+- **`.csv`** (data file with results)
+- **NO `.md` files needed**
+
+## **File Naming Convention (EXACT format):**
+```
+[Category] - [Action] - Anon - [Type].[extension]
+```
+
+### **Naming Rules:**
+- **Official Atlassian API endpoints**: Must end with ` - Official` (e.g., ` - Anon - Official`)
+- **Custom endpoints**: Must end with ` - Custom` (e.g., ` - Anon - Custom`)
+
+### **Examples:**
+- `Issue Priorities - GET Priorities - Anon - Official.ps1`
+- `Issue Fields - Get Fields Paginated - Anon - Official.pq`
+- `Projects - Get All Statuses for All Projects - BK Anon - Custom.csv`
+
+### **HTTP Verb Rules:**
+- Use uppercase: `GET`, `POST`, `PUT`, `DEL` (NOT `DELETE`)
+- Use action verbs: `Get`, `Create`, `Update`, `Delete`
+
+## **File Count Per Folder:**
+- **EXACTLY [Number of Endpoints] × 3 files**
+- **Example**: 4 endpoints = 12 files total
+- **Example**: 2 endpoints = 6 files total
+
+## **Folder Structure:**
+```
+.endpoints/
+├── [Category]/
+│   ├── [Category] - [Action1] - Anon - Official.pq
+│   ├── [Category] - [Action1] - Anon - Official.ps1
+│   ├── [Category] - [Action1] - Anon - Official.csv
+│   ├── [Category] - [Action2] - Anon - Custom.pq
+│   ├── [Category] - [Action2] - Anon - Custom.ps1
+│   └── [Category] - [Action2] - Anon - Custom.csv
+```
+
+## **Validation Checklist:**
+- ✅ Correct file count (endpoints × 3)
+- ✅ Consistent naming convention with proper suffix (Official/Custom)
+- ✅ All three file types present (.pq, .ps1, .csv)
+- ✅ No .md files
+- ✅ No extra files
+- ✅ No missing files
+- ✅ Official API endpoints end with " - Official"
+- ✅ Custom endpoints end with " - Custom"
+
+**NEVER create incomplete file sets. Every endpoint must have all 3 required files.**

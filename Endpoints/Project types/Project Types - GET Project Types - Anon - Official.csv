@@ -1,0 +1,5 @@
+"Key","FormattedKey","DescriptionI18nKey","Color","HasIcon","GeneratedAt"
+"product_discovery","Product Discovery","jira.project.type.polaris.description","#F5A623","Yes","2025-09-24 07:49:19"
+"software","Software","jira.project.type.software.description","#F5A623","Yes","2025-09-24 07:49:19"
+"service_desk","Service Desk","jira.project.type.servicedesk.description.jsm","#67AB49","Yes","2025-09-24 07:49:19"
+"business","Business","jira.project.type.business.description","#1D8832","Yes","2025-09-24 07:49:19"

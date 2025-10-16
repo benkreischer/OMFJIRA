@@ -1,0 +1,246 @@
+
+================================================================================
+STEP: 08_CreateIssues_Target - 2025-10-14 04:22:38
+================================================================================
+❌ ERRORS: 19
+⚠️  WARNINGS: 1
+🔧 ACTIONS: 98
+
+Top Errors:
+  • Issue Creation Failed: Failed to create issue: Response status code does not indicate success: 400 (Bad Request).
+    Issue: DAWA-3339
+  • Issue Creation Failed: Failed to create issue: Response status code does not indicate success: 400 (Bad Request).
+    Issue: DAWA-3358
+  • Issue Creation Failed: Failed to create issue: Response status code does not indicate success: 400 (Bad Request).
+    Issue: DAWA-3373
+  • Issue Creation Failed: Failed to create issue: Response status code does not indicate success: 400 (Bad Request).
+    Issue: DAWA-3374
+  • Issue Creation Failed: Failed to create issue: Response status code does not indicate success: 400 (Bad Request).
+    Issue: DAWA-3379
+  ... and 14 more errors (see .\projects\DAWA\out\20251014_042237-08_CreateIssues_Target_issues.txt)
+
+Top Warnings:
+  • Skipped Sub-task: Sub-task skipped because parent issue not yet migrated
+    Issue: DAWA-2876
+
+Actions Required:
+  🔧 User 'Rupali Pilankar' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Rupali Pilankar' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Rupali Pilankar' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Vinayak Belagur' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Jai Janbhani' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Vinayak Belagur' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Khushbu Shah' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Vinayak Belagur' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Vinayak Belagur' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Jagan Reddy' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Jagan Reddy' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sruthi Chappa' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sruthi Chappa' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sruthi Chappa' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Mayank Kumar Singh' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Mayank Kumar Singh' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Pragna Ingilala' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Rupali Pilankar' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Arunkumar Kannabiran' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Madhuri Gupta' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Soundhar B' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Gayathri S' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Madhuri Gupta' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Zahid Ahmad Kumar' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Rachel Wilder' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sruthi Chappa' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Zahid Ahmad Kumar' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sruthi Chappa' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Mayank Kumar Singh' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Soundhar B' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sruthi Chappa' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Pragna Ingilala' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Zahid Ahmad Kumar' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Jai Janbhani' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Pragna Ingilala' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Pragna Ingilala' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Madhuri Gupta' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sruthi Chappa' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Madhuri Gupta' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sruthi Chappa' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Gayathri S' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Vinayak Belagur' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Madhuri Gupta' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Madhuri Gupta' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Naga Manne' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sruthi Chappa' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Jai Janbhani' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Rupali Pilankar' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Rupali Pilankar' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Rachel Wilder' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Preethi Madhav Ponna' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Akshay Nanasaheb Thakare' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Preethi Madhav Ponna' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Akshay Nanasaheb Thakare' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Naga Manne' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Shaik Saif Ali Khan' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Preethi Madhav Ponna' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Akshay Nanasaheb Thakare' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Preethi Madhav Ponna' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Shaik Saif Ali Khan' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Rupali Pilankar' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Joey Michael' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Brian Sracic' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Rupali Pilankar' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Arunkumar Kannabiran' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Jai Janbhani' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Sumi Thanikaivelan' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Preethi Madhav Ponna' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Arunkumar Kannabiran' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Madhuri Gupta' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+  🔧 User 'Madhuri Gupta' cannot be assigned - grant 'Assignable User' permission
+     🔗 https://onemainfinancial-migrationsandbox.atlassian.net/plugins/servlet/project-config/DAWA1/permissions
+
+Detailed log: .\projects\DAWA\out\20251014_042237-08_CreateIssues_Target_issues.txt
+
+
+================================================================================
+STEP: 09_Comments - 2025-10-14 04:24:46
+================================================================================
+⚠️  WARNINGS: 53
+
+Top Warnings:
+  • Comment Migration Failed: Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    Issue: DAWA1-152
+  • Comment Migration Failed: Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    Issue: DAWA1-157
+  • Comment Migration Failed: Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    Issue: DAWA1-157
+  • Comment Migration Failed: Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    Issue: DAWA1-164
+  • Comment Migration Failed: Failed to create comment: Response status code does not indicate success: 400 (Bad Request).
+    Issue: DAWA1-164
+  ... and 48 more warnings (see .\projects\DAWA\out\20251014_042446-09_Comments_issues.txt)
+
+Detailed log: .\projects\DAWA\out\20251014_042446-09_Comments_issues.txt
+

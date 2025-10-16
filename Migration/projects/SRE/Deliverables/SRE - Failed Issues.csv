@@ -1,0 +1,2 @@
+"SourceKey","IssueType","Summary","Error","ErrorDetails","Priority","Status","Assignee","Reporter","Created","Updated","Description","SourceURL"
+"SRE-485","Story","Assess the cost of the current Hosted ELK solution.","Response status code does not indicate success: 400 (Bad Request).","Bad Request - Invalid data or missing required fields","Medium","Done","Jonathan Piccirilli","Jonathan Piccirilli","8/1/2023 10:44:35 AM","9/5/2025 4:13:48 PM","ADF content - parsing failed","https://onemain.atlassian.net/browse/SRE-485"

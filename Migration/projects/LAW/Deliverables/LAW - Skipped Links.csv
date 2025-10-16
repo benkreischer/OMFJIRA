@@ -1,0 +1,2 @@
+"Source Issue","Source URL","Target Issue","Target URL","Link Type","Direction","Linked To (Not Migrated)","Linked To URL","Reason","Action Required"
+"LAW-545","https://onemain.atlassian.net/browse/LAW-545","LAW1-15","https://onemainfinancial-migrationsandbox.atlassian.net/browse/LAW1-15","Cloners","outward","LAW-544","https://onemain.atlassian.net/browse/LAW-544","Already exists (idempotency)","Manually create link when linked issue is migrated, or link to source instance"

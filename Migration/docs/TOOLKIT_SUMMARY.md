@@ -159,17 +159,17 @@ Migration/
 ### Phase 1: Setup (Steps 01-07)
 ```powershell
 01_Preflight.ps1                    # Validation
-02_CreateProject.ps1                # Project setup
-03_SyncUsersAndRoles.ps1           # Users
-04_ComponentsAndLabels.ps1         # Components
+02_Project.ps1                      # Project setup
+03_Users.ps1                       # Users
+04_Components.ps1                 # Components
 05_Versions.ps1                    # Versions
 06_Boards.ps1                      # Boards
-07_ExportIssues_Source.ps1         # Export
+07_Export.ps1                     # Export
 ```
 
 ### Phase 2: Core Migration (Steps 08-12) ⭐ IDEMPOTENT
 ```powershell
-08_CreateIssues_Target.ps1         # Issues + Legacy Keys
+08_Import.ps1                     # Issues + Legacy Keys
 09_Comments.ps1                    # Comments
 10_Attachments.ps1                 # Files
 11_Links.ps1                       # All links

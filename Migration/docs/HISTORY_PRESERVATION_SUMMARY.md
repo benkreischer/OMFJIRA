@@ -48,7 +48,7 @@ Added two new custom field mappings:
 
 ### 2. Issue Creation Script
 
-**File:** `src/steps/08_CreateIssues_Target.ps1`
+**File:** `src/steps/08_Import.ps1`
 
 **Changes:**
 - Loads new custom field IDs from parameters

@@ -12,11 +12,11 @@ param(
 $ErrorActionPreference = "Continue"  # Continue on errors to complete dashboard
 
 $script:RunnerRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
-$script:StepsRoot  = Join-Path $RunnerRoot "src\steps"
+$script:StepsRoot  = Join-Path $RunnerRoot ""
 
 # Load shared dashboard functions and logging
-. (Join-Path $RunnerRoot "src\_dashboard.ps1")
-. (Join-Path $RunnerRoot "src\_logging.ps1")
+. (Join-Path $RunnerRoot "_dashboard.ps1")
+. (Join-Path $RunnerRoot "_logging.ps1")
 
 # Load project configuration
 $projectPath = Join-Path $RunnerRoot "projects\$Project"
@@ -31,21 +31,21 @@ if (-not (Test-Path $parametersPath)) {
 # Map step numbers to script names
 $steps = [ordered]@{
     "01" = @{ Name = "Preflight Validation"; Script = "01_Preflight.ps1" }
-    "02" = @{ Name = "Create Target Project"; Script = "02_CreateProject_FromSharedConfig.ps1" }
-    "03" = @{ Name = "Migrate Users and Roles"; Script = "03_SyncUsersAndRoles.ps1" }
-    "04" = @{ Name = "Components and Labels"; Script = "04_ComponentsAndLabels.ps1" }
+    "02" = @{ Name = "Create Target Project"; Script = "02_Project.ps1" }
+    "03" = @{ Name = "Migrate Users and Roles"; Script = "03_Users.ps1" }
+    "04" = @{ Name = "Components and Labels"; Script = "04_Components.ps1" }
     "05" = @{ Name = "Versions"; Script = "05_Versions.ps1" }
     "06" = @{ Name = "Boards"; Script = "06_Boards.ps1" }
-    "07" = @{ Name = "Export Issues from Source"; Script = "07_ExportIssues_Source.ps1" }
-    "08" = @{ Name = "Create Issues in Target"; Script = "08_CreateIssues_Target.ps1" }
-    "09" = @{ Name = "Migrate Comments"; Script = "09_Comments.ps1" }
-    "10" = @{ Name = "Migrate Attachments"; Script = "10_Attachments.ps1" }
+    "07" = @{ Name = "Export Issues from Source"; Script = "07_Export.ps1" }
+    "08" = @{ Name = "Create Issues in Target"; Script = "08_Import.ps1" }
+    "09" = @{ Name = "Migrate Attachments"; Script = "09_Attachments.ps1" }
+    "10" = @{ Name = "Migrate Comments"; Script = "10_Comments.ps1" }
     "11" = @{ Name = "Migrate Links"; Script = "11_Links.ps1" }
     "12" = @{ Name = "Migrate Worklogs"; Script = "12_Worklogs.ps1" }
     "13" = @{ Name = "Migrate Sprints"; Script = "13_Sprints.ps1" }
-    "14" = @{ Name = "History Migration"; Script = "14_HistoryMigration.ps1" }
-    "15" = @{ Name = "Review Migration"; Script = "15_ReviewMigration.ps1" }
-    "16" = @{ Name = "Push to Confluence"; Script = "16_PushToConfluence.ps1" }
+    "14" = @{ Name = "History Migration"; Script = "14_History.ps1" }
+    "15" = @{ Name = "Review Migration"; Script = "15_Review.ps1" }
+    "16" = @{ Name = "Push to Confluence"; Script = "16_Confluence.ps1" }
 }
 
 # Compute total steps dynamically for messaging and dashboard
@@ -56,8 +56,16 @@ $dashboardPath = Join-Path $projectPath "out\migration_progress.html"
 $logDir = Join-Path $projectPath "out\logs"
 
 # Create output directories
-New-Item -ItemType Directory -Path (Join-Path $projectPath "out") -Force | Out-Null
-New-Item -ItemType Directory -Path $logDir -Force | Out-Null
+$outDirPath = Join-Path $projectPath "out"
+if (-not (Test-Path $outDirPath)) {
+    New-Item -ItemType Directory -Path $outDirPath -Force | Out-Null
+    Write-Host "Created output directory: $outDirPath" -ForegroundColor Green
+}
+
+if (-not (Test-Path $logDir)) {
+    New-Item -ItemType Directory -Path $logDir -Force | Out-Null
+    Write-Host "Created logs directory: $logDir" -ForegroundColor Green
+}
 
 # Initialize logging for auto-run
 $outDir = Join-Path $projectPath "out"
@@ -74,13 +82,7 @@ Write-Host ""
 Write-Host "💡 To monitor in another terminal:" -ForegroundColor Yellow
 Write-Host "   .\Watch-Log.ps1 -ProjectKey $Project" -ForegroundColor Cyan
 Write-Host ""
-$confirm = Read-Host "Press ENTER to start, or Q to quit"
-if ($confirm -eq "Q" -or $confirm -eq "q") {
-    Write-LogInfo "Auto-run cancelled by user" -Component "AutoRun"
-    Complete-MigrationLog -Success:$false -Summary "Auto-run cancelled by user"
-    Write-Host "Cancelled." -ForegroundColor Yellow
-    exit 0
-}
+Write-Host "🚀 Starting migration automatically..." -ForegroundColor Green
 
 Write-LogStep "Auto-Run Migration Started"
 Write-LogInfo "Project: $Project" -Component "AutoRun"
@@ -463,6 +465,12 @@ foreach ($stepNum in $steps.Keys) {
     # Execute step and capture output
     $logFile = Join-Path $logDir "step_$stepNum.log"
     $output = ""
+    
+    # Ensure log directory exists before writing
+    if (-not (Test-Path $logDir)) {
+        New-Item -ItemType Directory -Path $logDir -Force | Out-Null
+        Write-Host "Created logs directory: $logDir" -ForegroundColor Yellow
+    }
     
     try {
         & $scriptPath -ParametersPath $parametersPath 2>&1 | Tee-Object -Variable output | Out-Host

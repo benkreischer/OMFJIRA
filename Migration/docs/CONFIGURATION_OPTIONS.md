@@ -242,12 +242,12 @@ These settings were already configurable and don't require interactive prompts:
    - Added `ProjectCreation.EnhancedConfigSourceProjectKey`
    - Added `IssueExportSettings.Scope`
 
-2. **`src/steps/02_CreateProject_FromSharedConfig.ps1`**
+2. **`src/steps/02_Project.ps1`**
    - Now supports three configuration templates (XRAY, STANDARD, ENHANCED)
    - Handles standard project creation without shared config
    - Updated header comments and verification logic
 
-3. **`src/steps/07_ExportIssues_Source.ps1`**
+3. **`src/steps/07_Export.ps1`**
    - Removed interactive prompt for export scope
    - Now reads from `IssueExportSettings.Scope` in parameters
    - Updated header comments

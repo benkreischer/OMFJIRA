@@ -22,7 +22,7 @@
 
 | Script | Features Validated | Status |
 |--------|-------------------|--------|
-| `08_CreateIssues_Target.ps1` | ✅ Syntax<br>✅ Idempotency logic<br>✅ Legacy key preservation<br>✅ Custom field mapping | ✅ PASS |
+| `08_Import.ps1` | ✅ Syntax<br>✅ Idempotency logic<br>✅ Legacy key preservation<br>✅ Custom field mapping | ✅ PASS |
 | `09_Comments.ps1` | ✅ Syntax<br>✅ Idempotency logic<br>✅ ADF handling<br>✅ Author attribution | ✅ PASS |
 | `10_Attachments.ps1` | ✅ Syntax<br>✅ Idempotency logic<br>✅ File size matching<br>✅ Upload headers | ✅ PASS |
 | `11_Links.ps1` | ✅ Syntax<br>✅ Idempotency logic<br>✅ Issue + Remote links<br>✅ Merged functionality | ✅ PASS |

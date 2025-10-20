@@ -2,11 +2,13 @@
 # CREATE NEW STANDARD MIGRATION PROJECT (STREAMLINED)
 # =============================================================================
 #
-# DESCRIPTION: Creates a new migration project with XXX/XXX1 structure using
+# DESCRIPTION: Creates a new migration project with SourceKey/TargetKey structure using
 #              standard settings without prompting
 # 
 # USAGE: 
-#   .\CreateNewStandardProject.ps1 -ProjectKey "XXX"
+#   .\CreateNewStandardProject.ps1 -SourceKey "DEP" -TargetKey "DEPX"
+#   .\CreateNewStandardProject.ps1 -SourceKey "ABC" -TargetKey "ABC1"
+#   .\CreateNewStandardProject.ps1 -SourceKey "DEP" -TargetKey "DEPX" -SourceBaseUrl "https://custom.atlassian.net/" -TargetBaseUrl "https://target.atlassian.net/" -UserEmail "user@company.com"
 #
 # CONFIGURATION:
 #   - Uses STANDARD template
@@ -19,10 +21,13 @@
 
 param(
     [Parameter(Mandatory=$true)]
-    [string]$ProjectKey,
+    [string]$SourceKey,
+    
+    [Parameter(Mandatory=$true)]
+    [string]$TargetKey,
     
     [Parameter(Mandatory=$false)]
-    [string]$Description = "Migration from {0} to {0}1",
+    [string]$Description = "Migration from {0} to {1}",
     
     [Parameter(Mandatory=$false)]
     [string]$SourceBaseUrl,
@@ -31,15 +36,18 @@ param(
     [string]$TargetBaseUrl,
     
     [Parameter(Mandatory=$false)]
-    [string]$Username
+    [string]$Username,
+    
+    [Parameter(Mandatory=$false)]
+    [string]$UserEmail
 )
 
 # =============================================================================
 # LOAD CONFIGURATION DEFAULTS
 # =============================================================================
 
-# Load default values from config/migration-parameters.json
-$configPath = Join-Path $PSScriptRoot "config\migration-parameters.json"
+# Load default values from migration-parameters.json
+$configPath = Join-Path $PSScriptRoot "migration-parameters.json"
 if (Test-Path $configPath) {
     try {
         $configContent = Get-Content $configPath -Raw | ConvertFrom-Json
@@ -62,12 +70,24 @@ if (Test-Path $configPath) {
                 }
             }
         }
+        if (-not $UserEmail) {
+            # Try to get user email from .env file first, then fall back to username
+            $envFile = Join-Path $PSScriptRoot ".env"
+            if (Test-Path $envFile) {
+                Get-Content $envFile | ForEach-Object {
+                    if ($_ -match '^\s*USERNAME\s*=\s*(.*)$') {
+                        $UserEmail = $matches[1].Trim()
+                    }
+                }
+            }
+        }
     } catch {
         Write-Warning "Could not load config file: $configPath. Using hardcoded defaults."
         # Fallback to hardcoded defaults if config load fails
         if (-not $SourceBaseUrl) { $SourceBaseUrl = "https://onemain.atlassian.net/" }
         if (-not $TargetBaseUrl) { $TargetBaseUrl = "https://onemainfinancial-migrationsandbox.atlassian.net/" }
         if (-not $Username) { $Username = "ben.kreischer.ce@omf.com" }
+        if (-not $UserEmail) { $UserEmail = "ben.kreischer.ce@omf.com" }
     }
 } else {
     Write-Warning "Config file not found at: $configPath. Using hardcoded defaults."
@@ -75,22 +95,29 @@ if (Test-Path $configPath) {
     if (-not $SourceBaseUrl) { $SourceBaseUrl = "https://onemain.atlassian.net/" }
     if (-not $TargetBaseUrl) { $TargetBaseUrl = "https://onemainfinancial-migrationsandbox.atlassian.net/" }
     if (-not $Username) { $Username = "ben.kreischer.ce@omf.com" }
+    if (-not $UserEmail) { $UserEmail = "ben.kreischer.ce@omf.com" }
 }
 
 # =============================================================================
 # VALIDATION (Must happen BEFORE creating any directories)
 # =============================================================================
 
-# Validate project key format
-if ($ProjectKey -notmatch '^[A-Z]{2,10}$') {
-    Write-Error "ProjectKey must be 2-10 uppercase letters (e.g., 'XXX', 'ABC', 'PROJECT')"
+# Validate source project key format
+if ($SourceKey -notmatch '^[A-Z]{2,10}$') {
+    Write-Error "SourceKey must be 2-10 uppercase letters (e.g., 'DEP', 'ABC', 'PROJECT')"
+    exit 1
+}
+
+# Validate target project key format
+if ($TargetKey -notmatch '^[A-Z]{2,10}$') {
+    Write-Error "TargetKey must be 2-10 uppercase letters (e.g., 'DEPX', 'ABC1', 'PROJECT')"
     exit 1
 }
 
 # Check if project already exists and delete it if it does
-$projectPath = Join-Path "projects" $ProjectKey
+$projectPath = Join-Path "projects" $SourceKey
 if (Test-Path $projectPath) {
-    Write-Host "Project '$ProjectKey' already exists at '$projectPath'" -ForegroundColor Yellow
+    Write-Host "Project '$SourceKey' already exists at '$projectPath'" -ForegroundColor Yellow
     Write-Host "Deleting existing project folder to regenerate..." -ForegroundColor Yellow
     Remove-Item -Path $projectPath -Recurse -Force
     Write-Host "Existing project folder deleted successfully" -ForegroundColor Green
@@ -101,24 +128,25 @@ if (Test-Path $projectPath) {
 # =============================================================================
 
 # Load logging module
-. "$PSScriptRoot\src\_logging.ps1"
+. "$PSScriptRoot\_logging.ps1"
 
 # Create out directory for logging
-$tempOutDir = Join-Path "projects" "$ProjectKey\out"
+$tempOutDir = Join-Path "projects" "$SourceKey\out"
 if (-not (Test-Path $tempOutDir)) {
     New-Item -ItemType Directory -Path $tempOutDir -Force | Out-Null
 }
 
 # Initialize log
-$script:LogFile = Initialize-MigrationLog -ProjectKey $ProjectKey -OutDir $tempOutDir -Operation "StandardProjectCreation"
+$script:LogFile = Initialize-MigrationLog -ProjectKey $SourceKey -OutDir $tempOutDir -Operation "StandardProjectCreation"
 
-Write-LogStep "Create New Standard Migration Project: $ProjectKey"
+Write-LogStep "Create New Standard Migration Project: $SourceKey → $TargetKey"
 
 Write-Host "`n📊 Log file: $script:LogFile" -ForegroundColor Cyan
-Write-Host "💡 To monitor in another terminal: .\Watch-Log.ps1 -ProjectKey $ProjectKey`n" -ForegroundColor Yellow
+Write-Host "💡 To monitor in another terminal: .\Watch-Log.ps1 -ProjectKey $SourceKey`n" -ForegroundColor Yellow
 
 Write-LogSubStep "Validation"
-Write-LogSuccess "Project key format is valid: $ProjectKey" -Component "Validation"
+Write-LogSuccess "Source project key format is valid: $SourceKey" -Component "Validation"
+Write-LogSuccess "Target project key format is valid: $TargetKey" -Component "Validation"
 Write-LogSuccess "Project directory is available" -Component "Validation"
 
 # =============================================================================
@@ -158,23 +186,32 @@ $bytes = [System.Text.Encoding]::UTF8.GetBytes($pair)
 $base64 = [System.Convert]::ToBase64String($bytes)
 $authHeader = @{ Authorization = "Basic $base64" }
 
+# Note: We don't check if target project exists because:
+# 1. Migration steps are idempotent and will clean up/recreate artifacts
+# 2. Steps 4+ delete and reload components, comments, etc.
+# 3. This allows re-running the script for recovery/re-migration
+Write-LogSubStep "Target Project Validation"
+Write-LogInfo "Target project validation skipped - migration is idempotent" -Component "Validation"
+Write-Host "ℹ️  Target project validation skipped (migration steps are idempotent)" -ForegroundColor Cyan
+
 # Fetch source project details
 try {
-    $srcProjectUri = "$($SourceBaseUrl.TrimEnd('/'))/rest/api/3/project/$ProjectKey"
+    $srcProjectUri = "$($SourceBaseUrl.TrimEnd('/'))/rest/api/3/project/$SourceKey"
     Write-LogInfo "Fetching project: $srcProjectUri" -Component "API"
     $srcProject = Invoke-RestMethod -Method GET -Uri $srcProjectUri -Headers $authHeader -ErrorAction Stop
     $actualProjectName = $srcProject.name
     $targetProjectName = "$actualProjectName Sandbox"
     
-    Write-LogSuccess "Found project: $actualProjectName (Key: $ProjectKey)" -Component "API"
+    Write-LogSuccess "Found project: $actualProjectName (Key: $SourceKey)" -Component "API"
     Write-LogTable "Project Details" @{
-        "Project Key" = $ProjectKey
-        "Project Name" = $actualProjectName
+        "Source Key" = $SourceKey
+        "Source Name" = $actualProjectName
+        "Target Key" = $TargetKey
         "Target Name" = $targetProjectName
     }
 } catch {
     if ($_.Exception.Message -match '404') {
-        Write-LogWarning "Project '$ProjectKey' not found in source Jira" -Component "API"
+        Write-LogWarning "Project '$SourceKey' not found in source Jira" -Component "API"
         Write-LogInfo "Source URL: $SourceBaseUrl" -Component "API"
         Write-Host ""
         Write-Host "⚠️  WARNING: This project doesn't exist in the source Jira!" -ForegroundColor Yellow
@@ -182,16 +219,11 @@ try {
         Write-Host "The migration will still create the project configuration, but" -ForegroundColor Yellow
         Write-Host "Step 01 (Preflight) will fail unless you:" -ForegroundColor Yellow
         Write-Host ""
-        Write-Host "  1. Verify the project key '$ProjectKey' is correct" -ForegroundColor Cyan
+        Write-Host "  1. Verify the project key '$SourceKey' is correct" -ForegroundColor Cyan
         Write-Host "  2. Update the source URL in parameters.json if needed" -ForegroundColor Cyan
         Write-Host "  3. Confirm the project exists in your source Jira" -ForegroundColor Cyan
         Write-Host ""
-        $continue = Read-Host "Continue anyway? (Y/N)"
-        if ($continue -ne "Y" -and $continue -ne "y") {
-            Write-LogInfo "Project creation cancelled by user" -Component "Config"
-            Complete-MigrationLog -Success:$false -Summary "Cancelled - source project not found"
-            exit 0
-        }
+        Write-Host "⚠️  Continuing automatically with placeholder names..." -ForegroundColor Yellow
         Write-LogInfo "Continuing with placeholder names (will be updated in Step 01 if project exists)" -Component "API"
     } else {
         Write-LogWarning "Could not fetch project details from Jira: $($_.Exception.Message)" -Component "API"
@@ -205,7 +237,7 @@ try {
 if ($actualProjectName -eq "Updated in Preflight check") {
     $projectDescription = "Updated in Preflight check"
 } else {
-    $projectDescription = "Migration from $ProjectKey ($actualProjectName) to $($ProjectKey)1 ($targetProjectName)"
+    $projectDescription = "Migration from $SourceKey ($actualProjectName) to $TargetKey ($targetProjectName)"
 }
 
 # =============================================================================
@@ -237,8 +269,8 @@ Write-Host ""
 # CREATE PROJECT STRUCTURE
 # =============================================================================
 
-Write-Host "Creating new standard migration project: $ProjectKey" -ForegroundColor Green
-Write-Host "Source: $ProjectKey → Target: $($ProjectKey)1" -ForegroundColor Cyan
+Write-Host "Creating new standard migration project: $SourceKey" -ForegroundColor Green
+Write-Host "Source: $SourceKey → Target: $TargetKey" -ForegroundColor Cyan
 
 # Create main project directory
 Write-LogSubStep "Create Project Structure"
@@ -259,7 +291,7 @@ Write-LogSuccess "Created output directories (out, exports, logs)" -Component "F
 # =============================================================================
 
 $parameters = [ordered]@{
-    ProjectKey = $ProjectKey
+    ProjectKey = $SourceKey
     ProjectName = $actualProjectName
     Description = $projectDescription
     Created = Get-Date -Format "yyyy-MM-dd"
@@ -271,7 +303,7 @@ $parameters = [ordered]@{
     }
     TargetEnvironment = [ordered]@{
         BaseUrl = $TargetBaseUrl
-        ProjectKey = "$($ProjectKey)1"
+        ProjectKey = $TargetKey
         ProjectName = $targetProjectName
         Username = $Username
         ApiToken = $apiToken
@@ -284,6 +316,10 @@ $parameters = [ordered]@{
         MigrateLinks = $true
         MigrateCustomFields = $true
         MigrateLegacyKeys = $true
+        DeleteTargetIssuesBeforeImport = $false
+        DeleteTargetComponentsBeforeImport = $false
+        DeleteTargetVersionsBeforeImport = $false
+        DeleteTargetBoardsBeforeImport = $false
     }
     AnalysisSettings = [ordered]@{
         MaxIssuesToAnalyze = 50000
@@ -297,8 +333,8 @@ $parameters = [ordered]@{
         GenerateHtmlReport = $true
         GenerateCsvReport = $true
         OpenReportInBrowser = $false
-        OutputDirectory = "./projects/$ProjectKey/out"
-        LogDirectory = "./projects/$ProjectKey/out/logs"
+        OutputDirectory = "./projects/$SourceKey/out"
+        LogDirectory = "./projects/$SourceKey/out/logs"
     }
     StatusMapping = [ordered]@{
         "Backlog" = "Backlog"
@@ -440,7 +476,7 @@ $parameters = [ordered]@{
     }
     UserMapping = [ordered]@{
         FallbackToProjectLead = $true
-        ProjectLeadEmail = $Username
+        ProjectLeadEmail = $UserEmail
     }
     UserInvitation = [ordered]@{
         AutoInvite = $true
@@ -449,11 +485,7 @@ $parameters = [ordered]@{
     # IMPORTANT: Template projects (XRAY, STANDARD, ENHANCED) are located in:
     #            https://onemainfinancial-migrationsandbox.atlassian.net/
     ProjectCreation = [ordered]@{
-        ConfigurationTemplate = $configTemplate
-        ConfigSourceProjectKey = "STANDARD"
-        StandardProjectTypeKey = "software"
-        StandardConfigSourceProjectKey = "STANDARD"
-        EnhancedConfigSourceProjectKey = "ENHANCED"
+        Template = $configTemplate
     }
     IssueExportSettings = [ordered]@{
         Scope = $exportScope
@@ -498,7 +530,7 @@ if (Test-Path $templateReadme) {
     $readmeContent = Get-Content $templateReadme -Raw
     
     # Replace placeholders with actual values
-    $readmeContent = $readmeContent -replace '\{PROJECT_KEY\}', $ProjectKey
+    $readmeContent = $readmeContent -replace '\{PROJECT_KEY\}', $SourceKey
     $readmeContent = $readmeContent -replace '\{CREATED_DATE\}', (Get-Date -Format "yyyy-MM-dd")
     
     $readmePath = Join-Path $projectPath "README.md"
@@ -872,7 +904,7 @@ Key guides:
 "@
     
     # Replace placeholders with actual values
-    $readmeContent = $readmeContent -replace '\{PROJECT_KEY\}', $ProjectKey
+    $readmeContent = $readmeContent -replace '\{PROJECT_KEY\}', $SourceKey
     $readmeContent = $readmeContent -replace '\{CREATED_DATE\}', (Get-Date -Format "yyyy-MM-dd")
     
     $readmePath = Join-Path $projectPath "README.md"
@@ -889,7 +921,7 @@ Write-LogStep "Standard Project Creation Complete"
 Write-LogSuccess "Standard project created successfully!" -Component "Summary"
 
 Write-LogTable "Standard Configuration Summary" @{
-    "Project" = "$ProjectKey → $($ProjectKey)1"
+    "Project" = "$SourceKey → $TargetKey"
     "Name" = "$actualProjectName → $targetProjectName"
     "Source URL" = $SourceBaseUrl
     "Target URL" = $TargetBaseUrl
@@ -913,16 +945,16 @@ Write-Host ""
 
 Write-Host "═══ STANDARD CONFIGURATION SUMMARY ═══" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "📁 Project:        $ProjectKey → $($ProjectKey)1" -ForegroundColor White
+Write-Host "📁 Project:        $SourceKey → $TargetKey" -ForegroundColor White
 Write-Host "📋 Name:           $actualProjectName → $targetProjectName" -ForegroundColor White
 Write-Host ""
 Write-Host "🔵 SOURCE:" -ForegroundColor Cyan
 Write-Host "   URL:            $SourceBaseUrl" -ForegroundColor White
-Write-Host "   Project:        $ProjectKey" -ForegroundColor Gray
+Write-Host "   Project:        $SourceKey" -ForegroundColor Gray
 Write-Host ""
 Write-Host "🟢 TARGET:" -ForegroundColor Green
 Write-Host "   URL:            $TargetBaseUrl" -ForegroundColor White
-Write-Host "   Project:        $($ProjectKey)1" -ForegroundColor Gray
+Write-Host "   Project:        $TargetKey" -ForegroundColor Gray
 Write-Host ""
 Write-Host "⚙️  STANDARD SETTINGS:" -ForegroundColor Yellow
 Write-Host "   Template:         $configTemplate" -ForegroundColor White
@@ -942,22 +974,22 @@ Write-Host ""
 
 Write-Host "════════════════════════════════════════════════════════════" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "🚀 Launching AUTO-RUN mode for project: $ProjectKey" -ForegroundColor Cyan
+Write-Host "🚀 Launching AUTO-RUN mode for project: $SourceKey" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "This will run all migration steps automatically." -ForegroundColor White
-Write-Host "The process will pause between steps for you to review progress." -ForegroundColor White
+Write-Host "The process will run continuously without pauses." -ForegroundColor White
 Write-Host ""
 Write-Host "📊 Dashboard will open automatically..." -ForegroundColor Cyan
 Start-Sleep -Seconds 1
 
 $runMigrationScript = Join-Path $PSScriptRoot "RunMigration.ps1"
-& $runMigrationScript -Project $ProjectKey -AutoRun
+& $runMigrationScript -Project $SourceKey -AutoRun
 
 # =============================================================================
 # FINALIZE LOG
 # =============================================================================
 
-Complete-MigrationLog -Success:$true -Summary "Standard project $ProjectKey created successfully and ready for migration. All configuration files generated with standard settings."
+Complete-MigrationLog -Success:$true -Summary "Standard project $SourceKey created successfully and ready for migration. All configuration files generated with standard settings."
 
 Write-Host "`n📄 Complete log available at:" -ForegroundColor Cyan
 Write-Host "   $script:LogFile`n" -ForegroundColor White

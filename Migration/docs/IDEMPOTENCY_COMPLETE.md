@@ -142,10 +142,10 @@ if (Item-Already-Exists) {
 ### Example 1: Script Crashed Mid-Run
 ```powershell
 # Run 1: Creates 500 issues, crashes at 501
-.\08_CreateIssues_Target.ps1
+.\08_Import.ps1
 
 # Run 2: Skips first 500, continues from 501
-.\08_CreateIssues_Target.ps1
+.\08_Import.ps1
 # Output: "⏭️  Skipping (already exists): ISS-1 → DEP1-1"
 ```
 

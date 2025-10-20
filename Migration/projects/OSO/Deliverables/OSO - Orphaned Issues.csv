@@ -1,2 +1,0 @@
-"Source Issue","Source URL","Target Issue","Target URL","Issue Type","Summary","Missing Parent","Status","Reason","Action Required"
-"OSO-457","https://onemain.atlassian.net/browse/OSO-457","OSO1-48","https://onemainfinancial-migrationsandbox.atlassian.net/browse/OSO1-48","Story","Grafana On-Call Retirement","OSO-453","Backlog","Parent was resolved/excluded from migration (not in export)","Manually link to appropriate parent or mark as orphaned"

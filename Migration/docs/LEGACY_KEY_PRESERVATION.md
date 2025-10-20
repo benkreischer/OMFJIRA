@@ -3,7 +3,7 @@
 ## ✅ Enhancement Complete
 
 **Date:** 2025-10-09
-**Script:** `08_CreateIssues_Target.ps1`
+**Script:** `08_Import.ps1`
 
 ---
 
@@ -28,7 +28,7 @@ Enhanced the issue creation script to **write source issue keys and URLs to dedi
 
 ### Code Changes
 
-**Location:** Line 469-475 in `08_CreateIssues_Target.ps1`
+**Location:** Line 469-475 in `08_Import.ps1`
 
 ```powershell
 # ========== PRESERVE LEGACY KEY INFORMATION ==========

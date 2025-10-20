@@ -1,2 +1,0 @@
-"Source Issue","Source URL","Target Issue","Target URL","Issue Type","Summary","Missing Parent","Status","Reason","Action Required"
-"QUAL-2095","https://onemain-migrationsandbox.atlassian.net/browse/QUAL-2095","QUAL1-283","https://onemainfinancial-migrationsandbox.atlassian.net/browse/QUAL1-283","Task","Table update for secured offer to support new save offers project and update PC rows","QUAL-1150","Backlog","Parent was resolved/excluded from migration (not in export)","Manually link to appropriate parent or mark as orphaned"

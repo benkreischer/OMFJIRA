@@ -259,11 +259,11 @@ All scripts are in `src/` - shared by all projects:
 ### View Side-by-Side:
 ```powershell
 # DEP statistics
-$depReceipt = Get-Content .\projects\DEP\out\08_CreateIssues_Target_receipt.json | ConvertFrom-Json
+$depReceipt = Get-Content .\projects\DEP\out\08_Import_receipt.json | ConvertFrom-Json
 Write-Host "DEP: $($depReceipt.CreatedIssues) issues created"
 
 # LAS statistics  
-$lasReceipt = Get-Content .\projects\LAS\out\08_CreateIssues_Target_receipt.json | ConvertFrom-Json
+$lasReceipt = Get-Content .\projects\LAS\out\08_Import_receipt.json | ConvertFrom-Json
 Write-Host "LAS: $($lasReceipt.CreatedIssues) issues created"
 ```
 

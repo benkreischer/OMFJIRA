@@ -36,8 +36,8 @@ Added configuration options to `parameters.json`:
 
 ### Files Modified
 - `config/migration-parameters.json`
-- `src/steps/02_CreateProject_FromSharedConfig.ps1`
-- `src/steps/07_ExportIssues_Source.ps1`
+- `src/steps/02_Project.ps1`
+- `src/steps/07_Export.ps1`
 - `docs/CONFIGURATION_OPTIONS.md` (new)
 
 ---
@@ -76,7 +76,7 @@ Added two new custom fields to preserve original dates:
 
 ### Files Modified
 - `config/migration-parameters.json`
-- `src/steps/08_CreateIssues_Target.ps1`
+- `src/steps/08_Import.ps1`
 - `CreateNewProject.ps1`
 - `docs/HISTORICAL_TIMESTAMPS_SETUP.md` (new)
 - `docs/HISTORY_PRESERVATION_SUMMARY.md` (new)
@@ -110,7 +110,7 @@ Complete security cleanup:
 - `config/migration-parameters.json`
 - `projects/XXX/parameters.json`
 - `CreateNewProject.ps1`
-- `src/steps/02_CreateProject_FromSharedConfig.ps1`
+- `src/steps/02_Project.ps1`
 - `src/Utility/08_DeleteLAS1Issues.ps1`
 - `docs/CREDENTIALS_SECURITY_AUDIT.md` (new)
 
@@ -230,9 +230,9 @@ Export Scope: UNRESOLVED
 ### Files Modified (12)
 1. `config/migration-parameters.json`
 2. `projects/XXX/parameters.json`
-3. `src/steps/02_CreateProject_FromSharedConfig.ps1`
-4. `src/steps/07_ExportIssues_Source.ps1`
-5. `src/steps/08_CreateIssues_Target.ps1`
+3. `src/steps/02_Project.ps1`
+4. `src/steps/07_Export.ps1`
+5. `src/steps/08_Import.ps1`
 6. `CreateNewProject.ps1`
 7. `src/_dashboard.ps1`
 8. `RunMigration.ps1`

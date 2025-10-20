@@ -25,8 +25,8 @@
 
 **Files Modified:**
 - `config/migration-parameters.json`
-- `src/steps/02_CreateProject_FromSharedConfig.ps1`
-- `src/steps/07_ExportIssues_Source.ps1`
+- `src/steps/02_Project.ps1`
+- `src/steps/07_Export.ps1`
 
 ---
 
@@ -46,7 +46,7 @@
 
 **Files Modified:**
 - `config/migration-parameters.json`
-- `src/steps/08_CreateIssues_Target.ps1`
+- `src/steps/08_Import.ps1`
 - `CreateNewProject.ps1`
 
 ---
@@ -67,7 +67,7 @@
 - `config/migration-parameters.json`
 - `projects/XXX/parameters.json`
 - `CreateNewProject.ps1`
-- `src/steps/02_CreateProject_FromSharedConfig.ps1`
+- `src/steps/02_Project.ps1`
 - `src/Utility/08_DeleteLAS1Issues.ps1`
 
 ---
@@ -187,9 +187,9 @@
 ### Files Modified Today: **14**
 1. config/migration-parameters.json
 2. projects/XXX/parameters.json
-3. src/steps/02_CreateProject_FromSharedConfig.ps1
-4. src/steps/07_ExportIssues_Source.ps1
-5. src/steps/08_CreateIssues_Target.ps1
+3. src/steps/02_Project.ps1
+4. src/steps/07_Export.ps1
+5. src/steps/08_Import.ps1
 6. CreateNewProject.ps1
 7. src/_dashboard.ps1
 8. RunMigration.ps1

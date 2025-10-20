@@ -1,0 +1,75 @@
+---
+description: Ensure proper step timing calculation in all migration scripts
+globs: **/*.ps1
+alwaysApply: true
+---
+
+# Step Timing Pattern
+
+## ✅ **Correct Timing Implementation**
+
+### **For scripts using Write-StageReceipt (Steps 1-6):**
+- Call `Initialize-IssuesLog` early in the script
+- Use `Write-StageReceipt` at the end - it automatically calculates duration
+- **DO NOT** manually set `$script:StepStartTime` - let `Write-StageReceipt` handle it
+
+### **For scripts with manual CSV reports (Steps 7+):**
+- Call `Initialize-IssuesLog` early in the script
+- **MUST** set `$script:StepStartTime = Get-Date` right after `Initialize-IssuesLog`
+- Capture `$stepEndTime = Get-Date` at the very end, just before receipt generation
+- Use both times in CSV reports and receipt data
+
+## ❌ **Common Timing Mistakes**
+
+- **DON'T** set `$stepEndTime` before generating reports
+- **DON'T** forget to set `$script:StepStartTime` for manual timing
+- **DON'T** use `Get-Date` for both start and end times in the same moment
+
+## 📋 **Implementation Checklist**
+
+### **For Write-StageReceipt scripts:**
+```powershell
+# Initialize issues logging
+Initialize-IssuesLog -StepName "XX_StepName" -OutDir $stepExportsDir
+
+# ... script logic ...
+
+# Create receipt (automatic timing)
+Write-StageReceipt -OutDir $stepExportsDir -Stage "XX_StepName" -Data $receiptData
+```
+
+### **For manual CSV report scripts:**
+```powershell
+# Initialize issues logging
+Initialize-IssuesLog -StepName "XX_StepName" -OutDir $stepExportsDir
+
+# Set step start time
+$script:StepStartTime = Get-Date
+
+# ... script logic ...
+
+# Capture step end time at the very end
+$stepEndTime = Get-Date
+
+# Use in CSV reports
+$report += [PSCustomObject]@{
+    Name = "Step Start Time"
+    Value = $script:StepStartTime.ToString("yyyy-MM-dd HH:mm:ss")
+}
+$report += [PSCustomObject]@{
+    Name = "Step End Time" 
+    Value = $stepEndTime.ToString("yyyy-MM-dd HH:mm:ss")
+}
+
+# Create receipt
+Write-StageReceipt -OutDir $stepExportsDir -Stage "XX_StepName" -Data $receiptData
+```
+
+## 🎯 **Expected Results**
+
+- **Start Time:** Actual script start time
+- **End Time:** Actual script end time  
+- **Duration:** Real execution time (not 0 seconds)
+- **Console Output:** Shows "⏱️ Step Duration: X.XX seconds"
+- **Receipt JSON:** Contains accurate `StartTime`, `EndTime`, and `Duration`
+- **CSV Reports:** Show different start/end timestamps

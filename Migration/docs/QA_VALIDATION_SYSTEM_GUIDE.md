@@ -305,7 +305,7 @@ All technical reports stored in `out/` or `projects/{PROJECT}/out/`:
 **Cause:** Migration step 08 was run multiple times
 
 **Solution:**
-1. Review `08_CreateIssues_Target_receipt.json` for timestamps
+1. Review `08_Import_receipt.json` for timestamps
 2. Use JQL in Jira to identify duplicates:
    ```jql
    project = LAS AND summary ~ "YOUR_DUPLICATE_SUMMARY"
@@ -333,7 +333,7 @@ All technical reports stored in `out/` or `projects/{PROJECT}/out/`:
 **Cause:** Parent issues failed to migrate in Step 08
 
 **Solution:**
-1. Check `08_CreateIssues_Target_receipt.json` for failed issues
+1. Check `08_Import_receipt.json` for failed issues
 2. Investigate why those issues failed
 3. Fix the root cause
 4. Re-run Step 08 (idempotent)

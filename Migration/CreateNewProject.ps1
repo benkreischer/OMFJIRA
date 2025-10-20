@@ -7,6 +7,7 @@
 # USAGE: 
 #   .\CreateNewProject.ps1 -ProjectKey "XXX"
 #   .\CreateNewProject.ps1 -ProjectKey "XXX" -Force  # Overwrite existing project
+#   .\CreateNewProject.ps1 -ProjectKey "XXX" -SourceBaseUrl "https://custom.atlassian.net/" -TargetBaseUrl "https://target.atlassian.net/" -UserEmail "user@company.com"
 #
 # CONFIGURATION:
 #   Default values are loaded from config/migration-parameters.json:
@@ -15,13 +16,30 @@
 #   - Username (from .env file or config)
 #
 #   You can override these with command-line parameters:
-#   .\CreateNewProject.ps1 -ProjectKey "XXX" -SourceBaseUrl "https://custom.atlassian.net/"
+#   .\CreateNewProject.ps1 -ProjectKey "XXX" -SourceBaseUrl "https://custom.atlassian.net/" -TargetBaseUrl "https://target.atlassian.net/" -UserEmail "user@company.com"
 #
 # =============================================================================
 
 param(
     [Parameter(Mandatory=$true)]
     [string]$ProjectKey,
+    
+    [Parameter(Mandatory=$false)]
+    [string]$TargetKey,
+    
+    [Parameter(Mandatory=$false)]
+    [ValidateSet("XRAY", "STANDARD", "ENHANCED")]
+    [string]$Template,
+    
+    [Parameter(Mandatory=$false)]
+    [ValidateSet("UNRESOLVED", "ALL")]
+    [string]$ExportScope,
+    
+    [Parameter(Mandatory=$false)]
+    [bool]$MigrateSprints,
+    
+    [Parameter(Mandatory=$false)]
+    [bool]$IncludeSubTasks,
     
     [Parameter(Mandatory=$false)]
     [string]$Description = "Migration from {0} to {0}1",
@@ -36,15 +54,18 @@ param(
     [string]$TargetBaseUrl,
     
     [Parameter(Mandatory=$false)]
-    [string]$Username
+    [string]$Username,
+    
+    [Parameter(Mandatory=$false)]
+    [string]$UserEmail
 )
 
 # =============================================================================
 # LOAD CONFIGURATION DEFAULTS
 # =============================================================================
 
-# Load default values from config/migration-parameters.json
-$configPath = Join-Path $PSScriptRoot "config\migration-parameters.json"
+# Load default values from migration-parameters.json
+$configPath = Join-Path $PSScriptRoot "migration-parameters.json"
 if (Test-Path $configPath) {
     try {
         $configContent = Get-Content $configPath -Raw | ConvertFrom-Json
@@ -67,12 +88,24 @@ if (Test-Path $configPath) {
                 }
             }
         }
+        if (-not $UserEmail) {
+            # Try to get user email from .env file first, then fall back to username
+            $envFile = Join-Path $PSScriptRoot ".env"
+            if (Test-Path $envFile) {
+                Get-Content $envFile | ForEach-Object {
+                    if ($_ -match '^\s*USERNAME\s*=\s*(.*)$') {
+                        $UserEmail = $matches[1].Trim()
+                    }
+                }
+            }
+        }
     } catch {
         Write-Warning "Could not load config file: $configPath. Using hardcoded defaults."
         # Fallback to hardcoded defaults if config load fails
         if (-not $SourceBaseUrl) { $SourceBaseUrl = "https://onemain.atlassian.net/" }
         if (-not $TargetBaseUrl) { $TargetBaseUrl = "https://onemainfinancial-migrationsandbox.atlassian.net/" }
         if (-not $Username) { $Username = "ben.kreischer.ce@omf.com" }
+        if (-not $UserEmail) { $UserEmail = "ben.kreischer.ce@omf.com" }
     }
 } else {
     Write-Warning "Config file not found at: $configPath. Using hardcoded defaults."
@@ -80,15 +113,27 @@ if (Test-Path $configPath) {
     if (-not $SourceBaseUrl) { $SourceBaseUrl = "https://onemain.atlassian.net/" }
     if (-not $TargetBaseUrl) { $TargetBaseUrl = "https://onemainfinancial-migrationsandbox.atlassian.net/" }
     if (-not $Username) { $Username = "ben.kreischer.ce@omf.com" }
+    if (-not $UserEmail) { $UserEmail = "ben.kreischer.ce@omf.com" }
 }
 
 # =============================================================================
 # VALIDATION (Must happen BEFORE creating any directories)
 # =============================================================================
 
+# Set default TargetKey if not provided
+if (-not $TargetKey) {
+    $TargetKey = "$ProjectKey" + "1"
+}
+
 # Validate project key format
 if ($ProjectKey -notmatch '^[A-Z]{2,10}$') {
     Write-Error "ProjectKey must be 2-10 uppercase letters (e.g., 'XXX', 'ABC', 'PROJECT')"
+    exit 1
+}
+
+# Validate target project key format
+if ($TargetKey -notmatch '^[A-Z]{2,10}$') {
+    Write-Error "TargetKey must be 2-10 uppercase letters (e.g., 'XXX1', 'ABC1', 'PROJECT')"
     exit 1
 }
 
@@ -106,7 +151,7 @@ if (Test-Path $projectPath) {
 # =============================================================================
 
 # Load logging module
-. "$PSScriptRoot\src\_logging.ps1"
+. "$PSScriptRoot\_logging.ps1"
 
 # Create out directory for logging
 $tempOutDir = Join-Path "projects" "$ProjectKey\out"
@@ -124,6 +169,7 @@ Write-Host "💡 To monitor in another terminal: .\Watch-Log.ps1 -ProjectKey $Pr
 
 Write-LogSubStep "Validation"
 Write-LogSuccess "Project key format is valid: $ProjectKey" -Component "Validation"
+Write-LogSuccess "Target project key format is valid: $TargetKey" -Component "Validation"
 Write-LogSuccess "Project directory is available" -Component "Validation"
 
 # =============================================================================
@@ -173,8 +219,9 @@ try {
     
     Write-LogSuccess "Found project: $actualProjectName (Key: $ProjectKey)" -Component "API"
     Write-LogTable "Project Details" @{
-        "Project Key" = $ProjectKey
-        "Project Name" = $actualProjectName
+        "Source Key" = $ProjectKey
+        "Source Name" = $actualProjectName
+        "Target Key" = $TargetKey
         "Target Name" = $targetProjectName
     }
 } catch {
@@ -210,7 +257,7 @@ try {
 if ($actualProjectName -eq "Updated in Preflight check") {
     $projectDescription = "Updated in Preflight check"
 } else {
-    $projectDescription = "Migration from $ProjectKey ($actualProjectName) to $($ProjectKey)1 ($targetProjectName)"
+    $projectDescription = "Migration from $ProjectKey ($actualProjectName) to $TargetKey ($targetProjectName)"
 }
 
 # =============================================================================
@@ -224,77 +271,113 @@ Write-Host "══════════════════════�
 Write-Host ""
 
 # 1. Configuration Template
-Write-Host "1️⃣  Project Configuration Template" -ForegroundColor Yellow
-Write-Host ""
-Write-Host "   [X] XRAY (Recommended)" -ForegroundColor Green
-Write-Host "   [S] Standard" -ForegroundColor White
-Write-Host "   [E] Enhanced" -ForegroundColor White
-Write-Host ""
-$templateChoice = Read-Host "   Choose template (X/S/E)"
-
-$configTemplate = "XRAY"
-if ($templateChoice -eq "S" -or $templateChoice -eq "s") {
-    $configTemplate = "STANDARD"
-    Write-Host "   ✅ Using STANDARD template" -ForegroundColor Green
-} elseif ($templateChoice -eq "E" -or $templateChoice -eq "e") {
-    $configTemplate = "ENHANCED"
-    Write-Host "   ✅ Using ENHANCED template" -ForegroundColor Green
+if ($Template) {
+    # Template provided via parameter
+    $configTemplate = $Template
+    Write-Host "1️⃣  Project Configuration Template" -ForegroundColor Yellow
+    Write-Host ""
+    Write-Host "   ✅ Using $configTemplate template (from parameter)" -ForegroundColor Green
 } else {
-    Write-Host "   ✅ Using XRAY template (default)" -ForegroundColor Green
+    # Prompt for template choice
+    Write-Host "1️⃣  Project Configuration Template" -ForegroundColor Yellow
+    Write-Host ""
+    Write-Host "   [X] XRAY (Recommended)" -ForegroundColor Green
+    Write-Host "   [S] Standard" -ForegroundColor White
+    Write-Host "   [E] Enhanced" -ForegroundColor White
+    Write-Host ""
+    $templateChoice = Read-Host "   Choose template (X/S/E)"
+
+    $configTemplate = "XRAY"
+    if ($templateChoice -eq "S" -or $templateChoice -eq "s") {
+        $configTemplate = "STANDARD"
+        Write-Host "   ✅ Using STANDARD template" -ForegroundColor Green
+    } elseif ($templateChoice -eq "E" -or $templateChoice -eq "e") {
+        $configTemplate = "ENHANCED"
+        Write-Host "   ✅ Using ENHANCED template" -ForegroundColor Green
+    } else {
+        Write-Host "   ✅ Using XRAY template (default)" -ForegroundColor Green
+    }
 }
 
 Write-Host ""
 
 # 2. Export Scope
-Write-Host "2️⃣  Issue Export Scope" -ForegroundColor Yellow
-Write-Host ""
-Write-Host "   [U] Unresolved work items (Recommended)" -ForegroundColor Green
-Write-Host "   [A] All Issues including resolved work items" -ForegroundColor White
-Write-Host ""
-$scopeChoice = Read-Host "   Choose scope (U/A)"
-
-$exportScope = "UNRESOLVED"
-if ($scopeChoice -eq "A" -or $scopeChoice -eq "a") {
-    $exportScope = "ALL"
-    Write-Host "   ✅ Will export ALL issues (including closed)" -ForegroundColor Green
+if ($ExportScope) {
+    # Export scope provided via parameter
+    $exportScope = $ExportScope
+    Write-Host "2️⃣  Issue Export Scope" -ForegroundColor Yellow
+    Write-Host ""
+    Write-Host "   ✅ Will export $exportScope issues (from parameter)" -ForegroundColor Green
 } else {
-    Write-Host "   ✅ Will export UNRESOLVED issues only (default)" -ForegroundColor Green
+    # Prompt for export scope choice
+    Write-Host "2️⃣  Issue Export Scope" -ForegroundColor Yellow
+    Write-Host ""
+    Write-Host "   [U] Unresolved work items (Recommended)" -ForegroundColor Green
+    Write-Host "   [A] All Issues including resolved work items" -ForegroundColor White
+    Write-Host ""
+    $scopeChoice = Read-Host "   Choose scope (U/A)"
+
+    $exportScope = "UNRESOLVED"
+    if ($scopeChoice -eq "A" -or $scopeChoice -eq "a") {
+        $exportScope = "ALL"
+        Write-Host "   ✅ Will export ALL issues (including closed)" -ForegroundColor Green
+    } else {
+        Write-Host "   ✅ Will export UNRESOLVED issues only (default)" -ForegroundColor Green
+    }
 }
 
 Write-Host ""
 
 # 3. Sprint Migration
-Write-Host "3️⃣  Migrate Sprints?" -ForegroundColor Yellow
-Write-Host ""
-Write-Host "   [Y] YES - Migrate sprints with dates and goals (Recommended)" -ForegroundColor Green
-Write-Host "   [N] NO - Skip sprint migration" -ForegroundColor White
-Write-Host ""
-$sprintChoice = Read-Host "   Migrate sprints? (Y/N)"
-
-$migrateSprints = $true
-if ($sprintChoice -eq "N" -or $sprintChoice -eq "n") {
-    $migrateSprints = $false
-    Write-Host "   ⏭️  Sprint migration disabled" -ForegroundColor Yellow
+if ($PSBoundParameters.ContainsKey('MigrateSprints')) {
+    # Migrate sprints provided via parameter
+    $migrateSprints = $MigrateSprints
+    Write-Host "3️⃣  Migrate Sprints?" -ForegroundColor Yellow
+    Write-Host ""
+    Write-Host "   ✅ Sprint migration $(if ($migrateSprints) { 'enabled' } else { 'disabled' }) (from parameter)" -ForegroundColor Green
 } else {
-    Write-Host "   ✅ Sprint migration enabled (default)" -ForegroundColor Green
+    # Prompt for sprint migration choice
+    Write-Host "3️⃣  Migrate Sprints?" -ForegroundColor Yellow
+    Write-Host ""
+    Write-Host "   [Y] YES - Migrate sprints with dates and goals (Recommended)" -ForegroundColor Green
+    Write-Host "   [N] NO - Skip sprint migration" -ForegroundColor White
+    Write-Host ""
+    $sprintChoice = Read-Host "   Migrate sprints? (Y/N)"
+
+    $migrateSprints = $true
+    if ($sprintChoice -eq "N" -or $sprintChoice -eq "n") {
+        $migrateSprints = $false
+        Write-Host "   ⏭️  Sprint migration disabled" -ForegroundColor Yellow
+    } else {
+        Write-Host "   ✅ Sprint migration enabled (default)" -ForegroundColor Green
+    }
 }
 
 Write-Host ""
 
 # 4. SubTasks
-Write-Host "4️⃣  Include SubTasks?" -ForegroundColor Yellow
-Write-Host ""
-Write-Host "   [Y] YES - Include sub-tasks (Recommended)" -ForegroundColor Green
-Write-Host "   [N] NO - Exclude sub-tasks" -ForegroundColor White
-Write-Host ""
-$subTaskChoice = Read-Host "   Include sub-tasks? (Y/N)"
-
-$includeSubTasks = $true
-if ($subTaskChoice -eq "N" -or $subTaskChoice -eq "n") {
-    $includeSubTasks = $false
-    Write-Host "   ⏭️  Sub-tasks will be excluded" -ForegroundColor Yellow
+if ($PSBoundParameters.ContainsKey('IncludeSubTasks')) {
+    # Include sub-tasks provided via parameter
+    $includeSubTasks = $IncludeSubTasks
+    Write-Host "4️⃣  Include SubTasks?" -ForegroundColor Yellow
+    Write-Host ""
+    Write-Host "   ✅ Sub-tasks will be $(if ($includeSubTasks) { 'included' } else { 'excluded' }) (from parameter)" -ForegroundColor Green
 } else {
-    Write-Host "   ✅ Sub-tasks will be included (default)" -ForegroundColor Green
+    # Prompt for sub-tasks choice
+    Write-Host "4️⃣  Include SubTasks?" -ForegroundColor Yellow
+    Write-Host ""
+    Write-Host "   [Y] YES - Include sub-tasks (Recommended)" -ForegroundColor Green
+    Write-Host "   [N] NO - Exclude sub-tasks" -ForegroundColor White
+    Write-Host ""
+    $subTaskChoice = Read-Host "   Include sub-tasks? (Y/N)"
+
+    $includeSubTasks = $true
+    if ($subTaskChoice -eq "N" -or $subTaskChoice -eq "n") {
+        $includeSubTasks = $false
+        Write-Host "   ⏭️  Sub-tasks will be excluded" -ForegroundColor Yellow
+    } else {
+        Write-Host "   ✅ Sub-tasks will be included (default)" -ForegroundColor Green
+    }
 }
 
 Write-Host ""
@@ -306,7 +389,7 @@ Write-Host ""
 # =============================================================================
 
 Write-Host "Creating new migration project: $ProjectKey" -ForegroundColor Green
-Write-Host "Source: $ProjectKey → Target: $($ProjectKey)1" -ForegroundColor Cyan
+Write-Host "Source: $ProjectKey → Target: $TargetKey" -ForegroundColor Cyan
 
 # Create main project directory
 Write-LogSubStep "Create Project Structure"
@@ -339,7 +422,7 @@ $parameters = [ordered]@{
     }
     TargetEnvironment = [ordered]@{
         BaseUrl = $TargetBaseUrl
-        ProjectKey = "$($ProjectKey)1"
+        ProjectKey = $TargetKey
         ProjectName = $targetProjectName
         Username = $Username
         ApiToken = $apiToken
@@ -352,6 +435,10 @@ $parameters = [ordered]@{
         MigrateLinks = $true
         MigrateCustomFields = $true
         MigrateLegacyKeys = $true
+        DeleteTargetIssuesBeforeImport = $false
+        DeleteTargetComponentsBeforeImport = $false
+        DeleteTargetVersionsBeforeImport = $false
+        DeleteTargetBoardsBeforeImport = $false
     }
     AnalysisSettings = [ordered]@{
         MaxIssuesToAnalyze = 50000
@@ -508,20 +595,15 @@ $parameters = [ordered]@{
     }
     UserMapping = [ordered]@{
         FallbackToProjectLead = $true
-        ProjectLeadEmail = $Username
+        ProjectLeadEmail = $UserEmail
     }
     UserInvitation = [ordered]@{
         AutoInvite = $true
     }
-    # ProjectCreation: Configuration will be copied from template projects in TARGET environment
-    # IMPORTANT: Template projects (XRAY, STANDARD, ENHANCED) are located in:
-    #            https://onemainfinancial-migrationsandbox.atlassian.net/
+    # ProjectCreation: Template determines workflow/scheme for target project creation
+    # IMPORTANT: Template (XRAY, STANDARD, ENHANCED) tells Jira what workflow to use
     ProjectCreation = [ordered]@{
-        ConfigurationTemplate = $configTemplate
-        ConfigSourceProjectKey = "XRAY"
-        StandardProjectTypeKey = "software"
-        StandardConfigSourceProjectKey = "STANDARD"
-        EnhancedConfigSourceProjectKey = "ENHANCED"
+        Template = $configTemplate
     }
     IssueExportSettings = [ordered]@{
         Scope = $exportScope
@@ -969,7 +1051,7 @@ Write-LogStep "Project Creation Complete"
 Write-LogSuccess "Project created successfully!" -Component "Summary"
 
 Write-LogTable "Configuration Summary" @{
-    "Project" = "$ProjectKey → $($ProjectKey)1"
+    "Project" = "$ProjectKey → $TargetKey"
     "Name" = "$actualProjectName → $targetProjectName"
     "Source URL" = $SourceBaseUrl
     "Target URL" = $TargetBaseUrl
@@ -993,7 +1075,7 @@ Write-Host ""
 
 Write-Host "═══ CONFIGURATION SUMMARY ═══" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "📁 Project:        $ProjectKey → $($ProjectKey)1" -ForegroundColor White
+Write-Host "📁 Project:        $ProjectKey → $TargetKey" -ForegroundColor White
 Write-Host "📋 Name:           $actualProjectName → $targetProjectName" -ForegroundColor White
 Write-Host ""
 Write-Host "🔵 SOURCE:" -ForegroundColor Cyan
@@ -1002,7 +1084,7 @@ Write-Host "   Project:        $ProjectKey" -ForegroundColor Gray
 Write-Host ""
 Write-Host "🟢 TARGET:" -ForegroundColor Green
 Write-Host "   URL:            $TargetBaseUrl" -ForegroundColor White
-Write-Host "   Project:        $($ProjectKey)1" -ForegroundColor Gray
+Write-Host "   Project:        $TargetKey" -ForegroundColor Gray
 Write-Host ""
 Write-Host "⚙️  SETTINGS:" -ForegroundColor Yellow
 Write-Host "   Template:         $configTemplate" -ForegroundColor White

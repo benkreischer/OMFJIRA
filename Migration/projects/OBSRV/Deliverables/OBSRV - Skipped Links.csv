@@ -1,2 +1,0 @@
-"Source Issue","Source URL","Target Issue","Target URL","Link Type","Direction","Linked To (Not Migrated)","Linked To URL","Reason","Action Required"
-"OBSRV-23","https://onemain.atlassian.net/browse/OBSRV-23","OBSRV1-3","https://onemainfinancial-migrationsandbox.atlassian.net/browse/OBSRV1-3","Relates","inward","OBSRV-1","https://onemain.atlassian.net/browse/OBSRV-1","Already exists (idempotency)","Manually create link when linked issue is migrated, or link to source instance"

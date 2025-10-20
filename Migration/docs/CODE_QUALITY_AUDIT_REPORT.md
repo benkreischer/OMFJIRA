@@ -52,7 +52,7 @@ These scripts were recently updated to use safe property access patterns:
 These scripts only access controlled data (parameters.json) or have minimal property access:
 
 - **01_Preflight.ps1** - Only parameters access
-- **07_ExportIssues_Source.ps1** - Minimal property access, well-protected
+- **07_Export.ps1** - Minimal property access, well-protected
 - **13_Automations.ps1** - Only parameters access
 
 ---
@@ -61,7 +61,7 @@ These scripts only access controlled data (parameters.json) or have minimal prop
 
 These scripts access API response properties that might not always exist. However, they are protected by try-catch blocks around the API calls.
 
-#### **02_CreateProject_FromSharedConfig.ps1**
+#### **02_Project.ps1**
 **Risk Level:** LOW  
 **Risky Pattern:**
 ```powershell
@@ -75,7 +75,7 @@ if ($xrayProject -and $xrayProject.PSObject.Properties['lead'] -and $xrayProject
 }
 ```
 
-#### **04_ComponentsAndLabels.ps1**
+#### **04_Components.ps1**
 **Risk Level:** LOW  
 **Risky Pattern:**
 ```powershell
@@ -93,7 +93,7 @@ Line 239: $b.location.projectKey -eq $srcKey
 **Mitigation:** Wrapped in try-catch block  
 **Status:** Safe - location is always present for project boards
 
-#### **08_CreateIssues_Target.ps1**
+#### **08_Import.ps1**
 **Risk Level:** MEDIUM  
 **Risky Patterns:**
 - Multiple `$sourceIssue.fields.*` accesses

@@ -32,6 +32,25 @@ This repository contains a modular, idempotent set of PowerShell scripts, utilit
 
 Tip: Use `-DryRun` to validate configuration without making changes.
 
+## 🔧 Configuration Options
+
+### DryRun Mode
+All migration steps support `-DryRun` mode for safe testing:
+```powershell
+.\01_Preflight.ps1 -DryRun
+.\02_Project.ps1 -DryRun
+# ... and so on for all steps
+```
+
+### Deletion Safeguards
+Destructive operations are now protected by configuration flags:
+- `DeleteTargetIssuesBeforeImport`: Delete existing issues before import (Step 08)
+- `DeleteTargetComponentsBeforeImport`: Delete existing components before import (Step 04)
+- `DeleteTargetVersionsBeforeImport`: Delete existing versions before import (Step 05)
+- `DeleteTargetBoardsBeforeImport`: Delete existing boards before import (Step 06)
+
+Set these to `true` in your `migration-parameters.json` to enable destructive operations.
+
 ## Typical workflow (recommended)
 
 1. Create or copy project config: `.\CreateNewProject.ps1 -ProjectKey ABC`.
@@ -54,7 +73,7 @@ Tip: Use `-DryRun` to validate configuration without making changes.
 - `config/migration-parameters.json` — global defaults and feature toggles
 - `src/_common.ps1` — shared helper functions
 - `src/_dashboard.ps1` — dashboard and reporting helpers
-- `src/steps/` — migration steps (01_Preflight..16_PushToConfluence and archived steps)
+- `src/steps/` — migration steps (01_Preflight..16_Confluence and archived steps)
 - `src/Utility/` — helper utilities (cleanup, permission checks, restore helpers)
 - `projects/[PROJECT_KEY]/parameters.json` — per-project config and overrides
 - `projects/[PROJECT_KEY]/out/` — migration output: logs, exports, receipts, and dashboards

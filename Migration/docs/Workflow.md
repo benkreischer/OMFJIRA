@@ -31,11 +31,11 @@ The migration follows a structured 17-step process divided into three main phase
 - Does not migrate any data
 - Does not perform any actual Jira operations
 
-**NEXT STEP:** Run 02_CreateProject_FromSharedConfig.ps1 to actually create the target project
+**NEXT STEP:** Run 02_Project.ps1 to actually create the target project
 
 ---
 
-### 02_CreateProject_FromSharedConfig.ps1 - Create Target Project with Shared Configuration
+### 02_Project.ps1 - Create Target Project with Shared Configuration
 
 **PURPOSE:** Creates the target project in the destination Jira instance and copies configuration from a reference project (XRAY) to ensure consistent setup.
 
@@ -51,11 +51,11 @@ The migration follows a structured 17-step process divided into three main phase
 - Does not set up boards or sprints
 - Does not automatically apply schemes (requires manual configuration)
 
-**NEXT STEP:** Run 03_SyncUsersAndRoles.ps1 to set up users and permissions
+**NEXT STEP:** Run 03_Users.ps1 to set up users and permissions
 
 ---
 
-### 03_SyncUsersAndRoles.ps1 - Synchronize Users and Roles
+### 03_Users.ps1 - Synchronize Users and Roles
 
 **PURPOSE:** Ensures all users from the source project exist in the target environment and assigns appropriate roles to maintain access permissions during migration.
 
@@ -70,11 +70,11 @@ The migration follows a structured 17-step process divided into three main phase
 - Does not modify user permissions outside the project
 - Does not migrate user preferences or settings
 
-**NEXT STEP:** Run 04_ComponentsAndLabels.ps1 to set up project components
+**NEXT STEP:** Run 04_Components.ps1 to set up project components
 
 ---
 
-### 04_ComponentsAndLabels.ps1 - Set Up Components and Capture Labels
+### 04_Components.ps1 - Set Up Components and Capture Labels
 
 **PURPOSE:** Recreates project components from the source and captures all labels used in issues to ensure proper categorization and organization in the target project.
 
@@ -207,13 +207,13 @@ Creates a detailed receipt file tracking:
 - Boards skipped with reason codes
 - Complete mapping of source to target boards
 
-**NEXT STEP:** Run 07_ExportIssues_Source.ps1 to begin issue migration
+**NEXT STEP:** Run 07_Export.ps1 to begin issue migration
 
 ---
 
 ## Phase 2: Data Migration
 
-### 07_ExportIssues_Source.ps1 - Export Issues from Source Project
+### 07_Export.ps1 - Export Issues from Source Project
 
 **PURPOSE:** Exports all issues from the source project and builds a comprehensive mapping of issue keys to IDs for use in the migration process.
 
@@ -229,11 +229,11 @@ Creates a detailed receipt file tracking:
 - Does not create issues in the target project
 - Does not migrate attachments or comments yet
 
-**NEXT STEP:** Run 08_CreateIssues_Target.ps1 to create issues in the target project
+**NEXT STEP:** Run 08_Import.ps1 to create issues in the target project
 
 ---
 
-### 08_CreateIssues_Target.ps1 - Create Issues in Target Project
+### 08_Import.ps1 - Create Issues in Target Project
 
 **PURPOSE:** Creates all issues in the target project using the exported data from the source, applying field mappings and custom field transformations as needed.
 
@@ -460,8 +460,8 @@ All scripts can be run without parameters as they automatically resolve the conf
 ```powershell
 # Simple execution - no parameters needed!
 .\01_Preflight.ps1
-.\02_CreateProject_FromSharedConfig.ps1
-.\03_SyncUsersAndRoles.ps1
+.\02_Project.ps1
+.\03_Users.ps1
 # ... and so on for all 17 scripts
 ```
 

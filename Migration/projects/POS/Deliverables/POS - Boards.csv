@@ -1,6 +1,0 @@
-"Type","Name","Value","Details","Timestamp"
-"Summary","Source Boards Discovered","2","Boards found in source project","2025-10-16 06:45:25"
-"Summary","Boards Created/Reused","2","Boards successfully created or reused in target","2025-10-16 06:45:25"
-"Summary","Boards Skipped","0","Boards skipped due to issues","2025-10-16 06:45:25"
-"Board","POS Scrum Board","1417","Type: scrum, Filter: POS1 - POS Scrum Board (copied from POS 20251016064518)","2025-10-16 06:45:25"
-"Board","POS Kanban Board","1418","Type: kanban, Filter: POS1 - POS Kanban Board (copied from POS 20251016064520)","2025-10-16 06:45:25"

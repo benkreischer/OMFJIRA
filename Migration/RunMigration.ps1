@@ -21,8 +21,8 @@ param(
 $ErrorActionPreference = "Stop"
 
 # Load shared dashboard functions and logging
-. (Join-Path $PSScriptRoot "src\_dashboard.ps1")
-. (Join-Path $PSScriptRoot "src\_logging.ps1")
+. (Join-Path $PSScriptRoot "_dashboard.ps1")
+. (Join-Path $PSScriptRoot "_logging.ps1")
 
 Write-Host "╔════════════════════════════════════════════════════════════╗" -ForegroundColor Cyan
 Write-Host "║                JIRA MIGRATION TOOLKIT                      ║" -ForegroundColor Cyan
@@ -289,21 +289,21 @@ if ($Step -match '^\d+$') {
 # Map step number to script name
 $stepScripts = @{
     "01" = "01_Preflight.ps1"
-    "02" = "02_CreateProject_FromSharedConfig.ps1"
-    "03" = "03_SyncUsersAndRoles.ps1"
-    "04" = "04_ComponentsAndLabels.ps1"
+    "02" = "02_Project.ps1"
+    "03" = "03_Users.ps1"
+    "04" = "04_Components.ps1"
     "05" = "05_Versions.ps1"
     "06" = "06_Boards.ps1"
-    "07" = "07_ExportIssues_Source.ps1"
-    "08" = "08_CreateIssues_Target.ps1"
+    "07" = "07_Export.ps1"
+    "08" = "08_Import.ps1"
     "09" = "09_Comments.ps1"
     "10" = "10_Attachments.ps1"
     "11" = "11_Links.ps1"
     "12" = "12_Worklogs.ps1"
     "13" = "13_Sprints.ps1"
-    "14" = "14_HistoryMigration.ps1"
-    "15" = "15_ReviewMigration.ps1"
-    "16" = "16_PushToConfluence.ps1"
+    "14" = "14_History.ps1"
+    "15" = "15_Review.ps1"
+    "16" = "16_Confluence.ps1"
 }
 
 if (-not $stepScripts.ContainsKey($Step)) {
@@ -313,7 +313,7 @@ if (-not $stepScripts.ContainsKey($Step)) {
 }
 
 $scriptName = $stepScripts[$Step]
-$scriptPath = Join-Path $PSScriptRoot "src\steps\$scriptName"
+$scriptPath = Join-Path $PSScriptRoot $scriptName
 
 if (-not (Test-Path $scriptPath)) {
     Write-Host "❌ Script not found: $scriptPath" -ForegroundColor Red

@@ -19,6 +19,7 @@ param(
 )
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
 . (Join-Path $here "_common.ps1")
+. (Join-Path $here "_terminal_logging.ps1")
 
 $script:DryRun = $DryRun
 
@@ -672,3 +673,4 @@ Write-StageReceipt -OutDir $stepExportsDir -Stage "04_Components" -Data $receipt
 Save-IssuesLog -StepName "04_Components"
 
 exit 0
+

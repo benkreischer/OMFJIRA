@@ -1,4 +1,4 @@
-# 14_HistoryMigration.ps1 - Migrate Issue History and Changelog
+# 14_History.ps1 - Migrate Issue History and Changelog
 # 
 # PURPOSE: Migrates issue history/changelog from source to target issues,
 # preserving original users, timestamps, and field changes.
@@ -19,7 +19,7 @@
 # - Requires completed Step 07 (Export Issues) with changelog data
 # - Requires completed Step 08 (Create Issues) with key mapping
 #
-# NEXT STEP: Run 15_ReviewMigration.ps1 for final review and deliverables
+# NEXT STEP: Run 15_Review.ps1 for final review and deliverables
 #
 param(
     [string] $ParametersPath,
@@ -52,7 +52,7 @@ $p = Read-JsonFile -Path $ParametersPath
 $outDir = ".\projects\REM\out"
 
 # Initialize issues logging
-Initialize-IssuesLog -StepName "14_HistoryMigration" -OutDir $outDir
+Initialize-IssuesLog -StepName "14_History" -OutDir $outDir
 
 # Create exports14 directory and cleanup
 $stepExportsDir = Join-Path $outDir "exports14"
@@ -92,7 +92,7 @@ $exportFile = Join-Path $outDir "exports07\07_Export_adf.jsonl"
 if (-not (Test-Path $exportFile)) {
     Write-Error "❌ Source issues export not found: $exportFile"
     Write-Host "   Run Step 07 (Export Issues) first!" -ForegroundColor Yellow
-    exit 1
+    # Stop terminal logging`nStop-TerminalLog -Success:$false -Summary "$stepName failed"`n`nexit 1
 }
 
 Write-Host "📁 Loading source issues export..."
@@ -109,7 +109,7 @@ try {
     Write-Host "✅ Loaded $($export.Count) exported issues"
 } catch {
     Write-Error "❌ Failed to load exported issues: $($_.Exception.Message)"
-    exit 1
+    # Stop terminal logging`nStop-TerminalLog -Success:$false -Summary "$stepName failed"`n`nexit 1
 }
 
 # Handle empty export
@@ -134,7 +134,6 @@ if ($export.Count -eq 0) {
         Type = "Step"
         Name = "Step Start Time"
         Value = $stepStartTime.ToString("yyyy-MM-dd HH:mm:ss")
-        Details = "Step execution started"
         Timestamp = $stepStartTime.ToString("yyyy-MM-dd HH:mm:ss")
     }
     
@@ -142,7 +141,6 @@ if ($export.Count -eq 0) {
         Type = "Step"
         Name = "Step End Time"
         Value = $stepEndTime.ToString("yyyy-MM-dd HH:mm:ss")
-        Details = "Step execution completed"
         Timestamp = $stepEndTime.ToString("yyyy-MM-dd HH:mm:ss")
     }
     
@@ -151,7 +149,6 @@ if ($export.Count -eq 0) {
         Type = "Summary"
         Name = "Issues Processed"
         Value = 0
-        Details = "No issues found in export"
         Timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
     }
     
@@ -159,7 +156,6 @@ if ($export.Count -eq 0) {
         Type = "Summary"
         Name = "History Entries Processed"
         Value = 0
-        Details = "No history entries to process"
         Timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
     }
     
@@ -167,7 +163,6 @@ if ($export.Count -eq 0) {
         Type = "Summary"
         Name = "History Entries Migrated"
         Value = 0
-        Details = "No history entries migrated"
         Timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
     }
     
@@ -175,7 +170,6 @@ if ($export.Count -eq 0) {
         Type = "Summary"
         Name = "History Entries Failed"
         Value = 0
-        Details = "No history entries failed"
         Timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
     }
     
@@ -183,19 +177,18 @@ if ($export.Count -eq 0) {
         Type = "Summary"
         Name = "Success Rate (%)"
         Value = 100
-        Details = "No issues to process - considered successful"
         Timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
     }
     
     # Export main summary report to CSV
-    $step14SummaryCsvPath = Join-Path $stepExportsDir "14_HistoryMigration_Report.csv"
+    $step14SummaryCsvPath = Join-Path $stepExportsDir "14_History_Report.csv"
     $step14SummaryReport | Export-Csv -Path $step14SummaryCsvPath -NoTypeInformation -Encoding UTF8
     Write-Host "✅ Step 14 summary report saved: $step14SummaryCsvPath" -ForegroundColor Green
     Write-Host "   Total items: $($step14SummaryReport.Count)" -ForegroundColor Cyan
     
     # Create receipt for empty result
     $endTime = Get-Date
-    Write-StageReceipt -OutDir $outDir -Stage "14_HistoryMigration" -Data @{
+    Write-StageReceipt -OutDir $outDir -Stage "14_History" -Data @{
         SourceProject = @{ key=$srcKey }
         TargetProject = @{ key=$tgtKey }
         HistoryEntriesMigrated = 0
@@ -208,7 +201,7 @@ if ($export.Count -eq 0) {
         EndTime = $endTime.ToString("yyyy-MM-ddTHH:mm:ss.fffffffK")
     }
     
-    exit 0
+    # Stop terminal logging`nStop-TerminalLog -Success:$true -Summary "$stepName completed successfully"`n`nexit 0
 }
 
 Write-Host "✅ Loaded $($export.Count) issues from export"
@@ -218,7 +211,7 @@ $keyMappingFile = Join-Path $outDir "exports08\08_Import_Details.csv"
 if (-not (Test-Path $keyMappingFile)) {
     Write-Error "❌ Key mapping not found: $keyMappingFile"
     Write-Host "   Run Step 08 (Create Issues) first!" -ForegroundColor Yellow
-    exit 1
+    # Stop terminal logging`nStop-TerminalLog -Success:$false -Summary "$stepName failed"`n`nexit 1
 }
 
 Write-Host "📁 Loading key mapping..."
@@ -227,14 +220,14 @@ try {
     $keyMappingData = Import-Csv $keyMappingFile
     $sourceToTargetKeyMap = @{}
     foreach ($row in $keyMappingData) {
-        if ($row.Status -eq "Success" -and $row.SourceKey -and $row.TargetKey) {
+        if ($row.SourceKey -and $row.TargetKey) {
             $sourceToTargetKeyMap[$row.SourceKey] = $row.TargetKey
         }
     }
     Write-Host "✅ Loaded mapping for $($sourceToTargetKeyMap.Count) issues"
 } catch {
     Write-Error "❌ Failed to load key mapping: $($_.Exception.Message)"
-    exit 1
+    # Stop terminal logging`nStop-TerminalLog -Success:$false -Summary "$stepName failed"`n`nexit 1
 }
 
 # Fetch changelog data directly from source Jira API
@@ -249,10 +242,8 @@ foreach ($exportedIssue in $export) {
     $sourceKey = $exportedIssue.issue.key
     $targetKey = $sourceToTargetKeyMap[$sourceKey]
     
-    if (-not $targetKey) {
-        Write-Host "  ⏭️  Skipping $sourceKey (not created in target)" -ForegroundColor Yellow
-        continue
-    }
+    # Process all issues for history, even if not created in target
+    # This ensures we capture complete history data
     
     try {
         Write-Host "  📝 Fetching changelog for $sourceKey..." -ForegroundColor DarkGray
@@ -261,12 +252,14 @@ foreach ($exportedIssue in $export) {
         $changelogUri = "$($srcBase.TrimEnd('/'))/rest/api/3/issue/$sourceKey/changelog"
         $changelogResponse = if ($script:DryRun) { @{ values = @() } } else { Invoke-JiraWithRetry -Method GET -Uri $changelogUri -Headers $srcHdr -MaxRetries 3 -TimeoutSec 30 }
         
+        # Store ALL issues with their changelog data, regardless of target mapping
+        $issuesWithChangelog += @{
+            SourceKey = $sourceKey
+            TargetKey = $targetKey
+            Changelog = $changelogResponse
+        }
+        
         if ($changelogResponse.values -and $changelogResponse.values.Count -gt 0) {
-            $issuesWithChangelog += @{
-                SourceKey = $sourceKey
-                TargetKey = $targetKey
-                Changelog = $changelogResponse
-            }
             Write-Host "    ✅ Found $($changelogResponse.values.Count) changelog entries" -ForegroundColor Green
         } else {
             Write-Host "    ⏭️  No changelog entries found" -ForegroundColor Yellow
@@ -302,7 +295,6 @@ if ($issuesWithChangelog.Count -eq 0) {
         Type = "Step"
         Name = "Step Start Time"
         Value = $script:StepStartTime.ToString("yyyy-MM-dd HH:mm:ss")
-        Details = "Step execution started"
         Timestamp = $script:StepStartTime.ToString("yyyy-MM-dd HH:mm:ss")
     }
     
@@ -310,7 +302,6 @@ if ($issuesWithChangelog.Count -eq 0) {
         Type = "Step"
         Name = "Step End Time"
         Value = $stepEndTime.ToString("yyyy-MM-dd HH:mm:ss")
-        Details = "Step execution completed"
         Timestamp = $stepEndTime.ToString("yyyy-MM-dd HH:mm:ss")
     }
     
@@ -319,7 +310,6 @@ if ($issuesWithChangelog.Count -eq 0) {
         Type = "Summary"
         Name = "Issues Processed"
         Value = 0
-        Details = "No changelog data found in source"
         Timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
     }
     
@@ -327,7 +317,6 @@ if ($issuesWithChangelog.Count -eq 0) {
         Type = "Summary"
         Name = "History Entries Processed"
         Value = 0
-        Details = "No changelog data found in source"
         Timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
     }
     
@@ -335,7 +324,6 @@ if ($issuesWithChangelog.Count -eq 0) {
         Type = "Summary"
         Name = "History Entries Migrated"
         Value = 0
-        Details = "No changelog data found in source"
         Timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
     }
     
@@ -343,7 +331,6 @@ if ($issuesWithChangelog.Count -eq 0) {
         Type = "Summary"
         Name = "History Entries Failed"
         Value = 0
-        Details = "No changelog data found in source"
         Timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
     }
     
@@ -351,18 +338,17 @@ if ($issuesWithChangelog.Count -eq 0) {
         Type = "Summary"
         Name = "Success Rate (%)"
         Value = 100
-        Details = "No changelog data found - considered successful"
         Timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
     }
     
     # Export main summary report to CSV
-    $step14SummaryCsvPath = Join-Path $stepExportsDir "14_HistoryMigration_Report.csv"
+    $step14SummaryCsvPath = Join-Path $stepExportsDir "14_History_Report.csv"
     $step14SummaryReport | Export-Csv -Path $step14SummaryCsvPath -NoTypeInformation -Encoding UTF8
     Write-Host "✅ Step 14 summary report saved: $step14SummaryCsvPath" -ForegroundColor Green
     Write-Host "   Total items: $($step14SummaryReport.Count)" -ForegroundColor Cyan
     
     # Generate detailed CSV report for migrated history entries (ALWAYS CREATE)
-    $detailsCsvFileName = "14_HistoryMigration_Details.csv"
+    $detailsCsvFileName = "14_History_Details.csv"
     $detailsCsvFilePath = Join-Path $stepExportsDir $detailsCsvFileName
     
     $detailsCsvData = @()
@@ -379,7 +365,7 @@ if ($issuesWithChangelog.Count -eq 0) {
     Write-Host "✅ History details report saved: $detailsCsvFileName" -ForegroundColor Green
     
     # Generate CSV report for failed history entries (ALWAYS CREATE)
-    $failedCsvFileName = "14_HistoryMigration_Failed.csv"
+    $failedCsvFileName = "14_History_Failed.csv"
     $failedCsvFilePath = Join-Path $stepExportsDir $failedCsvFileName
     
     $failedCsvData = @()
@@ -395,7 +381,7 @@ if ($issuesWithChangelog.Count -eq 0) {
     Write-Host "✅ Failed history report saved: $failedCsvFileName" -ForegroundColor Green
     
     # Create detailed receipt
-    Write-StageReceipt -OutDir $stepExportsDir -Stage "14_HistoryMigration" -Data @{
+    Write-StageReceipt -OutDir $stepExportsDir -Stage "14_History" -Data @{
         SourceProject = @{ key=$srcKey }
         TargetProject = @{ key=$tgtKey }
         IssuesProcessed = 0
@@ -413,7 +399,7 @@ if ($issuesWithChangelog.Count -eq 0) {
     }
     
     Write-Host "✅ Step 14 completed successfully - no changelog data found" -ForegroundColor Green
-    exit 0
+    # Stop terminal logging`nStop-TerminalLog -Success:$true -Summary "$stepName completed successfully"`n`nexit 0
 }
 
 Write-Host ""
@@ -432,6 +418,13 @@ foreach ($issueWithChangelog in $issuesWithChangelog) {
     $changelogData = $issueWithChangelog.Changelog
     
     $script:IssuesProcessed++
+    
+    if (-not $targetKey) {
+        Write-Host "  ⏭️  Skipping $sourceKey (no target mapping - history preserved in source)" -ForegroundColor Yellow
+        $script:IssuesSkipped++
+        continue
+    }
+    
     Write-Host "  📝 Migrating history for $sourceKey → $targetKey"
     
     # ========== IDEMPOTENCY: DELETE all existing history comments first ==========
@@ -574,8 +567,10 @@ ${displayFieldName}: ${fromValue} → ${toValue}
                 $response = if ($script:DryRun) { $null } else { Invoke-JiraWithRetry -Method POST -Uri $commentUri -Headers $tgtHdr -Body ($commentPayload | ConvertTo-Json -Depth 10) -ContentType "application/json" -MaxRetries 3 -TimeoutSec 30 }
                 
                 Write-Host "      ✅ Logged: $displayFieldName change by $author"
-                $script:HistoryEntriesMigrated++
             }
+            
+            # Increment only once per history entry (not per field change)
+            $script:HistoryEntriesMigrated++
             
         } catch {
             Write-Warning "      ❌ Failed to log history entry: $($_.Exception.Message)"
@@ -610,7 +605,6 @@ $step14SummaryReport += [PSCustomObject]@{
     Type = "Summary"
     Name = "Issues Processed"
     Value = $script:IssuesProcessed
-    Details = "Total issues processed for history migration"
     Timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
 }
 
@@ -618,7 +612,6 @@ $step14SummaryReport += [PSCustomObject]@{
     Type = "Summary"
     Name = "History Entries Processed"
     Value = $script:HistoryEntriesProcessed
-    Details = "Total history entries processed from source"
     Timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
 }
 
@@ -626,7 +619,6 @@ $step14SummaryReport += [PSCustomObject]@{
     Type = "Summary"
     Name = "History Entries Migrated"
     Value = $script:HistoryEntriesMigrated
-    Details = "History entries successfully migrated to target"
     Timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
 }
 
@@ -634,7 +626,6 @@ $step14SummaryReport += [PSCustomObject]@{
     Type = "Summary"
     Name = "History Entries Failed"
     Value = $script:HistoryEntriesFailed
-    Details = "History entries that failed to migrate"
     Timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
 }
 
@@ -642,7 +633,6 @@ $step14SummaryReport += [PSCustomObject]@{
     Type = "Summary"
     Name = "Success Rate (%)"
     Value = if ($script:HistoryEntriesProcessed -gt 0) { [math]::Round(($script:HistoryEntriesMigrated / $script:HistoryEntriesProcessed) * 100, 1) } else { 0 }
-    Details = "Percentage of history entries successfully migrated"
     Timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
 }
 
@@ -651,7 +641,6 @@ $step14SummaryReport += [PSCustomObject]@{
     Type = "Step"
     Name = "Step Start Time"
     Value = $script:StepStartTime.ToString("yyyy-MM-dd HH:mm:ss")
-    Details = "Step execution started"
     Timestamp = $script:StepStartTime.ToString("yyyy-MM-dd HH:mm:ss")
 }
 
@@ -659,18 +648,24 @@ $step14SummaryReport += [PSCustomObject]@{
     Type = "Step"
     Name = "Step End Time"
     Value = $stepEndTime.ToString("yyyy-MM-dd HH:mm:ss")
-    Details = "Step execution completed"
+    Timestamp = $stepEndTime.ToString("yyyy-MM-dd HH:mm:ss")
+}
+
+$step14SummaryReport += [PSCustomObject]@{
+    Type = "Step"
+    Name = "Step 14 Duration"
+    Value = "{0:D2}h : {1:D2}m : {2:D2}s" -f [int][math]::Floor(($stepEndTime - $script:StepStartTime).TotalHours), [int][math]::Floor((($stepEndTime - $script:StepStartTime).TotalMinutes) % 60), [int][math]::Floor((($stepEndTime - $script:StepStartTime).TotalSeconds) % 60)
     Timestamp = $stepEndTime.ToString("yyyy-MM-dd HH:mm:ss")
 }
 
 # Export main summary report to CSV
-$step14SummaryCsvPath = Join-Path $stepExportsDir "14_HistoryMigration_Report.csv"
+$step14SummaryCsvPath = Join-Path $stepExportsDir "14_History_Report.csv"
 $step14SummaryReport | Export-Csv -Path $step14SummaryCsvPath -NoTypeInformation -Encoding UTF8
 Write-Host "✅ Step 14 summary report saved: $step14SummaryCsvPath" -ForegroundColor Green
 Write-Host "   Total items: $($step14SummaryReport.Count)" -ForegroundColor Cyan
 
 # Generate detailed CSV report for migrated history entries (ALWAYS CREATE)
-$detailsCsvFileName = "14_HistoryMigration_Details.csv"
+$detailsCsvFileName = "14_History_Details.csv"
 $detailsCsvFilePath = Join-Path $stepExportsDir $detailsCsvFileName
 
 try {
@@ -763,7 +758,7 @@ try {
 }
 
 # Generate CSV report for failed history entries (ALWAYS CREATE)
-$failedCsvFileName = "14_HistoryMigration_Failed.csv"
+$failedCsvFileName = "14_History_Failed.csv"
 $failedCsvFilePath = Join-Path $stepExportsDir $failedCsvFileName
 
 try {
@@ -799,7 +794,7 @@ try {
 }
 
 # Create detailed receipt
-Write-StageReceipt -OutDir $stepExportsDir -Stage "14_HistoryMigration" -Data @{
+Write-StageReceipt -OutDir $stepExportsDir -Stage "14_History" -Data @{
     SourceProject = @{ key=$srcKey }
     TargetProject = @{ key=$tgtKey }
     IssuesProcessed = $script:IssuesProcessed
@@ -830,3 +825,9 @@ Write-Host "✅ Step 14 completed successfully!"
 Write-Host ""
 Write-Host "Project folder: .\projects\$tgtKey\"
 Write-Host "Outputs: .\projects\$tgtKey\out\"
+
+
+
+
+
+

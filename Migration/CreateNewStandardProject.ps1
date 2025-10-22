@@ -109,8 +109,8 @@ if ($SourceKey -notmatch '^[A-Z]{2,10}$') {
 }
 
 # Validate target project key format
-if ($TargetKey -notmatch '^[A-Z]{2,10}$') {
-    Write-Error "TargetKey must be 2-10 uppercase letters (e.g., 'DEPX', 'ABC1', 'PROJECT')"
+if ($TargetKey -notmatch '^[A-Z0-9]{2,10}$') {
+    Write-Error "TargetKey must be 2-10 uppercase letters and numbers (e.g., 'DEPX', 'ABC1', 'PROJECT')"
     exit 1
 }
 

@@ -1,4 +1,4 @@
-# 15_ReviewMigration.ps1 - Comprehensive Migration Review & Validation
+# 15_Review.ps1 - Comprehensive Migration Review & Validation
 # 
 # PURPOSE: One-stop comprehensive review, validation, and reporting for the entire migration.
 # This combines QA validation, permissions checking, automation guidance, and final reporting.
@@ -76,16 +76,24 @@ $tgtHdr = New-BasicAuthHeader -Email $tgtEmail -ApiToken $tgtTok
 # Hardcode paths for now to get script working
 $outDir = ".\projects\REM\out"
 
-# Create exports15 directory and cleanup
-$stepExportsDir = Join-Path $outDir "exports15"
+# Create ExportCSV directory and cleanup
+$stepExportsDir = Join-Path $outDir "ExportCSV"
 if (Test-Path $stepExportsDir) {
-    Write-Host "🗑️  Cleaning up previous exports15 directory..." -ForegroundColor Yellow
+    Write-Host "🗑️  Cleaning up previous ExportCSV directory..." -ForegroundColor Yellow
     Remove-Item $stepExportsDir -Recurse -Force
 }
+
+# Also cleanup exports15 directory if it exists
+$exports15Dir = Join-Path $outDir "exports15"
+if (Test-Path $exports15Dir) {
+    Write-Host "🗑️  Cleaning up previous exports15 directory..." -ForegroundColor Yellow
+    Remove-Item $exports15Dir -Recurse -Force
+}
+
 New-Item -ItemType Directory -Path $stepExportsDir -Force | Out-Null
 
 # Initialize issues logging
-Initialize-IssuesLog -StepName "15_ReviewMigration" -OutDir $stepExportsDir
+Initialize-IssuesLog -StepName "15_Review" -OutDir $stepExportsDir
 
 # Set step start time
 $script:StepStartTime = Get-Date
@@ -114,7 +122,7 @@ if (-not (Test-Path $keyMappingFile)) {
     
     # Create receipt for empty result
     $stepEndTime = Get-Date
-    Write-StageReceipt -OutDir $stepExportsDir -Stage "15_ReviewMigration" -Data @{
+    Write-StageReceipt -OutDir $outDir -Stage "15_Review" -Data @{
         SourceProject = @{ key=$srcKey }
         TargetProject = @{ key=$tgtKey }
         IssuesReviewed = 0
@@ -127,7 +135,7 @@ if (-not (Test-Path $keyMappingFile)) {
         EndTime = $stepEndTime.ToString("yyyy-MM-ddTHH:mm:ss.fffffffK")
     }
     
-    exit 0
+    # Stop terminal logging`nStop-TerminalLog -Success:$true -Summary "$stepName completed successfully"`n`nexit 0
 }
 
 try {
@@ -191,6 +199,25 @@ Write-Host "Generating comprehensive reports..."
 Write-Host "✅ Migration summary compiled"
 Write-Host "✅ All reports generated"
 Write-Host ""
+
+# Load all step receipts for dashboard data
+$receipts = @{}
+for ($i = 1; $i -le 14; $i++) {
+    $stepNum = $i.ToString("00")
+    # Look in both the main out directory and the exports directories
+    $receiptFiles = @()
+    $receiptFiles += Get-ChildItem -Path $outDir -Filter "${stepNum}_*_receipt.json" -ErrorAction SilentlyContinue
+    $receiptFiles += Get-ChildItem -Path (Join-Path $outDir "exports${stepNum}") -Filter "*_receipt.json" -ErrorAction SilentlyContinue
+    
+    if ($receiptFiles) {
+        $receiptFile = $receiptFiles[0]
+        try {
+            $receipts[$stepNum] = Get-Content $receiptFile.FullName -Raw | ConvertFrom-Json
+        } catch {
+            Write-Host "⚠️  Warning: Could not load receipt for step $stepNum" -ForegroundColor Yellow
+        }
+    }
+}
 
 # Generate master dashboard
 $dashboardPath = Join-Path $outDir "migration_review_dashboard.html"
@@ -319,7 +346,7 @@ $htmlContent = @"
                 <h2>📊 Migration Summary</h2>
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-number">$($sourceToTargetKeyMap.Count)</div>
+                        <div class="stat-number">$(if ($receipts."08".IssuesProcessed) { $receipts."08".IssuesProcessed } else { $sourceToTargetKeyMap.Count })</div>
                         <div class="stat-label">Issues Migrated</div>
                     </div>
                     <div class="stat-card">
@@ -327,7 +354,7 @@ $htmlContent = @"
                         <div class="stat-label">Quality Score</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">13</div>
+                        <div class="stat-number">15</div>
                         <div class="stat-label">Steps Completed</div>
                     </div>
                 </div>
@@ -630,11 +657,12 @@ $step15SummaryReport += [PSCustomObject]@{
     Timestamp = $latestEndTime.ToString("yyyy-MM-dd HH:mm:ss")
 }
 
+$totalDuration = $latestEndTime - $earliestStartTime
 $step15SummaryReport += [PSCustomObject]@{
     Type = "Step"
     Name = "Total Migration Duration"
-    Value = [Math]::Round(($latestEndTime - $earliestStartTime).TotalSeconds, 2)
-    Details = "Total time from first step to last step (seconds)"
+    Value = "{0:D2}h : {1:D2}m : {2:D2}s" -f [int][math]::Floor($totalDuration.TotalHours), [int][math]::Floor(($totalDuration.TotalMinutes) % 60), [int][math]::Floor(($totalDuration.TotalSeconds) % 60)
+    Details = "Total time from first step to last step"
     Timestamp = $latestEndTime.ToString("yyyy-MM-dd HH:mm:ss")
 }
 
@@ -649,9 +677,9 @@ $step15SummaryReport += [PSCustomObject]@{
 
 $step15SummaryReport += [PSCustomObject]@{
     Type = "Summary"
-    Name = "Issues Reviewed"
-    Value = if ($sourceToTargetKeyMap) { $sourceToTargetKeyMap.Count } else { 0 }
-    Details = "Total issues reviewed for quality"
+    Name = "Issues Migrated"
+    Value = if ($receipts."08".IssuesProcessed) { $receipts."08".IssuesProcessed } else { if ($sourceToTargetKeyMap) { $sourceToTargetKeyMap.Count } else { 0 } }
+    Details = "Total issues successfully migrated"
     Timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
 }
 
@@ -671,9 +699,9 @@ $step15SummaryReport += [PSCustomObject]@{
     Timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
 }
 
-# Export main summary report to CSV with project key naming
-$step15SummaryCsvPath = Join-Path $stepExportsDir "$srcKey - ReviewMigration_Report.csv"
-$step15SummaryReport | Export-Csv -Path $step15SummaryCsvPath -NoTypeInformation -Encoding UTF8
+# Export main summary report to CSV with project key naming (remove Details column to match golden rule)
+$step15SummaryCsvPath = Join-Path $stepExportsDir "$srcKey - Review_Report.csv"
+$step15SummaryReport | Select-Object Type, Name, Value, Timestamp | Export-Csv -Path $step15SummaryCsvPath -NoTypeInformation -Encoding UTF8
 Write-Host "✅ Step 15 summary report saved: $step15SummaryCsvPath" -ForegroundColor Green
 Write-Host "   Total items: $($step15SummaryReport.Count)" -ForegroundColor Cyan
 
@@ -1250,18 +1278,26 @@ for ($stepNum = 1; $stepNum -le 14; $stepNum++) {
 Write-Host "✅ Total CSV files discovered: $($allCsvFiles.Count)" -ForegroundColor Green
 Write-Host ""
 
-# Step 2: Copy ALL discovered CSV files to exports15 (without renaming)
-Write-Host "📦 Copying ALL CSV files to exports15 folder..." -ForegroundColor Cyan
+# Step 2: Copy ALL discovered CSV files to ExportCSV with project key naming
+Write-Host "📦 Copying ALL CSV files to ExportCSV folder..." -ForegroundColor Cyan
 
 $copiedCount = 0
 foreach ($csvFile in $allCsvFiles) {
-    $destPath = Join-Path $stepExportsDir $csvFile.FileName
+    # Create new filename with pattern: {ProjectKey} - {StepNumber} - {ReportName with spaces}
+    $stepNum = $csvFile.StepNumber.ToString("00")
+    $baseName = $csvFile.FileName -replace '\.csv$', ''
+    # Remove step number prefix (e.g., "01_Preflight_Report" -> "Preflight_Report")
+    $cleanName = $baseName -replace '^\d+_', ''
+    # Convert underscores to spaces and title case
+    $reportName = ($cleanName -replace '_', ' ').Split(' ') | ForEach-Object { $_.Substring(0,1).ToUpper() + $_.Substring(1).ToLower() } | Join-String -Separator ' '
+    $newName = "$srcKey - $stepNum - $reportName.csv"
+    $destPath = Join-Path $stepExportsDir $newName
     Copy-Item -Path $csvFile.SourcePath -Destination $destPath -Force
     $copiedCount++
-    Write-Host "   ✅ Copied: $($csvFile.SourceRelative) → $($csvFile.FileName)" -ForegroundColor Green
+    Write-Host "   ✅ Copied: $($csvFile.SourceRelative) → $newName" -ForegroundColor Green
 }
 
-Write-Host "✅ Copied $copiedCount CSV files to exports15 folder" -ForegroundColor Green
+Write-Host "✅ Copied $copiedCount CSV files to ExportCSV folder" -ForegroundColor Green
 Write-Host ""
 
 $copiedCount = 0
@@ -1306,13 +1342,13 @@ $receiptData = @{
     EndTime = (Get-Date).ToString("o")    # Add explicit end time
 }
 
-Write-StageReceipt -OutDir $stepExportsDir -Stage "15_ReviewMigration" -Data $receiptData
+Write-StageReceipt -OutDir $outDir -Stage "15_Review" -Data $receiptData
 
-# ============================================================================
-# GENERATE FALLBACK CSV REPORTS FOR STEPS 1-7
-# ============================================================================
 Write-Host ""
-Write-Host "╔══════════════════════════════════════════════════════════╗" -ForegroundColor Cyan
+Write-Host "✅ Step 15 Review completed successfully!" -ForegroundColor Green
+Write-Host "📊 Dashboard: $dashboardPath" -ForegroundColor Cyan
+Write-Host "📁 ExportCSV: $stepExportsDir" -ForegroundColor Cyan
+Write-Host "📄 Receipt: $outDir\15_Review_receipt.json" -ForegroundColor Cyan
 Write-Host "║                                                          ║" -ForegroundColor Cyan
 Write-Host "║      GENERATING FALLBACK CSV REPORTS (STEPS 1-7)         ║" -ForegroundColor Cyan
 Write-Host "║                                                          ║" -ForegroundColor Cyan
@@ -1696,7 +1732,7 @@ Write-Host "╚═════════════════════�
 Write-Host ""
 
 # Check if Step 8 receipt exists
-$step8ReceiptPath = Join-Path $outDir "08_CreateIssues_Target_receipt.json"
+$step8ReceiptPath = Join-Path $outDir "exports08\08_Import_receipt.json"
 if (Test-Path $step8ReceiptPath) {
     Write-Host "📄 Processing Step 8 receipt for failed issues..." -ForegroundColor Cyan
     
@@ -2143,7 +2179,7 @@ Generate-FallbackCsv -StepNumber "13" -FileName "13_Sprints_SummaryReport.csv" -
 }
 
 # Step 14: History Migration Summary Report
-Generate-FallbackCsv -StepNumber "14" -FileName "14_HistoryMigration_SummaryReport.csv" -Description "History migration summary statistics" {
+Generate-FallbackCsv -StepNumber "14" -FileName "14_History_SummaryReport.csv" -Description "History migration summary statistics" {
     $step14SummaryReport = @()
     
     $step14SummaryReport += [PSCustomObject]@{
@@ -2220,7 +2256,7 @@ Write-Host "╚═════════════════════�
 Write-Host ""
 
 # Check if Step 9 receipt exists
-$step9ReceiptPath = Join-Path $outDir "09_Comments_receipt.json"
+$step9ReceiptPath = Join-Path $outDir "exports09\09_Comments_receipt.json"
 if (Test-Path $step9ReceiptPath) {
     Write-Host "📄 Processing Step 9 receipt for failed comments..." -ForegroundColor Cyan
     
@@ -2330,7 +2366,7 @@ Write-Host "╚═════════════════════�
 Write-Host ""
 
 # Check if Step 10 receipt exists
-$step10ReceiptPath = Join-Path $outDir "10_Attachments_receipt.json"
+$step10ReceiptPath = Join-Path $outDir "exports10\10_Attachments_receipt.json"
 if (Test-Path $step10ReceiptPath) {
     Write-Host "📄 Processing Step 10 receipt for failed attachments..." -ForegroundColor Cyan
     
@@ -2432,7 +2468,7 @@ Write-Host "╚═════════════════════�
 Write-Host ""
 
 # Check if Step 11 receipt exists
-$step11ReceiptPath = Join-Path $outDir "11_Links_receipt.json"
+$step11ReceiptPath = Join-Path $outDir "exports11\11_Links_receipt.json"
 if (Test-Path $step11ReceiptPath) {
     Write-Host "📄 Processing Step 11 receipt for failed links..." -ForegroundColor Cyan
     
@@ -2549,7 +2585,7 @@ Write-Host "╚═════════════════════�
 Write-Host ""
 
 # Check if Step 12 receipt exists
-$step12ReceiptPath = Join-Path $outDir "12_Worklogs_receipt.json"
+$step12ReceiptPath = Join-Path $outDir "exports12\12_Worklogs_receipt.json"
 if (Test-Path $step12ReceiptPath) {
     Write-Host "📄 Processing Step 12 receipt for failed worklogs..." -ForegroundColor Cyan
     
@@ -2651,7 +2687,7 @@ Write-Host "╚═════════════════════�
 Write-Host ""
 
 # Check if Step 13 receipt exists
-$step13ReceiptPath = Join-Path $outDir "13_Sprints_receipt.json"
+$step13ReceiptPath = Join-Path $outDir "exports13\13_Sprints_receipt.json"
 if (Test-Path $step13ReceiptPath) {
     Write-Host "📄 Processing Step 13 receipt for failed sprints..." -ForegroundColor Cyan
     
@@ -2750,7 +2786,7 @@ Write-Host "╚═════════════════════�
 Write-Host ""
 
 # Check if Step 14 receipt exists
-$step14ReceiptPath = Join-Path $outDir "14_HistoryMigration_receipt.json"
+$step14ReceiptPath = Join-Path $outDir "exports14\14_History_receipt.json"
 if (Test-Path $step14ReceiptPath) {
     Write-Host "📄 Processing Step 14 receipt for failed history entries..." -ForegroundColor Cyan
     
@@ -2968,11 +3004,11 @@ function Generate-BackupCSV {
 
 # Generate backup CSVs for steps that might not have generated their own
 $stepsToCheck = @(
-    @{ Name = "10_Attachments"; Receipt = "10_Attachments_receipt.json" },
-    @{ Name = "11_Links"; Receipt = "11_Links_receipt.json" },
-    @{ Name = "12_Worklogs"; Receipt = "12_Worklogs_receipt.json" },
-    @{ Name = "13_Sprints"; Receipt = "13_Sprints_receipt.json" },
-    @{ Name = "14_HistoryMigration"; Receipt = "14_HistoryMigration_receipt.json" }
+    @{ Name = "10_Attachments"; Receipt = "exports10\10_Attachments_receipt.json" },
+    @{ Name = "11_Links"; Receipt = "exports11\11_Links_receipt.json" },
+    @{ Name = "12_Worklogs"; Receipt = "exports12\12_Worklogs_receipt.json" },
+    @{ Name = "13_Sprints"; Receipt = "exports13\13_Sprints_receipt.json" },
+    @{ Name = "14_History"; Receipt = "exports14\14_History_receipt.json" }
 )
 
 foreach ($step in $stepsToCheck) {
@@ -2985,7 +3021,13 @@ Write-Host "✅ Backup CSV generation completed"
 # Note: CSV file copying to deliverables will be done in a separate step
 
 # Save issues log
-Save-IssuesLog -StepName "15_ReviewMigration"
+Save-IssuesLog -StepName "15_Review"
 
-exit 0
+# Stop terminal logging`nStop-TerminalLog -Success:$true -Summary "$stepName completed successfully"`n`nexit 0
+
+
+
+
+
+
 

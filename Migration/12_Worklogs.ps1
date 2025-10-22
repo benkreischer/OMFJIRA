@@ -621,3 +621,4 @@ Write-StageReceipt -OutDir $stepExportsDir -Stage "12_Worklogs" -Data @{
 Save-IssuesLog -StepName "12_Worklogs"
 
 exit 0
+

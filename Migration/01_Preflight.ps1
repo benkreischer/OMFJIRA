@@ -19,6 +19,7 @@
 param([string] $ParametersPath, [switch] $DryRun)
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
 . (Join-Path $here "_common.ps1")
+. (Join-Path $here "_terminal_logging.ps1")
 $script:DryRun = $DryRun
 
 # Set default ParametersPath if not provided
@@ -64,8 +65,23 @@ if (-not (Test-Path $stepExportsDir)) {
 # Set step start time
 $script:StepStartTime = Get-Date
 
-# Capture step start time
-$stepStartTime = Get-Date
+# Start terminal logging
+$terminalLogPath = Start-TerminalLog -StepName "01_Preflight" -OutDir $outDir -ProjectKey $p.ProjectKey
+
+# Set up error handling to ensure logging stops on errors
+$ErrorActionPreference = "Stop"
+trap {
+    $errorMessage = "Step 01 (Preflight Validation) failed"
+    if ($_.Exception.Message) {
+        $errorMessage += ": $($_.Exception.Message)"
+    }
+    if ($_.Exception.InnerException) {
+        $errorMessage += " (Inner: $($_.Exception.InnerException.Message))"
+    }
+    Write-Host "❌ $errorMessage" -ForegroundColor Red
+    Stop-TerminalLogOnError -ErrorMessage $errorMessage
+    throw
+}
 
 $required = @(
   "ProjectKey",
@@ -321,5 +337,8 @@ Write-StageReceipt -OutDir $stepExportsDir -Stage "01_Preflight" -Data @{
   TargetProjectName = $p.TargetEnvironment.ProjectName
   TargetProjectId = if ($tgtProject) { $tgtProject.id } else { $null }
 }
+
+# Stop terminal logging
+Stop-TerminalLog -Success:$true -Summary "Preflight validation completed successfully"
 
 exit 0

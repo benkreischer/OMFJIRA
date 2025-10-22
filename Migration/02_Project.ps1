@@ -19,6 +19,7 @@
 param([string] $ParametersPath, [switch] $DryRun)
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
 . (Join-Path $here "_common.ps1")
+. (Join-Path $here "_terminal_logging.ps1")
 $script:DryRun = $DryRun
 
 # Set default ParametersPath if not provided
@@ -64,8 +65,23 @@ if (-not (Test-Path $stepExportsDir)) {
 # Set step start time
 $script:StepStartTime = Get-Date
 
-# Capture step start time
-$stepStartTime = Get-Date
+# Start terminal logging
+$terminalLogPath = Start-TerminalLog -StepName "02_Project" -OutDir $outDir -ProjectKey $p.ProjectKey
+
+# Set up error handling to ensure logging stops on errors
+$ErrorActionPreference = "Stop"
+trap {
+    $errorMessage = "Step 02 (Project Creation) failed"
+    if ($_.Exception.Message) {
+        $errorMessage += ": $($_.Exception.Message)"
+    }
+    if ($_.Exception.InnerException) {
+        $errorMessage += " (Inner: $($_.Exception.InnerException.Message))"
+    }
+    Write-Host "❌ $errorMessage" -ForegroundColor Red
+    Stop-TerminalLogOnError -ErrorMessage $errorMessage
+    throw
+}
 
 $base = $p.TargetEnvironment.BaseUrl
 $email= $p.TargetEnvironment.Username
@@ -427,3 +443,6 @@ Write-StageReceipt -OutDir $stepExportsDir -Stage "02_Project" -Data $receiptDat
 
 Write-Host ""
 Write-Host "✅ Step 02 completed successfully!" -ForegroundColor Green
+
+# Stop terminal logging
+Stop-TerminalLog -Success:$true -Summary "02_Project completed successfully"

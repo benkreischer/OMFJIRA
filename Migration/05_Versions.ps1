@@ -349,3 +349,4 @@ Write-StageReceipt -OutDir $stepExportsDir -Stage "05_Versions" -Data $receiptDa
 Save-IssuesLog -StepName "05_Versions"
 
 exit 0
+

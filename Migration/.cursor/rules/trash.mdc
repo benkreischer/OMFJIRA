@@ -1,0 +1,39 @@
+---
+description: When user says "trash" or "delete", move files to .trash directory instead of permanent deletion
+globs: **/*
+alwaysApply: true
+---
+
+# Trash Management Rule
+
+## **File Deletion Behavior**
+- **When user says "trash", "delete", or "remove"** → Move to `.trash/` directory
+- **NEVER permanently delete files** unless explicitly requested with "permanent delete"
+- **Preserve file structure** in `.trash/` when possible
+
+## **Implementation**
+- Use `Move-Item` instead of `Remove-Item`
+- Create `.trash/` directory if it doesn't exist
+- Maintain original filename in trash location
+
+## **Examples**
+```powershell
+# ✅ DO: Move to trash
+Move-Item "file.ps1" ".trash\file.ps1"
+
+# ❌ DON'T: Permanently delete
+Remove-Item "file.ps1" -Force
+```
+
+## **User Intent Recognition**
+- "put in .trash" → Move to `.trash/`
+- "delete this" → Move to `.trash/`
+- "remove file" → Move to `.trash/`
+- "trash it" → Move to `.trash/`
+- "permanent delete" → Actually delete (rare case)
+
+## **Safety Benefits**
+- **Recovery possible** if file needed later
+- **Audit trail** of what was removed
+- **No accidental data loss**
+- **Easy cleanup** of trash directory later

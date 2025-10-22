@@ -902,3 +902,4 @@ Write-StageReceipt -OutDir $stepExportsDir -Stage "03_Users" -Data $receiptData
 Write-Host ""
 Write-Host "✅ Step 03 completed successfully!" -ForegroundColor Green
 exit 0
+

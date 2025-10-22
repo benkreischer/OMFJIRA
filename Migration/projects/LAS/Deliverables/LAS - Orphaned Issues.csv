@@ -1,2 +1,0 @@
-"Source Issue","Source URL","Target Issue","Target URL","Issue Type","Summary","Missing Parent","Status","Reason","Action Required"
-"LAS-2122","https://onemain.atlassian.net/browse/LAS-2122","LAS1-469","https://onemainfinancial-migrationsandbox.atlassian.net/browse/LAS1-469","Spike","2024 Score Regression Support & Maintenance","LAS-100","Done","Parent was resolved/excluded from migration (not in export)","Manually link to appropriate parent or mark as orphaned"

@@ -20,6 +20,10 @@
 
 param([string]$ParametersPath = ".\migration-parameters.json", [switch]$DryRun)
 
+$here = Split-Path -Parent $MyInvocation.MyCommand.Path
+. (Join-Path $here "_common.ps1")
+. (Join-Path $here "_terminal_logging.ps1")
+
 # -------------------- Local utilities --------------------
 
 function New-BasicAuthHeader {
@@ -211,6 +215,24 @@ Initialize-IssuesLog -StepName "07_Export" -OutDir $stepExportsDir
 
 # Set step start time
 $script:StepStartTime = Get-Date
+
+# Start terminal logging
+$terminalLogPath = Start-TerminalLog -StepName "07_Export" -OutDir $outDir -ProjectKey $config.ProjectKey
+
+# Set up error handling to ensure logging stops on errors
+$ErrorActionPreference = "Stop"
+trap {
+    $errorMessage = "Step 07 (Export) failed"
+    if ($_.Exception.Message) {
+        $errorMessage += ": $($_.Exception.Message)"
+    }
+    if ($_.Exception.InnerException) {
+        $errorMessage += " (Inner: $($_.Exception.InnerException.Message))"
+    }
+    Write-Host "❌ $errorMessage" -ForegroundColor Red
+    Stop-TerminalLogOnError -ErrorMessage $errorMessage
+    throw
+}
 
 # Output file
 $outFile = Join-Path $stepExportsDir "07_Export_adf.jsonl"
@@ -533,3 +555,8 @@ Write-StageReceipt -OutDir $stepExportsDir -Stage "07_Export" -Data $receiptData
 
 # Save issues log
 Save-IssuesLog -StepName "07_Export"
+
+# Stop terminal logging
+Stop-TerminalLog -Success:$true -Summary "07_Export completed successfully"
+
+

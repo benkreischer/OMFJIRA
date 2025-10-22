@@ -1334,3 +1334,4 @@ if ($DocumentSkippedLinks -and $documentsCreated -gt 0) {
 Save-IssuesLog -StepName "11_Links"
 
 exit 0
+
